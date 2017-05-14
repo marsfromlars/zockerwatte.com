@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Learn CSS.</title>
+        <link rel="icon" href="images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="learn.css">
+    </head>
+    <body>
+
+        <a href="index.html">Home</a>
+
+        <h1>Learn CSS.</h1>
+
+        <!-- ******************************************************************** -->
+        <h2>Include.</h2>
+
+            <pre><div class="code">
+&lt;link rel="stylesheet" href="mystyle.css">
+            </div></pre>
+
+        <!-- ******************************************************************** -->
+        <h2>Inline.</h2>
+
+            <pre><div class="code">
+body { <br>
+  background-color: gray; <br>
+}
+            </div></pre>
+
+        <!-- ******************************************************************** -->
+        <h2>The TOP RIGHT BOTTOM LEFT order. Clockwise.</h2>
+
+            <pre><div class="code">
+div {
+    margin: TOP RIGHT BOTTOM LEFT
+}                
+            </div></pre>
+
+        <!-- ******************************************************************** -->
+        <h2>Box model.</h2>
+
+        <style>
+            #margin {
+                border: 1px dotted gray;
+                padding: 5px 20px 20px 20px;
+                background-color: lightsalmon;
+
+            }
+            #border {
+                border: 1px solid black;
+                padding: 5px 20px 20px 20px;
+                background-color:gold;
+            }
+            #padding {
+                border: 1px dashed gray;
+                padding: 5px 20px 20px 20px;
+                background-color: lightgreen;
+            }
+            #content {
+                border: 1px solid gray;
+                padding: 5px 20px 5px 20px;
+                background-color: lightblue;
+            }
+        </style>
+
+        <div id="margin">
+            Margin.
+            <div id="border">
+                Border.
+                <div id="padding">
+                    Padding.
+                    <div id="content">
+                        Box.
+                    </div>
+                </div>
+            </div>    
+        </div>
+
+        <!-- ******************************************************************** -->
+        <h2>Select "tag".</h2>
+
+            <pre><div class="code">
+a {
+    color: red;
+}                
+            </div></pre>
+
+            <style>a { color: red;}</style>
+
+            <div class="output">
+                <a href="http://google.com">A link.</a>
+            </div>
+
+        <!-- ******************************************************************** -->
+        <h2>Select ".class".</h2>
+
+            <pre><div class="code" data-title="HTML">
+&lt;div class="poem">
+    The sun. The moon. The happy ending.
+&lt;div>
+            </div></pre>
+
+            <pre><div class="code" data-title="CSS">
+.poem {
+    font-style: italic;
+}                
+            </div></pre>
+
+        <!-- ******************************************************************** -->
+        <h2>Select "#id".</h2>
+
+            <pre><div class="code" data-title="HTML">
+&lt;div id="lorem">
+    Lorem ipsum.
+&lt;div>
+            </div></pre>
+
+            <pre><div class="code" data-title="CSS">
+#lorem {
+    border: 1px solid black;
+}                
+            </div></pre>
+
+    </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Learn Javascript.</title>
+        <link rel="icon" href="images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="learn.css">        
+    </head>
+    <body>
+
+        <a href="index.html">Home</a>
+
+        <h1>Learn Canvas.</h1>
+
+        <!-- ******************************************************************** -->
+        <h2>Get context.</h2>
+
+            <pre><div class="code" data-title="HTML" >
+&lt;canvas id="canvas1">                
+            </div></pre>           
+
+            <pre><div class="code" data-title="Javascript" >
+var canvas = document.getElementById( 'canvas1' );
+var ctx = canvas.getContext( '2d' );
+            </div></pre>           
+
+        <!-- ******************************************************************** -->
+        <h2>Coordinates.</h2>
+
+        <table class="sampletable"><tr>
+        <td>
+            <canvas id="canvas0" class="samplecanvas" width="100" height="100" >
+        </td>
+        <td>
+        </td>
+        </tr></table>
+
+        <script>
+            var canvas = document.getElementById( 'canvas0' );
+            var ctx = canvas.getContext( '2d' );
+            ctx.beginPath();
+
+            ctx.font = "12px Arial";
+            ctx.fillText( "0,0", 10, 13 );
+
+            ctx.moveTo( 20, 20 );
+            ctx.lineTo( 80, 20 );
+            ctx.lineTo( 75, 15 );
+            ctx.moveTo( 80, 20 );
+            ctx.lineTo( 75, 25 );
+
+            ctx.fillText( "X", 85, 23 );
+
+            ctx.moveTo( 20, 20 );
+            ctx.lineTo( 20, 80 );
+            ctx.lineTo( 15, 75 );
+            ctx.moveTo( 20, 80 );
+            ctx.lineTo( 25, 75 );
+
+            ctx.fillText( "Y", 17, 95 );
+
+            ctx.strokeRect( 45, 45, 30, 30 );
+
+            ctx.fillText( "H", 80, 65 );
+            ctx.fillText( "W", 55, 90 );
+
+            ctx.stroke();
+        </script>
+
+        <!-- ******************************************************************** -->
+        <h2>Primitives.</h2>
+
+        <table class="sampletable"><tr>
+        <td>
+            <canvas id="canvas1" class="samplecanvas" width="100" height="100" >
+        </td>
+        <td>
+            <pre><div class="code">
+ctx.beginPath();
+ctx.moveTo( 15, 15 );
+ctx.lineTo( 85, 85 );
+ctx.stroke();
+            </div></pre>           
+        </td>
+        </tr></table>
+
+        <script>
+            var canvas = document.getElementById( 'canvas1' );
+            var ctx = canvas.getContext( '2d' );
+            ctx.beginPath();
+            ctx.moveTo( 15, 15 );
+            ctx.lineTo( 85, 85 );
+            ctx.stroke();
+        </script>
+
+        <table class="sampletable"><tr>
+        <td>
+            <canvas id="canvas2" class="samplecanvas" width="100" height="100" >
+        </td>
+        <td>
+            <pre><div class="code">
+ctx.fillRect( 15, 15, 50, 50 );
+ctx.clearRect( 25, 25, 50, 50 );
+ctx.strokeRect( 35, 35, 50, 50 );
+            </div></pre>           
+        </td>
+        </tr></table>
+
+        <script>
+            var canvas = document.getElementById( 'canvas2' );
+            var ctx = canvas.getContext( '2d' );
+            ctx.fillRect( 15, 15, 50, 50 );
+            ctx.clearRect( 25, 25, 50, 50 );
+            ctx.strokeRect( 35, 35, 50, 50 );
+        </script>
+
+    </body>
+</html>
