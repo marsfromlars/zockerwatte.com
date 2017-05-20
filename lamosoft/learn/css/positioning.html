@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Positioning.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">
+
+        <style>
+            .other {
+                background-color: lightblue;
+            }
+            .positioned {
+                background-color: lightcoral;
+            }
+            .box {
+                margin: 10px;
+                padding: 5px;
+            }
+            .page {
+                border: 1px solid dashed;
+                background-color: #eeeeee;
+                padding: 10px;
+                width: 400px;
+                position: relative;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a> <a href="css.html">Up</a>
+
+        <h1>Positioning.</h1>
+
+        <!-- ******************************************************************** -->
+        <h2>static</h2>
+
+        <div>
+            This is the default. Meaning normal flow of html layout.
+        </div>
+
+        <pre><div class="code" data-title="HTML">
+#static {
+    position: static;
+}
+        </div></pre>
+        
+        <style>
+            #static {
+                position: static;
+            }
+        </style>
+
+        <div class="page">
+            <div class="other box">Lorem</div>
+            <div class="positioned box" id="static">static element</div>
+            <div class="other box">Ipsum</div>
+        </div>
+
+        <!-- ******************************************************************** -->
+        <h2>relative</h2>
+
+        <div>
+            Relative to normal (=static) position;
+        </div>
+
+        <pre><div class="code" data-title="HTML">
+#relative {
+    position: relative;
+    top: -10px;
+    left: 50px;
+}
+        </div></pre>
+        
+        <style>
+            #relative {
+                position: relative;
+                top: -20px;
+                left: 30px;
+            }
+        </style>
+
+        <div class="page">
+            <div class="other box">Lorem</div>
+            <div class="positioned box" id="relative">relative element</div>
+            <div class="other box">Ipsum</div>
+        </div>
+
+        <!-- ******************************************************************** -->
+        <h2>fixed</h2>
+
+        <div>
+            Fixed in the browser window (not page).
+        </div>
+
+        <pre><div class="code" data-title="HTML">
+#fixed {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 150px;
+        height: 20px;
+}
+        </div></pre>
+        
+        <style>
+            #fixed {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                width: 150px;
+                height: 20px;
+            }
+        </style>
+
+        <div class="page">
+            <div class="other box">The fixed element will not leave an empty space.</div>
+            <div class="positioned box" id="fixed">fixed element</div>
+            <div class="other box">Look to the bottom right of the window.</div>
+        </div>
+
+        <!-- ******************************************************************** -->
+        <h2>absolute</h2>
+
+        <div>
+            Absolute position within parent element.<br>
+            Only if parent is positioned. Positioned means anything but static.<br>
+            If parent is not positioned, the absolute position refers to <b>body</b>.
+        </div>
+
+        <pre><div class="code" data-title="HTML">
+#absolute {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 150px;
+    height: 20px;
+}
+        </div></pre>
+        
+        <style>
+            #absolute {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                width: 150px;
+                height: 20px;
+            }
+        </style>
+
+        <div class="page">
+            <div class="other box">The fixed element will not leave an empty space.</div>
+            <div class="positioned box" id="absolute">absolute element</div>
+            <div class="other box">Look to the bottom right of the window.</div>
+        </div>
+
+    </body>
+</html>
