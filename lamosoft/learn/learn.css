@@ -61,3 +61,7 @@ pre {
 .sampletable {
     vertical-align: top;
 }
+
+div {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Animation.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a> <a href="index.html">Up</a>
+
+        <h1>Animation.</h1>
+
+        <!-- ******************************************************************** -->
+        <h2>fadeIn()</h2>
+
+        <pre><div class="code" data-title="HTML">
+&lt;span id="hello">Hello World.&lt;/span>
+        </div></pre>
+
+        <pre><div class="code" data-title="CSS">
+#hello {
+    padding: 10px;
+    background-color: coral;
+    color: white;
+    border: 1px dashed gray;
+    display: none;
+}
+        </div></pre>
+
+        <pre><div class="code" data-title="Javascript">
+$('#hello').fadeIn(2000);
+        </div></pre>
+
+        <br>
+
+        <style>
+            #hello {
+                padding: 10px;
+                background-color: coral;
+                color: white;
+                border: 1px dashed gray;
+                display: none;
+            }
+        </style>
+
+        <div>
+            <span id="hello">Hello World.</span>
+        </div>
+
+        <br>
+
+        <button id="replay">Replay</button>
+
+        <script>
+            fadeIn = function() {
+                $('#hello').css('display','none');
+                $('#hello').fadeIn(2000);
+            }
+            $('#replay').click(fadeIn);
+            fadeIn();
+        </script>
+
+        <!-- ******************************************************************** -->
+        <h2>animate()</h2>
+
+        <pre><div class="code" data-title="HTML">
+&lt;span id="animation">Animation.&lt;/span>
+        </div></pre>
+
+        <pre><div class="code" data-title="CSS">
+#animation {
+    padding: 10px;
+    background-color:gold;
+    border: 1px dashed gray;
+    font-size: 8px;
+}
+        </div></pre>
+
+        <pre><div class="code" data-title="Javascript">
+$('#animation').animate({
+    'width': 400,
+    'padding-left': 200,
+    'font-size': 46
+}, {
+    duration: 1000
+});
+        </div></pre>
+
+        <br>
+
+        <style>
+            #animation {
+                padding: 10px;
+                background-color:gold;
+                border: 1px dashed gray;
+                font-size: 8px;
+            }
+        </style>
+
+        <div>
+            <span id="animation">Animation.</span>
+        </div>
+
+        <br>
+
+        <button id="replay2">Replay</button>
+
+        <script>
+            animate = function() {
+                $('#animation').css('width', '100');
+                $('#animation').css('padding-left', '0');
+                $('#animation').css('font-size', '8px');
+                $('#animation').animate({
+                    'width': 400,
+                    'padding-left': 200,
+                    'font-size': 46
+                }, {
+                    duration: 1000
+                });
+            };
+            $('#replay2').click(animate);
+            animate();
+        </script>
+
+    </body>
+</html>
