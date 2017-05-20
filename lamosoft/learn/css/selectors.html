@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Selectors.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a> <a href="css.html">Up</a>
+
+        <h1>Selectors.</h1>
+
+        <!-- ******************************************************************** -->
+        <h2>Select "tag".</h2>
+
+            <pre><div class="code">
+a {
+    color: red;
+}                
+            </div></pre>
+
+            <style>.output a { color: red;}</style>
+
+            <div class="output">
+                <a href="http://google.com">A link.</a>
+            </div>
+
+        <!-- ******************************************************************** -->
+        <h2>Select ".class".</h2>
+
+            <pre><div class="code" data-title="HTML">
+&lt;div class="poem">
+    The sun. The moon. The happy ending.
+&lt;div>
+            </div></pre>
+
+            <pre><div class="code" data-title="CSS">
+.poem {
+    font-style: italic;
+}                
+            </div></pre>
+
+        <!-- ******************************************************************** -->
+        <h2>Select "#id".</h2>
+
+            <pre><div class="code" data-title="HTML">
+&lt;div id="lorem">
+    Lorem ipsum.
+&lt;div>
+            </div></pre>
+
+            <pre><div class="code" data-title="CSS">
+#lorem {
+    border: 1px solid black;
+}                
+            </div></pre>
+
+    </body>
+</html>

@@ -2626,22 +2626,24 @@
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
       </item>
+-->      
       <item>
           <title>173 - Das war unser 2016</title>
           <link>http://zockerwattegames.blogspot.de/</link>
           <description>Wir reden über 2016.</description>
           <itunes:summary>Wir reden über 2016.</itunes:summary>
           <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Wir reden über 2016.</itunes:subtitle>
-          <enclosure url="http://dl.dropbox.com/u/14491338/zockerwatte/zockerwatte-folge173.mp3" length="57106308" type="audio/mpeg" />
-          <source url="http://dl.dropbox.com/u/14491338/zockerwatte/zockerwatte-folge173.mp3">Hear the preview here</source>
-          <guid>http://dl.dropbox.com/u/14491338/zockerwatte/zockerwatte-folge173.mp3</guid>
+          <enclosure url="http://feeds.soundcloud.com/stream/303660059-user-414907331-zockerwatte-podcast-folge-173.mp3" length="57106308" type="audio/mpeg" />
+          <source url="http://feeds.soundcloud.com/stream/303660059-user-414907331-zockerwatte-podcast-folge-173.mp3">Hear the preview here</source>
+          <guid>http://feeds.soundcloud.com/stream/303660059-user-414907331-zockerwatte-podcast-folge-173.mp3</guid>
           <category>Podcasts</category>
           <pubDate>Mon, 09 Jan 2017 17:00:00 GMT</pubDate>
           <itunes:duration>00:39:39</itunes:duration>
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
       </item>
--->      
+      <!--
+      hidden due to soundcloud limit
       <item>
           <title>174 - Clash overwatch</title>
           <link>http://zockerwattegames.blogspot.de/</link>
@@ -2657,6 +2659,7 @@
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
       </item>
+      -->
       <item>
           <title>175 - Overwatch und kein Ende</title>
           <link>http://zockerwattegames.blogspot.de/</link>
