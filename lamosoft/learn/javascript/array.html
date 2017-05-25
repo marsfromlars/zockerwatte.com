@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Array.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">        
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a>
+
+        <h1>Array.</h1>
+
+            <pre><div class="code" data-title="Javascript" >
+let a = [ 'IBM', 'Intel', 'Oracle' ];
+assert( a.length == 3 );
+a.push( 'Microsoft' );
+assert( a.length == 4 );
+a[ 9 ] = 'Apple';
+assert( a.length == 10 );
+assert( Array.isArray( a ) );
+assert( a instanceof Array );
+assert( a[ 1 ] == 'Intel' );
+            </div></pre>           
+
+        <script>
+            let assert = function( exp ) {
+                if( !exp ) {
+                    document.write( 'Assertion failed.<br>' );
+                }
+            }
+            let a = [ 'IBM', 'Intel', 'Oracle' ];
+            assert( a.length == 3 );
+            a.push( 'Microsoft' );
+            assert( a.length == 4 );
+            a[ 9 ] = 'Apple';
+            assert( a.length == 10 );
+            assert( Array.isArray( a ) );
+            assert( a instanceof Array );
+            assert( a[ 1 ] == 'Intel' );
+            document.write( 'a=' + a );
+        </script>
+
+    </body>
+</html>
