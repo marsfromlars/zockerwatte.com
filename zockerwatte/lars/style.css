@@ -1,8 +1,8 @@
 body {
 
-    background-color: black;
+    background-color: #333333;
     color: white;
-    font-family: fantasy;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     padding: 30px;
 
 }
@@ -19,3 +19,7 @@ h1 {
 
 }
 
+table {
+    background-color: darkkhaki;
+    color: black;
+}
