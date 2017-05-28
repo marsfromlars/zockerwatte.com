@@ -6,31 +6,25 @@
         <link rel="stylesheet" href="../learn/learn.css">
         <link rel="stylesheet" href="sprite.css">
         <script src="sprite.js"></script>
+        <script src="editor.js"></script>
     </head>
     <body>
 
         <a href="index.html">Home</a>
 
-        <h1>Sprite.</h1>
+        <h1>Sprite editor.</h1>
 
-        <a href="sprite.js">sprite.js</a>
+        <a href="editor.js">editor.js</a>
 
         <pre><div class="code" data-title="Javascript" >
-let sprite = new Sprite({
-    el: document.getElementById('canvas1'),
-    rows: 16,
-    cols: 16 
-});
-sprite.set( 0, 0, 'blue' );
-sprite.set( 5, 5, 'red' );
-sprite.set( 4, 4, 'green' );
-sprite.set( 6, 6, 'yellow' );
-sprite.set( 7, 7, 'orange' );
-sprite.set( 15, 15, 'black' );
-sprite.repaint();
         </div></pre>           
 
-        <canvas id="canvas1" width="160" height="160">      
+        <canvas id="canvas1" width="160" height="160" ></canvas>
+        
+        <div>
+        Click or draw.
+        </div>
+        
         <script>
             let sprite = new Sprite({
                 el: document.getElementById('canvas1'),
@@ -44,6 +38,9 @@ sprite.repaint();
             sprite.set( 7, 7, 'orange' );
             sprite.set( 15, 15, 'black' );
             sprite.repaint();
+            let editor = new Editor({
+                sprite: sprite
+            });
         </script>
 
     </body>

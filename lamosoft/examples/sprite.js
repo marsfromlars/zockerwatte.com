@@ -1,3 +1,8 @@
+/**
+ * A sprite is an image with blown up pixels
+ * 
+ * @param {*} config 
+ */
 function Sprite( config ) {
     this.el = config.el;
     this.rows = config.rows || 8;
@@ -49,5 +54,14 @@ Sprite.prototype.clear = function() {
     this.repaint();
 }
 
+Sprite.prototype.x2col = function( x ) {
+    let col = Math.floor( x / this.pixelWidth );
+    return col < 0 ? 0 : col >= this.cols ? this.cols - 1 : col;
+}
+
+Sprite.prototype.y2row = function( y ) {
+    let row = Math.floor( y / this.pixelHeight );
+    return row < 0 ? 0 : row >= this.rows ? this.rows - 1 : row;
+}
 
 
