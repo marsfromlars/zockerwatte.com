@@ -17,10 +17,20 @@
         <a href="spriteeditor.js">spriteeditor.js</a>
 
         <pre><div class="code" data-title="Javascript" >
+let previewSprite = new Sprite({
+    el: document.getElementById('canvas2'),
+    rows: 16,
+    cols: 16,
+    pixelWidth: 2,
+    pixelHeight: 2
+});
 let sprite = new Sprite({
     el: document.getElementById('canvas1'),
     rows: 16,
-    cols: 16 
+    cols: 16,
+    onRepaint: function() {
+        previewSprite.paintSprite( this, 0, 0 );
+    }
 });
 // fill sprite ...
 let editor = new SpriteEditor({
@@ -29,16 +39,31 @@ let editor = new SpriteEditor({
         </div></pre>           
 
         <canvas id="canvas1" width="160" height="160" ></canvas>
-        
+
         <div>
         Click or draw.
         </div>
-        
+
+        <div>
+            Preview:<br>
+            <canvas id="canvas2" width="32" height="32" ></canvas>
+        </div>
+
         <script>
+            let previewSprite = new Sprite({
+                el: document.getElementById('canvas2'),
+                rows: 16,
+                cols: 16,
+                pixelWidth: 2,
+                pixelHeight: 2
+            });
             let sprite = new Sprite({
                 el: document.getElementById('canvas1'),
                 rows: 16,
-                cols: 16 
+                cols: 16,
+                onRepaint: function() {
+                    previewSprite.paintSprite( this, 0, 0 );
+                }
             });
             sprite.set( 0, 0, 'blue' );
             sprite.set( 5, 5, 'red' );
@@ -48,7 +73,7 @@ let editor = new SpriteEditor({
             sprite.set( 15, 15, 'black' );
             sprite.repaint();
             let editor = new SpriteEditor({
-                sprite: sprite
+                sprite: sprite,
             });
         </script>
 

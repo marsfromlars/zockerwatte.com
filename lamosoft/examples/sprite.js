@@ -11,6 +11,7 @@ function Sprite( config ) {
     this.pixelHeight = config.pixelHeight || 10;
     this.pixels = [];
     this.ctx = this.el.getContext( '2d' );
+    this.onRepaint = config.onRepaint;
 }
 
 Sprite.prototype.repaint = function() {
@@ -25,6 +26,9 @@ Sprite.prototype.repaint = function() {
                 this.clearPixel( x, y, color );
             }
         }
+    }
+    if( this.onRepaint ) {
+        this.onRepaint();
     }
 }
 
@@ -43,6 +47,18 @@ Sprite.prototype.get = function( x, y ) {
 Sprite.prototype.paint = function( x, y, color ) {
     this.ctx.fillStyle = color;
     this.ctx.fillRect( this.pixelWidth * x, this.pixelHeight * y, this.pixelWidth, this.pixelHeight );
+}
+
+Sprite.prototype.paintSprite = function( sprite, x, y ) {
+    for( var c = 0; c < sprite.cols; c++ ) {
+        for( var r = 0; r < sprite.rows; r++ ) {
+            let color = sprite.get( c, r );
+            if( color ) {
+                this.paint( x + c, y + r, color );
+                //console.log( ( x + c ) + " " + ( y + r ) + " " + color );
+            }
+        }
+    }
 }
 
 Sprite.prototype.clearPixel = function( x, y, color ) {

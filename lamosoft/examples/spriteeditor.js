@@ -6,8 +6,6 @@
 function SpriteEditor( config ) {
     this.sprite = config.sprite;
     this.el = this.sprite.el;
-    this.pixelWidth = this.sprite.pixelWidth;
-    this.pixelHeight = this.sprite.pixelHeight;
     this.color = 'red';
     this.pendown = false;
 
