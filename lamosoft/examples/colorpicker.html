@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Color picker.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn/learn.css">
+        <link rel="stylesheet" href="sprite.css">
+        <script src="colorpicker.js"></script>
+    </head>
+    <body>
+
+        <a href="index.html">Home</a>
+
+        <h1>Color picker.</h1>
+
+        <a href="colorpicker.js">colorpicker.js</a>
+
+        <pre><div class="code" data-title="Javascript" >
+let canvas = document.getElementById('canvas1')
+var ctx = canvas.getContext('2d');
+var imageObj = new Image();
+imageObj.onload = function() {
+    ctx.drawImage(imageObj, 0, 0);
+    new ColorPicker({
+        el: canvas
+    });
+};
+imageObj.src = 'images/pexels-photo-220320.jpeg';
+        </div></pre>           
+
+        <canvas id="canvas1" width="180" height="125" ></canvas>
+        
+        <div>
+        Click to pick.
+        </div>
+        
+        <script>
+            let canvas = document.getElementById('canvas1')
+            var ctx = canvas.getContext('2d');
+            var imageObj = new Image();
+            imageObj.onload = function() {
+                ctx.drawImage(imageObj, 0, 0);
+                new ColorPicker({
+                    el: canvas
+                });
+            };
+            imageObj.src = 'images/pexels-photo-220320.jpeg';
+        </script>
+
+    </body>
+</html>

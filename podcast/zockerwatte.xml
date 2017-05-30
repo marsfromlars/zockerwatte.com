@@ -2795,6 +2795,21 @@
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
       </item>
+      <item>
+          <title>184 - Shuriken im Bein</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Film: Taffe Mädels (The Heat). Erste Hilfe: Luftröhrenschnitt. Overwatch: Jubiläum.</description>
+          <itunes:summary>Film: Taffe Mädels (The Heat). Erste Hilfe: Luftröhrenschnitt. Overwatch: Jubiläum.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Film: Taffe Mädels (The Heat). Erste Hilfe: Luftröhrenschnitt. Overwatch: Jubiläum.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge184.mp3" length="14499548" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge184.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge184.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 29 May 2017 17:00:00 GMT</pubDate>@ﬂ
+          <itunes:duration>00:10:04</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
       <!--
       -->
 </channel>

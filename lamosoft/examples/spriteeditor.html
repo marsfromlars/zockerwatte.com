@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sprite.</title>
+        <title>Sprite editor.</title>
         <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
         <link rel="stylesheet" href="../learn/learn.css">
         <link rel="stylesheet" href="sprite.css">
         <script src="sprite.js"></script>
-        <script src="editor.js"></script>
+        <script src="spriteeditor.js"></script>
     </head>
     <body>
 
@@ -14,9 +14,18 @@
 
         <h1>Sprite editor.</h1>
 
-        <a href="editor.js">editor.js</a>
+        <a href="spriteeditor.js">spriteeditor.js</a>
 
         <pre><div class="code" data-title="Javascript" >
+let sprite = new Sprite({
+    el: document.getElementById('canvas1'),
+    rows: 16,
+    cols: 16 
+});
+// fill sprite ...
+let editor = new SpriteEditor({
+    sprite: sprite
+});
         </div></pre>           
 
         <canvas id="canvas1" width="160" height="160" ></canvas>
@@ -38,7 +47,7 @@
             sprite.set( 7, 7, 'orange' );
             sprite.set( 15, 15, 'black' );
             sprite.repaint();
-            let editor = new Editor({
+            let editor = new SpriteEditor({
                 sprite: sprite
             });
         </script>

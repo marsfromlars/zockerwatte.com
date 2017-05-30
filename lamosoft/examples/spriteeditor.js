@@ -3,7 +3,7 @@
  * 
  * @param {*} config 
  */
-function Editor( config ) {
+function SpriteEditor( config ) {
     this.sprite = config.sprite;
     this.el = this.sprite.el;
     this.pixelWidth = this.sprite.pixelWidth;
@@ -28,7 +28,7 @@ function Editor( config ) {
     });
 }
 
-Editor.prototype.doclick = function( x, y ) {
+SpriteEditor.prototype.doclick = function( x, y ) {
     this.sprite.set( x, y, this.color );
     this.sprite.repaint();
 }
