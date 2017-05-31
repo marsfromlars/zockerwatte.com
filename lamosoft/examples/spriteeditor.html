@@ -5,6 +5,7 @@
         <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
         <link rel="stylesheet" href="../learn/learn.css">
         <link rel="stylesheet" href="sprite.css">
+        <link rel="stylesheet" href="spriteeditor.css">
         <script src="sprite.js"></script>
         <script src="spriteeditor.js"></script>
     </head>
@@ -38,7 +39,29 @@ let editor = new SpriteEditor({
 });
         </div></pre>           
 
-        <canvas id="canvas1" width="160" height="160" ></canvas>
+        <table>
+            <tr>
+                <td></td>
+                <td><button onclick="editor.shift( 0, -1 )">Up</button></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="editor.shift( -1, 0 )">Left</button>
+                </td>
+                <td>
+                    <canvas id="canvas1" width="160" height="160" ></canvas>
+                </td>
+                <td>
+                    <button onclick="editor.shift( 1, 0 )">Right</button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button onclick="editor.shift( 0, 1 )">Down</button></td>
+                <td></td>                
+            </tr>
+        </table>
 
         <div>
         Click or draw.

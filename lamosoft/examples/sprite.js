@@ -10,7 +10,7 @@ function Sprite( config ) {
     this.pixelWidth = config.pixelWidth || 10;
     this.pixelHeight = config.pixelHeight || 10;
     this.pixels = [];
-    this.ctx = this.el.getContext( '2d' );
+    this.ctx = this.el ? this.el.getContext( '2d' ) : null;
     this.onRepaint = config.onRepaint;
 }
 
@@ -55,13 +55,15 @@ Sprite.prototype.paintSprite = function( sprite, x, y ) {
             let color = sprite.get( c, r );
             if( color ) {
                 this.paint( x + c, y + r, color );
-                //console.log( ( x + c ) + " " + ( y + r ) + " " + color );
+            }
+            else {
+                this.clearPixel( x + c, y + r );
             }
         }
     }
 }
 
-Sprite.prototype.clearPixel = function( x, y, color ) {
+Sprite.prototype.clearPixel = function( x, y ) {
     this.ctx.clearRect( this.pixelWidth * x, this.pixelHeight * y, this.pixelWidth, this.pixelHeight );
 }
 
@@ -79,5 +81,33 @@ Sprite.prototype.y2row = function( y ) {
     let row = Math.floor( y / this.pixelHeight );
     return row < 0 ? 0 : row >= this.rows ? this.rows - 1 : row;
 }
+
+Sprite.prototype.shift = function( x, y ) {
+    var newSprite = new Sprite({
+        rows: this.rows,
+        cols: this.cols
+    });
+    for( var r = 0; r < this.rows; r++ ) {
+        for( var c = 0; c < this.rows; c++ ) {
+            var newR = r + y;
+            var newC = c + x;
+            if( newR >= this.rows ) {
+                newR -= this.rows;
+            }
+            if( newR < 0 ) {
+                newR += this.rows;
+            }
+            if( newC >= this.cols ) {
+                newC -= this.cols;
+            }
+            if( newC < 0 ) {
+                newC += this.cols;
+            }
+            newSprite.set( newC, newR, this.get( c, r ) );
+        }
+    }
+    this.pixels = newSprite.pixels;
+}
+
 
 

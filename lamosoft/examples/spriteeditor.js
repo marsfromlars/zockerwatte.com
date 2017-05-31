@@ -31,5 +31,10 @@ SpriteEditor.prototype.doclick = function( x, y ) {
     this.sprite.repaint();
 }
 
+SpriteEditor.prototype.shift = function( x, y ) {
+    this.sprite.shift( x, y );
+    this.sprite.repaint();
+}
+
 
 
