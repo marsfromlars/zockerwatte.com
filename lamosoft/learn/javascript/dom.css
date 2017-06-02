@@ -1,0 +1,13 @@
+.container {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.emptyContainer {
+    padding-top: 20px;
+}
+
+.containee {
+    border: 2px solid greenyellow;
+    margin-right: 5px;
+}

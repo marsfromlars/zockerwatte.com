@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">        
+        <link rel="stylesheet" href="dom.css">        
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a>
+
+        <h1>DOM.</h1>
+
+        <h2>Remove/add elements to element</h2>
+
+            <i>empty</i>
+            <div class="container emptyContainer" id="empty">
+            </div>
+
+            <i>filled</i>
+            <div class="container" id="filled">
+            </div>
+
+            <i>empty again</i>
+            <div class="container emptyContainer" id="emptyAgain">
+            </div>
+
+            <pre><div class="code" data-title="Javascript" >
+// fill
+let filled = document.getElementById( 'filled' );
+for( var i = 0; i < 10; i++ ) {
+    let span = document.createElement( 'span' );
+    span.setAttribute( 'class', 'greenBorder' );
+    span.innerHTML = 'C' + i;
+    filled.appendChild( span );
+}
+
+// clear
+while( filled.firstChild ) {
+    filled.removeChild( filled.firstChild );
+}
+            </div></pre>           
+
+        <script>
+            // fill
+            let filled = document.getElementById( 'filled' );
+            let emptyAgain = document.getElementById( 'emptyAgain' );
+            for( var i = 0; i < 10; i++ ) {
+                let span = document.createElement( 'span' );
+                span.setAttribute( 'class', 'containee' );
+                span.innerHTML = 'C' + i;
+                filled.appendChild( span );
+                let span1 = document.createElement( 'span' );
+                span1.setAttribute( 'class', 'containee' );
+                span1.innerHTML = 'C' + i;
+                emptyAgain.appendChild( span1 );
+            }
+            // clear
+            while( emptyAgain.firstChild ) {
+                emptyAgain.removeChild( emptyAgain.firstChild );
+            }
+        </script>
+
+    </body>
+</html>
