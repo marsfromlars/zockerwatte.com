@@ -1,6 +1,6 @@
 body {
 
-background-color: blueviolet;
+background-color:blue;
 color: blanchedalmond;
 font-family: fantasy;
 padding: 44px;
@@ -22,6 +22,12 @@ font-size: 72px;
 
 
 }
+table {
 
+background-color: brown
+
+color: chocolate
+
+}
 
 
