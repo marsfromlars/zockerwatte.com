@@ -1,6 +1,6 @@
 body {
-    background: -webkit-linear-gradient(95deg,lightblue 95%,navy 5%);
-    background: linear-gradient(95deg,lightblue 95%,navy 5%);
+    background: -webkit-linear-gradient(95deg,lightblue 75%,navy 25%);
+    background: linear-gradient(95deg,lightblue 75%,navy 25%);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -10,7 +10,27 @@ a {
     font-size: 36px;
 }
 
+span a {
+    margin-right: 5px;
+}
+
 #video {
     margin: 100px;
 }
+
+#back {
+    position: absolute;
+    bottom: 10;
+    right: 10;
+}
+
+#right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25%;
+    height: 100%;
+}
+
+
 

@@ -1,0 +1,67 @@
+body {
+    margin: 10px 35px 10px 35px;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.code {
+    border: 1px solid #aaaaaa;
+/*    padding: 5px 5px 5px 10px; */
+    padding: 30px 10px 10px 10px;
+    font-family: monospace;
+    background-color: #eeeecc;
+}
+
+.code::before {
+    display: block;
+    content: attr(data-title);
+    background: #ccccaa;
+    margin: -30px -10px 0px -10px;
+    padding: 5px 10px 5px 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.output {
+    border: 1px solid #444444;
+    padding: 30px 10px 10px 10px;
+    font-family: monospace;
+    background-color: #eeeeee;
+}
+
+.output::before {
+    display: block;
+    content: 'Output';
+    background: #dddddd;
+    margin: -30px -10px 0px -10px;
+    padding: 5px 10px 5px 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/*
+.output::before {
+    display: block;
+    width: calc(100%);
+    margin-left: -15px;
+    margin-bottom: 5px;
+    margin-top: -10px;
+    padding: 5px 10px 5px 15px;
+    content: 'Output:';
+    background: #dddddd;
+}
+*/
+
+pre {
+    /* line-height: 100%; */
+}
+
+.samplecanvas {
+    border: 1px solid gray; 
+}
+
+.sampletable {
+    vertical-align: top;
+}
+
+div {
+    margin-bottom: 10px;
+}

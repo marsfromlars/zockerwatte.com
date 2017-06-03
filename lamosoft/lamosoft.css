@@ -1,6 +1,6 @@
 body {
-    background: -webkit-linear-gradient(95deg,lightblue 95%,navy 5%);
-    background: linear-gradient(95deg,lightblue 95%,navy 5%);
+    background: -webkit-linear-gradient(95deg,lightblue 25%,navy 25%);
+    background: linear-gradient(95deg,lightblue 25%,navy 25%);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -8,9 +8,22 @@ a {
     color: white;
     text-decoration: none;
     font-size: 36px;
+    margin-right: 10px;
 }
 
-.topics a {
+.topics {
     margin-right: 5px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100%;
+    padding: 10px;
 }
 
