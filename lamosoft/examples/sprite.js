@@ -7,8 +7,8 @@ function Sprite( config ) {
     this.el = typeof config.el == 'string' ? document.getElementById( config.el ) : config.el;
     this.rows = config.rows || 8;
     this.cols = config.cols || 8;
-    this.pixelWidth = config.pixelWidth || 10;
-    this.pixelHeight = config.pixelHeight || 10;
+    this.pixelWidth = config.pixelWidth || this.el ? this.el.width / this.cols : 2;
+    this.pixelHeight = config.pixelHeight || this.el ? this.el.height / this.rows : 2;
     this.pixels = [];
     this.ctx = this.el ? this.el.getContext( '2d' ) : null;
     this.onRepaint = config.onRepaint;

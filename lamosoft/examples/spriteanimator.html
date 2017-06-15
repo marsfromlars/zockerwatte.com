@@ -24,8 +24,9 @@
 
         <table>
             <tr>
-                <td></td>
+                <td><button onclick="editor.shift( -1, -1 )">Up Left</button></td>
                 <td><button onclick="editor.shift( 0, -1 )">Up</button></td>
+                <td><button onclick="editor.shift( 1, -1 )">Up Right</button></td>
                 <td></td>
             </tr>
             <tr>
@@ -38,11 +39,16 @@
                 <td>
                     <button onclick="editor.shift( 1, 0 )">Right</button>
                 </td>
+                <td>
+                    <span style="margin-left: 30px;"></span>
+                    <canvas id="animatedSprite" width="32" height="32" class="animatedSprite" ></canvas>
+                </td>
             </tr>
             <tr>
-                <td></td>
+                <td><button onclick="editor.shift( -1, 1 )">Down Left</button></td>
                 <td><button onclick="editor.shift( 0, 1 )">Down</button></td>
-                <td></td>                
+                <td><button onclick="editor.shift( 1, 1 )">Down Right</button></td>                
+                <td></td>
             </tr>
         </table>
 
@@ -62,9 +68,16 @@
             let editor = new SpriteEditor({
                 sprite: editSprite
             });
+            let animatedSprite = new Sprite({
+                el: 'animatedSprite',
+                cols: 16,
+                rows: 16
+            });
             let spriteAnimator = new SpriteAnimator({
                 editor: editor,
-                el: 'animatordiv'
+                el: 'animatordiv',
+                animatedSprite: animatedSprite,
+                count: 16
             });
         </script>
 

@@ -13,6 +13,16 @@ function SpriteAnimator( config ) {
     me.pixelWidth = config.pixelWidth ? config.pixelWidth : 2;
     me.pixelHeight = config.pixelHeight ? config.pixelHeight : 2;
     me.onSelect = config.onSelect;
+    me.animatedSprite = config.animatedSprite;
+
+    if( me.animatedSprite ) {
+        me.animationIndex = 0;
+        setInterval( function() {
+            let currentSprite = me.sprites[ me.animationIndex ];
+            me.animatedSprite.copyFrom( currentSprite );
+            me.animationIndex = ( me.animationIndex + 1 ) % me.count; 
+        }, 100);
+    }
     
     me.sprites = [];
 
@@ -58,9 +68,6 @@ function SpriteAnimator( config ) {
  */
 SpriteAnimator.prototype.selectSprite = function( index ) {
     let me = this;
-
-    console.log( 'BEFORE ' + me );
-
     if( me.selected != -1 ) {
         me.sprites[ me.selected ].el.setAttribute( 'class', 'unselectedSprite' );
     }
@@ -76,9 +83,6 @@ SpriteAnimator.prototype.selectSprite = function( index ) {
     if( me.onSelect ) {
         me.onSelect( index );
     }
-
-    console.log( 'AFTER ' + me );
-
 }
 
 /**
