@@ -1,0 +1,9 @@
+.unselectedSprite {
+    border: 1px solid darkgray;
+    margin: 1px;
+}
+
+.selectedSprite, .editor {
+    border: 2px solid darkorange;
+}
+

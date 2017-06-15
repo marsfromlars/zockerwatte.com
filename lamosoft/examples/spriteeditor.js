@@ -11,7 +11,9 @@ function SpriteEditor( config ) {
 
     var me = this;
     this.el.addEventListener( 'click', function( event ) {
-        me.doclick( me.sprite.x2col( event.offsetX ), me.sprite.y2row( event.offsetY ) );
+        let x = me.sprite.x2col( event.offsetX );
+        let y = me.sprite.y2row( event.offsetY );
+        me.doclick( x, y );
     });
     document.body.addEventListener( 'mousedown', function( event ) {
         me.pendown = true;
@@ -21,7 +23,9 @@ function SpriteEditor( config ) {
     });
     this.el.addEventListener( 'mousemove', function( event ) {
         if( me.pendown ) {
-            me.doclick( me.sprite.x2col( event.offsetX ), me.sprite.y2row( event.offsetY ) );
+            let x = me.sprite.x2col( event.offsetX );
+            let y = me.sprite.y2row( event.offsetY );
+            me.doclick( x, y );
         }
     });
 }
@@ -35,6 +39,4 @@ SpriteEditor.prototype.shift = function( x, y ) {
     this.sprite.shift( x, y );
     this.sprite.repaint();
 }
-
-
 

@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="../learn/learn.css">
         <link rel="stylesheet" href="sprite.css">
         <link rel="stylesheet" href="spriteeditor.css">
+        <link rel="stylesheet" href="spriteanimator.css">
         <script src="sprite.js"></script>
         <script src="spriteeditor.js"></script>
         <script src="spriteanimator.js"></script>
@@ -32,7 +33,7 @@
                     <button onclick="editor.shift( -1, 0 )">Left</button>
                 </td>
                 <td>
-                    <canvas id="canvas1" width="160" height="160" ></canvas>
+                    <canvas id="canvas1" width="160" height="160" class="editor" ></canvas>
                 </td>
                 <td>
                     <button onclick="editor.shift( 1, 0 )">Right</button>
@@ -58,6 +59,7 @@
                 sprite: editSprite
             });
             let spriteAnimator = new SpriteAnimator({
+                editor: editor,
                 el: 'animatordiv'
             });
         </script>

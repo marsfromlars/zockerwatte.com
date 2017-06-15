@@ -12,6 +12,7 @@ function Sprite( config ) {
     this.pixels = [];
     this.ctx = this.el ? this.el.getContext( '2d' ) : null;
     this.onRepaint = config.onRepaint;
+    this.mirrors = config.mirrors ? config.mirrors : [];
 }
 
 Sprite.prototype.repaint = function() {
@@ -29,6 +30,9 @@ Sprite.prototype.repaint = function() {
     }
     if( this.onRepaint ) {
         this.onRepaint();
+    }
+    for( var i = 0; i < this.mirrors.length; i++ ) {
+        this.mirrors[ i ].copyFrom( this );
     }
 }
 
@@ -61,6 +65,16 @@ Sprite.prototype.paintSprite = function( sprite, x, y ) {
             }
         }
     }
+}
+
+/**
+ * Make this sprite a copy of the given sprite
+ * 
+ * @param sprite Original sprite
+ */
+Sprite.prototype.copyFrom = function( sprite ) {
+    this.pixels = sprite.pixels;
+    this.repaint();
 }
 
 Sprite.prototype.clearPixel = function( x, y ) {
@@ -109,5 +123,23 @@ Sprite.prototype.shift = function( x, y ) {
     this.pixels = newSprite.pixels;
 }
 
+/**
+ * Add a sprite which will mirror the content of this sprite
+ * 
+ * @param sprite Sprite which will mirror content
+ * 
+ */
+Sprite.prototype.addMirror = function( sprite ) {
+    this.mirrors.push( sprite );
+    sprite.paintSprite( this, 0, 0 );
+}
+
+/**
+ * Remove all mirror sprites
+ * 
+ */
+Sprite.prototype.clearMirrors = function() {
+    this.mirrors = [];
+}
 
 

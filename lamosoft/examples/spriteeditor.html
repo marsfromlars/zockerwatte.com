@@ -29,9 +29,7 @@ let sprite = new Sprite({
     el: 'canvas1',
     rows: 16,
     cols: 16,
-    onRepaint: function() {
-        previewSprite.paintSprite( this, 0, 0 );
-    }
+    mirrors: [ previewSprite ]
 });
 // fill sprite ...
 let editor = new SpriteEditor({
@@ -84,9 +82,7 @@ let editor = new SpriteEditor({
                 el: 'canvas1',
                 rows: 16,
                 cols: 16,
-                onRepaint: function() {
-                    previewSprite.paintSprite( this, 0, 0 );
-                }
+                mirrors: [ previewSprite ]
             });
             sprite.set( 0, 0, 'blue' );
             sprite.set( 5, 5, 'red' );
