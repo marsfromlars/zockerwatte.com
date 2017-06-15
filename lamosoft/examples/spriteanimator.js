@@ -58,18 +58,39 @@ function SpriteAnimator( config ) {
  */
 SpriteAnimator.prototype.selectSprite = function( index ) {
     let me = this;
+
+    console.log( 'BEFORE ' + me );
+
     if( me.selected != -1 ) {
         me.sprites[ me.selected ].el.setAttribute( 'class', 'unselectedSprite' );
     }
     me.selected = index;
     me.sprites[ me.selected ].el.setAttribute( 'class', 'selectedSprite' );
     me.editor.sprite.clearMirrors();
+    let overwrite = document.getElementById( 'overwrite' ).checked;
     let mirrorSprite = this.getSprite( index );
-    me.editor.sprite.copyFrom( mirrorSprite );
+    if( !overwrite ) {
+        me.editor.sprite.copyFrom( mirrorSprite );
+    }
     me.editor.sprite.addMirror( mirrorSprite );
     if( me.onSelect ) {
         me.onSelect( index );
     }
+
+    console.log( 'AFTER ' + me );
+
+}
+
+/**
+ * @return Some debug output
+ * 
+ */
+SpriteAnimator.prototype.toString = function() {
+    let s = '';
+    for( var i = 0; i < this.sprites.length; i++ ) {
+        s += this.sprites[ i ].pixels;
+    }
+    return s;
 }
 
 /**

@@ -131,7 +131,7 @@ Sprite.prototype.shift = function( x, y ) {
  */
 Sprite.prototype.addMirror = function( sprite ) {
     this.mirrors.push( sprite );
-    sprite.paintSprite( this, 0, 0 );
+    sprite.copyFrom( this );
 }
 
 /**
