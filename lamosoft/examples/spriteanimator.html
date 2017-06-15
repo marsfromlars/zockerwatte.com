@@ -49,8 +49,16 @@
         </div>
 
         <script>
+            let editSprite = new Sprite({
+                el: 'canvas1',
+                cols: 16,
+                rows: 16
+            });
+            let editor = new SpriteEditor({
+                sprite: editSprite
+            });
             let spriteAnimator = new SpriteAnimator({
-                el: document.getElementById( 'animatordiv' )
+                el: 'animatordiv'
             });
         </script>
 

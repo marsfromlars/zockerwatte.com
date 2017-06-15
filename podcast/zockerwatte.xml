@@ -2790,7 +2790,7 @@
           <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge183.mp3">Hear the preview here</source>
           <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge183.mp3</guid>
           <category>Podcasts</category>
-          <pubDate>Mon, 22 May 2017 17:00:00 GMT</pubDate>@ﬂ
+          <pubDate>Mon, 22 May 2017 17:00:00 GMT</pubDate>
           <itunes:duration>00:17:39</itunes:duration>
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
@@ -2805,8 +2805,38 @@
           <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge184.mp3">Hear the preview here</source>
           <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge184.mp3</guid>
           <category>Podcasts</category>
-          <pubDate>Mon, 29 May 2017 17:00:00 GMT</pubDate>@ﬂ
+          <pubDate>Mon, 29 May 2017 17:00:00 GMT</pubDate>
           <itunes:duration>00:10:04</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
+      <item>
+          <title>185 - Contest the Affenschaukel</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Neue Overwatch Map Mondkolonie Horizon. Saisonende bringt Goldwaffen (für manche). Trainingstipps für Overwatch. Free to play whales.</description>
+          <itunes:summary>Neue Overwatch Map Mondkolonie Horizon. Saisonende bringt Goldwaffen (für manche). Trainingstipps für Overwatch. Free to play whales.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Neue Overwatch Map Mondkolonie Horizon. Saisonende bringt Goldwaffen (für manche). Trainingstipps für Overwatch. Free to play whales.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge185.mp3" length="32106497" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge185.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge185.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 07 Jun 2017 17:00:00 GMT</pubDate>
+          <itunes:duration>00:22:18</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
+      <item>
+          <title>186 - Dance Dance Overwatch</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Anniversary. Dance. Skins.</description>
+          <itunes:summary>Anniversary. Dance. Skins.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Anniversary. Dance. Skins.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge186.mp3" length="24400165" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge186.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge186.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 12 Jun 2017 17:00:00 GMT</pubDate>
+          <itunes:duration>00:16:57</itunes:duration>
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
       </item>

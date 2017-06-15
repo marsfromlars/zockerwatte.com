@@ -19,14 +19,14 @@
 
         <pre><div class="code" data-title="Javascript" >
 let previewSprite = new Sprite({
-    el: document.getElementById('canvas2'),
+    el: 'canvas2',
     rows: 16,
     cols: 16,
     pixelWidth: 2,
     pixelHeight: 2
 });
 let sprite = new Sprite({
-    el: document.getElementById('canvas1'),
+    el: 'canvas1',
     rows: 16,
     cols: 16,
     onRepaint: function() {
@@ -74,14 +74,14 @@ let editor = new SpriteEditor({
 
         <script>
             let previewSprite = new Sprite({
-                el: document.getElementById('canvas2'),
+                el: 'canvas2',
                 rows: 16,
                 cols: 16,
                 pixelWidth: 2,
                 pixelHeight: 2
             });
             let sprite = new Sprite({
-                el: document.getElementById('canvas1'),
+                el: 'canvas1',
                 rows: 16,
                 cols: 16,
                 onRepaint: function() {

@@ -4,7 +4,7 @@
  * @param {*} config 
  */
 function Sprite( config ) {
-    this.el = config.el;
+    this.el = typeof config.el == 'string' ? document.getElementById( config.el ) : config.el;
     this.rows = config.rows || 8;
     this.cols = config.cols || 8;
     this.pixelWidth = config.pixelWidth || 10;

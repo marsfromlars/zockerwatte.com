@@ -4,16 +4,24 @@
  * @param {*} config 
  */
 function SpriteAnimator( config ) {
-    this.el = config.el;
-    this.count = config.count ? config.count : 8;
-    this.rows = config.rows || 8;
-    this.cols = config.cols || 8;
-    this.pixelWidth = config.pixelWidth ? config.pixelWidth : 1;
-    this.pixelHeight = config.pixelHeight ? config.pixelHeight : 1;
+    this.el = typeof config.el == 'string' ? document.getElementById( config.el ) : config.el;
+    this.count = config.count ? config.count : 32;
+    this.rows = config.rows || 16;
+    this.cols = config.cols || 16;
+    this.pixelWidth = config.pixelWidth ? config.pixelWidth : 2;
+    this.pixelHeight = config.pixelHeight ? config.pixelHeight : 2;
 
     while( this.el.firstChild ) {
         this.el.removeChild( this.el.firstChild );
     }
+
+    for( var i = 0; i < this.count; i++ ) {
+        let canvas = document.createElement( 'canvas' );
+        canvas.setAttribute( 'width', '' + ( this.pixelWidth * this.cols ) );
+        canvas.setAttribute( 'height', '' + ( this.pixelHeight * this.rows ) );
+        this.el.appendChild( canvas );
+    }
+
 }
 
 SpriteEditor.prototype.doclick = function( x, y ) {
