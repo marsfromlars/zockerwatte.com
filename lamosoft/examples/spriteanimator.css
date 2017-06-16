@@ -9,4 +9,10 @@
 
 .animatedSprite {
     border: 0;
+    background-color: #eeeeee;
 }
+
+.previewDiv {
+    line-height: 0;
+}
+

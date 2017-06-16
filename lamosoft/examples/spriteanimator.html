@@ -41,7 +41,26 @@
                 </td>
                 <td>
                     <span style="margin-left: 30px;"></span>
-                    <canvas id="animatedSprite" width="32" height="32" class="animatedSprite" ></canvas>
+                    <div class="previewDiv">
+                        <canvas id="anim1" width="32" height="32" 
+                            class="animatedSprite" ></canvas><canvas id="anim2" 
+                            width="32" height="32" 
+                            class="animatedSprite" ></canvas><canvas id="anim3" 
+                            width="32" height="32" 
+                            class="animatedSprite" ></canvas><br><canvas id="anim4" 
+                            width="32" height="32" 
+                            class="animatedSprite" ></canvas><canvas id="anim5" 
+                            width="32" height="32" 
+                            class="animatedSprite" ></canvas><canvas id="anim6" 
+                            width="32" height="32" 
+                            class="animatedSprite" ></canvas><br><canvas id="anim7" 
+                            width="32" height="32" 
+                            class="animatedSprite" ></canvas><canvas id="anim8" 
+                            width="32" height="32" 
+                            class="animatedSprite" ></canvas><canvas id="anim9" 
+                            width="32" height="32" 
+                            class="animatedSprite" ></canvas>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -68,15 +87,19 @@
             let editor = new SpriteEditor({
                 sprite: editSprite
             });
-            let animatedSprite = new Sprite({
-                el: 'animatedSprite',
-                cols: 16,
-                rows: 16
-            });
+            let animatedSprites = [];
+            for( var i = 1; i < 10; i++ ) {
+                let animatedSprite = new Sprite({
+                    el: 'anim' + i,
+                    cols: 16,
+                    rows: 16
+                });
+                animatedSprites.push( animatedSprite );
+            }
             let spriteAnimator = new SpriteAnimator({
                 editor: editor,
                 el: 'animatordiv',
-                animatedSprite: animatedSprite,
+                animatedSprites: animatedSprites,
                 count: 16
             });
         </script>

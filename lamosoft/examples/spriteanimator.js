@@ -13,13 +13,15 @@ function SpriteAnimator( config ) {
     me.pixelWidth = config.pixelWidth ? config.pixelWidth : 2;
     me.pixelHeight = config.pixelHeight ? config.pixelHeight : 2;
     me.onSelect = config.onSelect;
-    me.animatedSprite = config.animatedSprite;
+    me.animatedSprites = config.animatedSprites;
 
-    if( me.animatedSprite ) {
+    if( me.animatedSprites && me.animatedSprites.length > 0 ) {
         me.animationIndex = 0;
         setInterval( function() {
             let currentSprite = me.sprites[ me.animationIndex ];
-            me.animatedSprite.copyFrom( currentSprite );
+            for( var i = 0; i < me.animatedSprites.length; i++ ) {
+                me.animatedSprites[ i ].copyFrom( currentSprite );
+            }
             me.animationIndex = ( me.animationIndex + 1 ) % me.count; 
         }, 100);
     }
