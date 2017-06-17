@@ -3,20 +3,153 @@
     <head>
         <title>Browser persistence.</title>
         <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
-        <link rel="stylesheet" href="../learn.css">        
+        <link rel="stylesheet" href="../learn.css">   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="jquery.cookie.js"></script>     
     </head>
     <body>
 
         <a href="../index.html">Home</a>
 
-        <h1>Browser persictence.</h1>
+        <h1>Browser persistence.</h1>
 
-        <h2>Cookie.</h2>
+        <div>
+            <ul>
+                <li><a href="#cookie">Cookie.</a>
+                <li><a href="#localStorage">Local storage.</a>
+                <li><a href="#sessionStorage">Session storage.</a>
+                <li><a href="#jsonSerialization">JSON serialization.</a>
+            </ul>
+        </div>
+
+        <!-- ###################################################################### -->
+
+        <h2 id="cookie">Cookie.</h2>
+
+            <input id="inputCookie"></input> <button onclick="saveCookie();" >Save</button>
+
+            <pre><div class="code" data-title="HTML" >
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">&lt;/script>
+&lt;script src="jquery.cookie.js">&lt;/script>     
+
+&lt;input id="inputCookie">&lt;/input> &lt;button onclick="saveCookie();" >Save&lt;/button>
+            </div></pre>           
 
             <pre><div class="code" data-title="Javascript" >
+let saveCookie = function() {
+    let cookieValue = document.getElementById( 'inputCookie' ).value;
+    $.cookie( 'learn', cookieValue );
+    location.reload();
+}
+
+// load cookie
+document.getElementById( 'inputCookie' ).value = $.cookie( 'learn' );
             </div></pre>           
 
             <script>
+                let saveCookie = function() {
+                    let cookieValue = document.getElementById( 'inputCookie' ).value;
+                    $.cookie( 'learn', cookieValue );
+                    location.reload();
+                }
+
+                // load cookie
+                document.getElementById( 'inputCookie' ).value = $.cookie( 'learn' );
+            </script>
+
+
+        <!-- ###################################################################### -->
+
+        <h2 id="localStorage">Local storage.</h2>
+
+            <input id="inputLocalStorage"></input> <button onclick="saveLocalStorage();" >Save</button>
+
+            <pre><div class="code" data-title="HTML" >
+&lt;input id="inputLocalStorage">&lt;/input> &lt;button onclick="saveLocalStorage();" >Save&lt;/button>
+            </div></pre>           
+
+            <pre><div class="code" data-title="Javascript" >
+let saveLocalStorage = function() {
+    let value = document.getElementById( 'inputLocalStorage' ).value;
+    window.localStorage.setItem( 'learn', value );
+    location.reload();
+}
+
+// load from local storage
+let value = window.localStorage.getItem( 'learn' );
+document.getElementById( 'inputLocalStorage' ).value = value;
+            </div></pre>           
+
+            <script>
+                let saveLocalStorage = function() {
+                    let value = document.getElementById( 'inputLocalStorage' ).value;
+                    window.localStorage.setItem( 'learn', value );
+                    location.reload();
+                }
+
+                // load from local storage
+                let value = window.localStorage.getItem( 'learn' );
+                document.getElementById( 'inputLocalStorage' ).value = value;
+            </script>
+
+
+        <!-- ###################################################################### -->
+
+        <h2 id="sessionStorage">Session storage.</h2>
+
+        Like localStorage, but:
+
+        <ul>
+            <li>Lifetime: browser tab</li>
+            <li>Use <b>window.sessionStorage</b> instead of <b>window.localStorage</b></li>
+        </ul>
+
+
+        <!-- ###################################################################### -->
+
+        <h2 id="jsonSerialization">JSON serialization.</h2>
+
+            <pre><div class="code" data-title="Javascript" >
+let json = {
+    string: 'Hello World!',
+    age: 100,
+    date: '2017-06-17',
+    checked: true,
+    array: [ 1, 2, 3 ],
+    object: {
+        name: 'Hu?',
+        size: 10
+    }
+};
+
+let serialized = JSON.stringify( json );
+let parsed = JSON.parse( serialized );
+
+let el = document.getElementById( 'parsedOutput' );
+el.innerHTML = JSON.stringify( parsed, null, 2 );
+            </div></pre>
+
+            <pre><div id="parsedOutput" class="code" data-title="Output" >
+            </div></pre>
+
+            <script>
+                let json = {
+                    string: 'Hello World!',
+                    age: 100,
+                    date: '2017-06-17',
+                    checked: true,
+                    array: [ 1, 2, 3 ],
+                    object: {
+                        name: 'Hu?',
+                        size: 10
+                    }
+                };
+
+                let serialized = JSON.stringify( json );
+                let parsed = JSON.parse( serialized );
+
+                let el = document.getElementById( 'parsedOutput' );
+                el.innerHTML = JSON.stringify( parsed, null, 2 );
             </script>
 
     </body>
