@@ -4,7 +4,9 @@
  * @param {*} config 
  */
 function SpriteAnimator( config ) {
+
     let me = this;
+
     me.editor = config.editor;
     me.el = typeof config.el == 'string' ? document.getElementById( config.el ) : config.el;
     me.count = config.count ? config.count : 32;
@@ -14,6 +16,11 @@ function SpriteAnimator( config ) {
     me.pixelHeight = config.pixelHeight ? config.pixelHeight : 2;
     me.onSelect = config.onSelect;
     me.animatedSprites = config.animatedSprites;
+    me.persistenceId = config.persistenceId;
+
+    me.editor.setAfterSave( function( editor ) {
+        me.save();
+    });
 
     if( me.animatedSprites && me.animatedSprites.length > 0 ) {
         me.animationIndex = 0;
@@ -58,6 +65,9 @@ function SpriteAnimator( config ) {
     }
 
     me.selected = -1;
+
+    me.load();
+
     me.selectSprite( 0 );
 
 }
@@ -110,4 +120,51 @@ SpriteAnimator.prototype.getSprite = function( index ) {
     return me.sprites[ index ];
 }
 
+/**
+ * Save data to local storage
+ * 
+ */
+SpriteAnimator.prototype.save = function() {
+    let me = this;
+    if( me.persistenceId ) {
+        let spritesData = [];
+        for( var i = 0; i < me.sprites.length; i++ ) {
+            spritesData.push( me.sprites[ i ].pixels );
+        }
+        let data = {
+            selected: me.selected,
+            sprites: spritesData
+        };
+        let serialized = JSON.stringify( data );
+        window.localStorage.setItem( me.persistenceId, serialized );
+    }
+}
+
+/**
+ * Load data from local storage
+ * 
+ */
+SpriteAnimator.prototype.load = function() {
+    let me = this;
+    if( me.persistenceId ) {
+        try {
+            let stored = window.localStorage.getItem( me.persistenceId );
+            if( stored ) {
+                let loaded = JSON.parse( stored );
+                if( loaded ) {
+                    me.selected = loaded.selected;
+                    for( var i = 0; i < me.sprites.length; i++ ) {
+                        if( i < loaded.sprites.length ) {
+                            me.sprites[ i ].pixels = loaded.sprites[ i ];
+                        }
+                        me.sprites[ i ].repaint();
+                    }
+                }
+            }
+        }
+        catch( e ) {
+            console.log( e );
+        }
+    }    
+}
 

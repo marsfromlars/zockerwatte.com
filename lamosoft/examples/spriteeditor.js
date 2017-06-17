@@ -10,6 +10,7 @@ function SpriteEditor( config ) {
     this.color = 'red';
     this.pendown = false;
     this.persistenceId = config.persistenceId;
+    this.afterSave = config.afterSave;
 
     var me = this;
 
@@ -48,6 +49,18 @@ SpriteEditor.prototype.shift = function( x, y ) {
     this.save();
 }
 
+/**
+ * Set callback for afterSave event
+ * 
+ */
+SpriteEditor.prototype.setAfterSave = function( afterSave ) {
+    this.afterSave = afterSave;
+}
+
+/**
+ * Save data to local storage
+ * 
+ */
 SpriteEditor.prototype.save = function() {
     let me = this;
     if( me.persistenceId ) {
@@ -58,8 +71,15 @@ SpriteEditor.prototype.save = function() {
         let serialized = JSON.stringify( data );
         window.localStorage.setItem( me.persistenceId, serialized );
     }
+    if( this.afterSave ) {
+        this.afterSave( this );
+    }
 }
 
+/**
+ * Load data from local storage
+ * 
+ */
 SpriteEditor.prototype.load = function() {
     let me = this;
     if( me.persistenceId ) {
