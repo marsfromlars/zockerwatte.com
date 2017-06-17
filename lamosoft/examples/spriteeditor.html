@@ -29,13 +29,25 @@ let sprite = new Sprite({
     cols: 16,
     mirrors: [ previewSprite ]
 });
-// fill sprite ...
+sprite.set( 0, 0, 'blue' );
+sprite.set( 5, 5, 'red' );
+sprite.set( 4, 4, 'green' );
+sprite.set( 6, 6, 'yellow' );
+sprite.set( 7, 7, 'orange' );
+sprite.set( 15, 15, 'black' );
+sprite.repaint();
 let editor = new SpriteEditor({
-    sprite: sprite
+    sprite: sprite,
+    persistenceId: 'examples.spriteEditor'
 });
         </div></pre>           
 
         <table>
+            <tr>
+                <td colspan="3">
+                    <button onclick="editor.clear()">Clear</button>
+                </td>
+            </tr>
             <tr>
                 <td></td>
                 <td><button onclick="editor.shift( 0, -1 )">Up</button></td>

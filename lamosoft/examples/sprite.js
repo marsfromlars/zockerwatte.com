@@ -68,6 +68,14 @@ Sprite.prototype.paintSprite = function( sprite, x, y ) {
 }
 
 /**
+ * Clear all pixels
+ * 
+ */
+Sprite.prototype.clear = function() {
+    this.pixels = [];
+}
+
+/**
  * Make this sprite a copy of the given sprite
  * 
  * @param sprite Original sprite

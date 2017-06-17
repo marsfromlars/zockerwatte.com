@@ -5,6 +5,7 @@
         <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
         <link rel="stylesheet" href="../learn/learn.css">
         <link rel="stylesheet" href="sprite.css">
+        <link rel="stylesheet" href="colorpicker.css">
         <script src="colorpicker.js"></script>
     </head>
     <body>
@@ -16,35 +17,23 @@
         <a href="colorpicker.js">colorpicker.js</a>
 
         <pre><div class="code" data-title="Javascript" >
-let canvas = document.getElementById('canvas1')
-var ctx = canvas.getContext('2d');
-var imageObj = new Image();
-imageObj.onload = function() {
-    ctx.drawImage(imageObj, 0, 0);
-    new ColorPicker({
-        el: canvas
-    });
-};
-imageObj.src = 'images/pexels-photo-220320.jpeg';
+tbd.            
         </div></pre>           
 
         <canvas id="canvas1" width="180" height="125" ></canvas>
+        <div id="colorPicker"></div>
         
         <div>
         Click to pick.
         </div>
         
         <script>
-            let canvas = document.getElementById('canvas1')
-            var ctx = canvas.getContext('2d');
-            var imageObj = new Image();
-            imageObj.onload = function() {
-                ctx.drawImage(imageObj, 0, 0);
-                new ColorPicker({
-                    el: canvas
-                });
-            };
-            imageObj.src = 'images/pexels-photo-220320.jpeg';
+            new ColorPicker({
+                el: 'canvas1',
+                div: 'colorPicker',
+                imageUrl:  'images/pexels-photo-220320.jpeg',
+                historySize: 16
+            });
         </script>
 
     </body>

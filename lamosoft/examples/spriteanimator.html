@@ -20,9 +20,38 @@
         <a href="spriteanimator.js">spriteanimator.js</a>
 
         <pre><div class="code" data-title="Javascript" >
+let editSprite = new Sprite({
+    el: 'canvas1',
+    cols: 16,
+    rows: 16
+});
+let editor = new SpriteEditor({
+    sprite: editSprite
+});
+let animatedSprites = [];
+for( var i = 1; i < 10; i++ ) {
+    let animatedSprite = new Sprite({
+        el: 'anim' + i,
+        cols: 16,
+        rows: 16
+    });
+    animatedSprites.push( animatedSprite );
+}
+let spriteAnimator = new SpriteAnimator({
+    editor: editor,
+    el: 'animatordiv',
+    animatedSprites: animatedSprites,
+    count: 16,
+    persistenceId: 'examples.spriteAnimator'
+});
         </div></pre>           
 
         <table>
+            <tr>
+                <td colspan="4">
+                    <button onclick="editor.clear()">Clear</button>
+                </td>
+            </tr>
             <tr>
                 <td><button onclick="editor.shift( -1, -1 )">Up Left</button></td>
                 <td><button onclick="editor.shift( 0, -1 )">Up</button></td>

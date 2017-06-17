@@ -4,13 +4,54 @@
  * @param {*} config 
  */
 function ColorPicker( config ) {
-    this.el = config.el;
-    this.ctx = this.el.getContext( '2d' );
 
-    var me = this;
-    this.el.addEventListener( 'click', function( event ) {
+    let me = this;
+
+    me.el = typeof config.el == 'string' ? document.getElementById( config.el ) : config.el;
+    me.div = typeof config.div == 'string' ? document.getElementById( config.div ) : config.div;
+
+    let canvas = document.createElement( 'canvas' );
+    canvas.setAttribute( 'id', 'pickerCanvas' );
+/*
+    canvas.setAttribute( 'width', '200' );
+    canvas.setAttribute( 'height', '200' );
+*/
+    me.div.appendChild( canvas );
+
+    for( var i = 0; i < config.historySize; i++ ) {
+        let span = document.createElement( 'span' );
+        span.setAttribute( 'class', 'historyEntry' );
+        span.innerHTML = '&nbsp;';
+        me.div.appendChild( span );
+    }
+
+    me.ctx = me.el.getContext( '2d' );
+
+    me.el.addEventListener( 'click', function( event ) {
         me.doclick( event.offsetX, event.offsetY );
     });
+
+    canvas.addEventListener( 'click', function( event ) {
+        me.doclick( event.offsetX, event.offsetY );
+    });
+
+    var imageObj = new Image();
+    imageObj.onload = function() {
+        me.ctx.drawImage( imageObj, 0, 0 );
+    };
+
+    imageObj.src = config.imageUrl;
+
+    var imageObj = new Image();
+    imageObj.onload = function() {
+        let ctx = canvas.getContext( '2d' );
+        canvas.setAttribute( 'width', '' + imageObj.width );
+        canvas.setAttribute( 'height', '' + imageObj.height );
+        ctx.drawImage( imageObj, 0, 0 );
+    };
+
+    imageObj.src = config.imageUrl;
+
 }
 
 ColorPicker.prototype.doclick = function( x, y ) {

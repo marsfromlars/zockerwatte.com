@@ -50,6 +50,16 @@ SpriteEditor.prototype.shift = function( x, y ) {
 }
 
 /**
+ * Clear all pixels
+ * 
+ */
+SpriteEditor.prototype.clear = function() {
+    this.sprite.clear();
+    this.sprite.repaint();
+    this.save();
+}
+
+/**
  * Set callback for afterSave event
  * 
  */
