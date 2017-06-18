@@ -20,7 +20,6 @@
 tbd.            
         </div></pre>           
 
-        <canvas id="canvas1" width="180" height="125" ></canvas>
         <div id="colorPicker"></div>
         
         <div>
@@ -29,10 +28,11 @@ tbd.
         
         <script>
             new ColorPicker({
-                el: 'canvas1',
-                div: 'colorPicker',
+                el: 'colorPicker',
                 imageUrl:  'images/pexels-photo-220320.jpeg',
-                historySize: 16
+                historySize: 16,
+                maxWidth: 200,
+                maxHeight: 150
             });
         </script>
 

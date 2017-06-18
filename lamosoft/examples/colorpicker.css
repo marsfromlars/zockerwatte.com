@@ -1,4 +1,21 @@
 .historyEntry {
     border: 1px solid gray;
     padding: 5px;
+    margin: 2px;
 }
+
+#colorField {
+    margin: 10px 0 10px 0;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    width: 80px;
+/*
+    text-shadow: 2px 2px black;
+*/
