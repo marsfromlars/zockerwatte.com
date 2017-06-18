@@ -1,7 +1,11 @@
 .historyEntry {
     border: 1px solid gray;
-    padding: 5px;
+    padding: 0 0 0 18px;
     margin: 2px;
+}
+
+#colorPicker {
+    padding: 10px;
 }
 
 #colorField {
@@ -16,6 +20,4 @@
         -1px 1px 0 #000,
         1px 1px 0 #000;
     width: 80px;
-/*
-    text-shadow: 2px 2px black;
-*/
+}

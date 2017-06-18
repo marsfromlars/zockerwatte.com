@@ -10,6 +10,8 @@ function ColorPicker( config ) {
     me.el = typeof config.el == 'string' ? document.getElementById( config.el ) : config.el;
     me.maxWidth = config.maxWidth || 200;
     me.maxHeight = config.maxHeight || 100;
+    me.persistenceId = config.persistenceId;
+    me.onSelect = config.onSelect;
 
     me.lastColors = [];
     me.lastColorSpans = [];
@@ -60,6 +62,8 @@ function ColorPicker( config ) {
 
     imageObj.src = config.imageUrl;
 
+    me.load();
+    me.selectColor( me.lastColors[ 0 ] );
     me.paintColorHistory();
 
 }
@@ -86,6 +90,10 @@ ColorPicker.prototype.selectColor = function( hex ) {
         me.lastColors.unshift( hex );
         me.lastColors.pop;
         me.paintColorHistory();
+        me.save();
+    }
+    if( me.onSelect ) {
+        me.onSelect( hex );
     }
 }
 
@@ -100,6 +108,43 @@ ColorPicker.prototype.paintColorHistory = function() {
     for( var i = 0; i < me.lastColorSpans.length && i < me.lastColors.length; i++ ) {
         me.lastColorSpans[ i ].setAttribute( 'style', 'background-color: ' + me.lastColors[ i ] );
     }
+}
+
+/**
+ * Save data to local storage
+ * 
+ */
+ColorPicker.prototype.save = function() {
+    let me = this;
+    if( me.persistenceId ) {
+        let data = {
+            lastColors: me.lastColors
+        };
+        let serialized = JSON.stringify( data );
+        window.localStorage.setItem( me.persistenceId, serialized );
+    }
+}
+
+/**
+ * Load data from local storage
+ * 
+ */
+ColorPicker.prototype.load = function() {
+    let me = this;
+    if( me.persistenceId ) {
+        try {
+            let stored = window.localStorage.getItem( me.persistenceId );
+            if( stored ) {
+                let loaded = JSON.parse( stored );
+                if( loaded ) {
+                    me.lastColors = loaded.lastColors;
+                }
+            }
+        }
+        catch( e ) {
+            console.log( e );
+        }
+    }    
 }
 
 

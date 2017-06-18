@@ -7,7 +7,7 @@ function SpriteEditor( config ) {
 
     this.sprite = config.sprite;
     this.el = this.sprite.el;
-    this.color = 'red';
+    this.color = config.color || 'red';
     this.pendown = false;
     this.persistenceId = config.persistenceId;
     this.afterSave = config.afterSave;
@@ -46,6 +46,11 @@ SpriteEditor.prototype.doclick = function( x, y ) {
 SpriteEditor.prototype.shift = function( x, y ) {
     this.sprite.shift( x, y );
     this.sprite.repaint();
+    this.save();
+}
+
+SpriteEditor.prototype.setColor = function( color ) {
+    this.color = color;
     this.save();
 }
 

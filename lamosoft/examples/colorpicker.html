@@ -16,8 +16,28 @@
 
         <a href="colorpicker.js">colorpicker.js</a>
 
-        <pre><div class="code" data-title="Javascript" >
-tbd.            
+        <pre><div class="code" data-title="HTML" >
+&lt;div id="colorPicker">&lt;/div>
+
+&lt;div>
+Click to pick.
+&lt;/div>
+
+&lt;script>
+    new ColorPicker({
+        el: 'colorPicker',
+        imageUrl:  'images/pexels-photo-220320.jpeg',
+        historySize: 16,
+        maxWidth: 200,
+        maxHeight: 150,
+        persistenceId: 'examples.colorPicker',
+        onSelect: function( hex ) {
+            document.getElementById( 'colorPicker' ).setAttribute(
+                'style', 'border: 5px solid ' + hex
+            );
+        }
+    });
+&lt;/script>
         </div></pre>           
 
         <div id="colorPicker"></div>
@@ -32,7 +52,13 @@ tbd.
                 imageUrl:  'images/pexels-photo-220320.jpeg',
                 historySize: 16,
                 maxWidth: 200,
-                maxHeight: 150
+                maxHeight: 150,
+                persistenceId: 'examples.colorPicker',
+                onSelect: function( hex ) {
+                    document.getElementById( 'colorPicker' ).setAttribute(
+                        'style', 'border: 5px solid ' + hex
+                    );
+                }
             });
         </script>
 

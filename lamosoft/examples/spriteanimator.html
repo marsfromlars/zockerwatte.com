@@ -7,9 +7,11 @@
         <link rel="stylesheet" href="sprite.css">
         <link rel="stylesheet" href="spriteeditor.css">
         <link rel="stylesheet" href="spriteanimator.css">
+        <link rel="stylesheet" href="colorPicker.css">
         <script src="sprite.js"></script>
         <script src="spriteeditor.js"></script>
         <script src="spriteanimator.js"></script>
+        <script src="colorPicker.js"></script>
     </head>
     <body>
 
@@ -46,6 +48,8 @@ let spriteAnimator = new SpriteAnimator({
 });
         </div></pre>           
 
+        <div id="colorPicker"></div>
+        
         <table>
             <tr>
                 <td colspan="4">
@@ -104,8 +108,7 @@ let spriteAnimator = new SpriteAnimator({
             <label><input type="checkbox" id="overwrite">Overwrite</label>
         </div>
 
-        <div id="animatordiv">
-        </div>
+        <div id="animatordiv"></div>
 
         <script>
             let editSprite = new Sprite({
@@ -131,6 +134,18 @@ let spriteAnimator = new SpriteAnimator({
                 animatedSprites: animatedSprites,
                 count: 16,
                 persistenceId: 'examples.spriteAnimator'
+            });
+
+            new ColorPicker({
+                el: 'colorPicker',
+                imageUrl:  'images/pexels-photo-220320.jpeg',
+                historySize: 16,
+                maxWidth: 200,
+                maxHeight: 150,
+                persistenceId: 'examples.colorPicker',
+                onSelect: function( hex ) {
+                    editor.setColor( hex );
+                }
             });
         </script>
 
