@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Persistence.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn/learn.css">
+        <script src="persistence.js"></script>
+    </head>
+    <body>
+
+        <a href="index.html">Home</a>
+
+        <h1>Persistence and undo.</h1>
+
+        <a href="persistence.js">undo.js</a>
+
+        <pre><div class="code" data-title="HTML" >
+Name: &lt;input id="name" onblur="persistence.change()">&lt;/input>&lt;br>
+Age: &lt;input id="age" onblur="persistence.change()">&lt;/input>&lt;br>
+&lt;button onclick="persistence.save()">Save&lt;/button> 
+&lt;button onclick="persistence.undo()">Undo&lt;/button> 
+&lt;button onclick="persistence.redo()">Redo&lt;/button>
+        </div></pre>           
+
+        <pre><div class="code" data-title="Javascript" >
+let persistence = new Persistence({
+    getModel: function() {
+        return {
+            name: document.getElementById( 'name' ).value,
+            age: document.getElementById( 'age' ).value
+        }
+    },
+    setModel: function( model ) {
+        document.getElementById( 'name' ).value = model.name;
+        document.getElementById( 'age' ).value = model.age;
+    }
+});
+        </div></pre>           
+
+        <div id="colorPicker"></div>
+        
+        <div>
+            Name: <input id="name" onblur="persistence.change()"></input><br>
+            Age: <input id="age" onblur="persistence.change()"></input><br>
+            <button onclick="persistence.save()">Save</button> 
+            <button onclick="persistence.undo()">Undo</button> 
+            <button onclick="persistence.redo()">Redo</button>
+        </div>
+        
+        <script>
+            let persistence = new Persistence({
+                getModel: function() {
+                    return {
+                        name: document.getElementById( 'name' ).value,
+                        age: document.getElementById( 'age' ).value
+                    }
+                },
+                setModel: function( model ) {
+                    document.getElementById( 'name' ).value = model.name;
+                    document.getElementById( 'age' ).value = model.age;
+                }
+            });
+        </script>
+
+    </body>
+</html>

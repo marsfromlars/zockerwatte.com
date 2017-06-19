@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="spriteeditor.css">
         <script src="sprite.js"></script>
         <script src="spriteeditor.js"></script>
+        <script src="persistence.js"></script>
     </head>
     <body>
 
@@ -46,6 +47,8 @@ let editor = new SpriteEditor({
             <tr>
                 <td colspan="3">
                     <button onclick="editor.clear()">Clear</button>
+                    <button onclick="editor.undo()">Undo</button>
+                    <button onclick="editor.redo()">Redo</button>
                 </td>
             </tr>
             <tr>

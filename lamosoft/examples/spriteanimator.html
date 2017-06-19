@@ -7,11 +7,11 @@
         <link rel="stylesheet" href="sprite.css">
         <link rel="stylesheet" href="spriteeditor.css">
         <link rel="stylesheet" href="spriteanimator.css">
-        <link rel="stylesheet" href="colorPicker.css">
+        <link rel="stylesheet" href="colorpicker.css">
         <script src="sprite.js"></script>
         <script src="spriteeditor.js"></script>
         <script src="spriteanimator.js"></script>
-        <script src="colorPicker.js"></script>
+        <script src="colorpicker.js"></script>
     </head>
     <body>
 
@@ -45,6 +45,18 @@ let spriteAnimator = new SpriteAnimator({
     animatedSprites: animatedSprites,
     count: 16,
     persistenceId: 'examples.spriteAnimator'
+});
+
+new ColorPicker({
+    el: 'colorPicker',
+    imageUrl:  'images/pexels-photo-220320.jpeg',
+    historySize: 16,
+    maxWidth: 200,
+    maxHeight: 150,
+    persistenceId: 'examples.colorPicker',
+    onSelect: function( hex ) {
+        editor.setColor( hex );
+    }
 });
         </div></pre>           
 

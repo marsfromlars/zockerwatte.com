@@ -2840,6 +2840,21 @@
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
       </item>
+      <item>
+          <title>187 - Garantiert fast overwatchfreier Podcast</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Der schnellste Hype bis jetzt: Fidget Spinner. Das multiplayerigste Worms: Shellshock live. Der consoligste War: XBOX, PS4, Switch.</description>
+          <itunes:summary>Der schnellste Hype bis jetzt: Fidget Spinner. Das multiplayerigste Worms: Shellshock live. Der consoligste War: XBOX, PS4, Switch.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Der schnellste Hype bis jetzt: Fidget Spinner. Das multiplayerigste Worms: Shellshock live. Der consoligste War: XBOX, PS4, Switch.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge187.mp3" length="23187666" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge187.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge187.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 19 Jun 2017 17:00:00 GMT</pubDate>
+          <itunes:duration>00:16:06</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
       <!--
       -->
 </channel>

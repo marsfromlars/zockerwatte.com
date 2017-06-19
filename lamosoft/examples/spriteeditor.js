@@ -5,16 +5,25 @@
  */
 function SpriteEditor( config ) {
 
-    this.sprite = config.sprite;
-    this.el = this.sprite.el;
-    this.color = config.color || 'red';
-    this.pendown = false;
-    this.persistenceId = config.persistenceId;
-    this.afterSave = config.afterSave;
-
     var me = this;
+    
+    me.sprite = config.sprite;
+    me.el = me.sprite.el;
+    me.color = config.color || 'red';
+    me.pendown = false;
+    me.afterSave = config.afterSave;
 
-    me.load();
+    me.persistence = new Persistence({
+        persistenceId: config.persistenceId,
+        getModel: function() {
+            return me.getModel();
+        },
+        setModel: function( model ) {
+            me.setModel( model )
+        }
+    });
+
+    me.persistence.load();
     
     this.el.addEventListener( 'click', function( event ) {
         let x = me.sprite.x2col( event.offsetX );
@@ -40,18 +49,18 @@ function SpriteEditor( config ) {
 SpriteEditor.prototype.doclick = function( x, y ) {
     this.sprite.set( x, y, this.color );
     this.sprite.repaint();
-    this.save();
+    this.changed();
 }
 
 SpriteEditor.prototype.shift = function( x, y ) {
     this.sprite.shift( x, y );
     this.sprite.repaint();
-    this.save();
+    this.changed();
 }
 
 SpriteEditor.prototype.setColor = function( color ) {
     this.color = color;
-    this.save();
+    this.changed();
 }
 
 /**
@@ -61,7 +70,12 @@ SpriteEditor.prototype.setColor = function( color ) {
 SpriteEditor.prototype.clear = function() {
     this.sprite.clear();
     this.sprite.repaint();
-    this.save();
+    this.changed();
+}
+
+SpriteEditor.prototype.changed = function() {
+    this.persistence.change();
+    this.persistence.save();
 }
 
 /**
@@ -73,45 +87,33 @@ SpriteEditor.prototype.setAfterSave = function( afterSave ) {
 }
 
 /**
- * Save data to local storage
+ * Create json from data model
  * 
  */
-SpriteEditor.prototype.save = function() {
-    let me = this;
-    if( me.persistenceId ) {
-        let data = {
-            color: this.color,
-            pixels: this.sprite.pixels
-        };
-        let serialized = JSON.stringify( data );
-        window.localStorage.setItem( me.persistenceId, serialized );
-    }
-    if( this.afterSave ) {
-        this.afterSave( this );
-    }
+SpriteEditor.prototype.getModel = function() {
+    return data = {
+        color: this.color,
+        pixels: this.sprite.pixels
+    };
 }
 
 /**
- * Load data from local storage
+ * Create json from data model
  * 
  */
-SpriteEditor.prototype.load = function() {
-    let me = this;
-    if( me.persistenceId ) {
-        try {
-            let stored = window.localStorage.getItem( me.persistenceId );
-            if( stored ) {
-                let loaded = JSON.parse( stored );
-                if( loaded ) {
-                    this.color = loaded.color ? loaded.color : 'red';
-                    this.sprite.pixels = loaded.pixels ? loaded.pixels : this.sprite.pixels;
-                    this.sprite.repaint();
-                }
-            }
-        }
-        catch( e ) {
-            console.log( e );
-        }
-    }    
+SpriteEditor.prototype.setModel = function( model ) {
+    this.color = model.color || 'red';
+    this.sprite.pixels = model.pixels ? model.pixels : this.sprite.pixels;
+    this.sprite.repaint();
 }
 
+
+SpriteEditor.prototype.undo = function( model ) {
+    this.persistence.undo();
+    this.persistence.save();
+}
+
+SpriteEditor.prototype.redo = function( model ) {
+    this.persistence.redo();
+    this.persistence.save();
+}
