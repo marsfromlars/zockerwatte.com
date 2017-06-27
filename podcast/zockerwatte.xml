@@ -2855,6 +2855,21 @@
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
       </item>
+      <item>
+          <title>188 - Mila Kunis und die Mondbasis Horizon</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Wir sprechen über die 70ies-Show, Bad Moms und teilweise Schwerelosigkeit.</description>
+          <itunes:summary>Wir sprechen über die 70ies-Show, Bad Moms und teilweise Schwerelosigkeit.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Wir sprechen über die 70ies-Show, Bad Moms und teilweise Schwerelosigkeit.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge188.mp3" length="24578843" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge188.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge188.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 26 Jun 2017 17:00:00 GMT</pubDate>
+          <itunes:duration>00:17:04</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
       <!--
       -->
 </channel>

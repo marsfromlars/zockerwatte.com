@@ -1,0 +1,22 @@
+{
+  "name": "lamosoft",
+  "version": "0.0.1",
+  "description": "learning to swim in javascript oceaon",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marsfromlars/zockerwatte.com.git"
+  },
+  "author": "lamosoft.de",
+  "license": "LGPL-2.1",
+  "bugs": {
+    "url": "https://github.com/marsfromlars/zockerwatte.com/issues"
+  },
+  "homepage": "https://github.com/marsfromlars/zockerwatte.com#readme"
+}

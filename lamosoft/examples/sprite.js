@@ -150,4 +150,29 @@ Sprite.prototype.clearMirrors = function() {
     this.mirrors = [];
 }
 
+/**
+ * Create an optimized string representation
+ */
+Sprite.prototype.format = function() {
+    let me = this;
+    let allColors = {};
+    let allIndexes = {};
+    let index = 0;
+    for( var i = 0; i < me.pixels.length; i++ ) {
+        let color = me.pixels[ i ];
+        if( color && !allColors[ color ] ) {
+            allColors[ color ] = index;
+            allIndexes[ index ] = color;
+            index++;
+        }
+    }
+    let result = '';
+    let sep =  '';
+    for( var i in allIndexes ) {
+        result += sep + allIndexes[ i ];
+        sep = ',';
+    }
+    return result + '\n' + JSON.stringify( allColors ) + '\n' + JSON.stringify( allIndexes );
+}
+
 

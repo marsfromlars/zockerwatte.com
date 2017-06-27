@@ -6,9 +6,11 @@
         <link rel="stylesheet" href="../learn/learn.css">
         <link rel="stylesheet" href="sprite.css">
         <link rel="stylesheet" href="spriteeditor.css">
+        <link rel="stylesheet" href="colorpicker.css">
         <script src="sprite.js"></script>
         <script src="spriteeditor.js"></script>
         <script src="persistence.js"></script>
+        <script src="colorpicker.js"></script>
     </head>
     <body>
 
@@ -43,12 +45,15 @@ let editor = new SpriteEditor({
 });
         </div></pre>           
 
+        <div id="colorpicker"></div>
+
         <table>
             <tr>
                 <td colspan="3">
                     <button onclick="editor.clear()">Clear</button>
                     <button onclick="editor.undo()">Undo</button>
                     <button onclick="editor.redo()">Redo</button>
+                    <button onclick="console.log( editor.sprite.format() );">Format</button>
                 </td>
             </tr>
             <tr>
@@ -84,17 +89,20 @@ let editor = new SpriteEditor({
         </div>
 
         <script>
+            
             let previewSprite = new Sprite({
                 el: 'canvas2',
                 rows: 16,
                 cols: 16
             });
+
             let sprite = new Sprite({
                 el: 'canvas1',
                 rows: 16,
                 cols: 16,
                 mirrors: [ previewSprite ]
             });
+            
             sprite.set( 0, 0, 'blue' );
             sprite.set( 5, 5, 'red' );
             sprite.set( 4, 4, 'green' );
@@ -102,10 +110,24 @@ let editor = new SpriteEditor({
             sprite.set( 7, 7, 'orange' );
             sprite.set( 15, 15, 'black' );
             sprite.repaint();
+
             let editor = new SpriteEditor({
                 sprite: sprite,
                 persistenceId: 'examples.spriteEditor'
             });
+
+            new ColorPicker({
+                el: 'colorpicker',
+                imageUrl:  'images/pexels-photo-220320.jpeg',
+                historySize: 16,
+                maxWidth: 200,
+                maxHeight: 150,
+                persistenceId: 'examples.colorPicker',
+                onSelect: function( hex ) {
+                    editor.setColor( hex );
+                }
+            });
+
         </script>
 
     </body>

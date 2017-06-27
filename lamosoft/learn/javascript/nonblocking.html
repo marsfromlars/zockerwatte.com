@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canvas.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">        
+        <link rel="stylesheet" href="nonblocking.css">        
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a>
+
+        <h1>Non blocking.</h1>
+
+        <!-- ******************************************************************** -->
+        <h2>Once.</h2>
+
+            <pre><div class="code" data-title="Javascript" >
+setTimeout( function() {
+    document.getElementById( 'once' ).innerHTML = 'Ready.';
+}, 5000 );
+            </div></pre>     
+
+            <span id="once" class="timer">Waiting for 5s ...</span>
+
+            <script>
+                setTimeout( function() {
+                    document.getElementById( 'once' ).innerHTML = 'Ready.';
+                }, 5000 );
+            </script>
+
+        <!-- ******************************************************************** -->
+        <h2>Repeated.</h2>
+
+            <pre><div class="code" data-title="Javascript" >
+let i = 1;
+setInterval( function() {
+    document.getElementById( 'repeated' ).innerHTML = i++;
+}, 50 );
+            </div></pre>  
+
+            <span id="repeated" class="timer"></span>      
+
+            <script>
+                let i = 1;
+                setInterval( function() {
+                    document.getElementById( 'repeated' ).innerHTML = i++;
+                }, 50 );
+            </script>
+
+    </body>
+</html>
