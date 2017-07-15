@@ -1,0 +1,45 @@
+<html>
+    <header>
+
+    </header>
+    <body>
+
+        <span id="marquee"></span>
+
+        <style>
+            body {
+                background-color: black;
+            }
+            #marquee {
+                font-size: 72px;
+                font-family: Courier New, Courier, monospace;
+                color: white;
+            }
+        </style>
+
+        <script>
+
+            let text = 'Zockerwatte is the #1 hacker crew. Eat it. 2017 is the year'
+                + ' when we take over the world wide web with our world class'
+                + ' web skills. ';
+            let length = text.length;
+
+            let doubleText = text + text;
+            let index = 0;
+            let h1 = document.getElementById( 'marquee' );
+
+            setInterval( scroll, 100 );
+
+            function scroll() {
+                let title = doubleText.substr( index, 20 );
+                h1.innerHTML = title;
+                index++;
+                if( index >= lenth ) {
+                    index = 0;
+                }
+            }
+
+        </script>
+
+    </body>
+</html>

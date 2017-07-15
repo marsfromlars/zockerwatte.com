@@ -2870,6 +2870,21 @@
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
       </item>
+      <item>
+          <title>189 - Doom fist</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Der neue Held ist da.</description>
+          <itunes:summary>Der neue Held ist da.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Der neue Held ist da.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge189.mp3" length="23018392" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge189.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge189.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 10 Jul 2017 17:00:00 GMT</pubDate>
+          <itunes:duration>00:15:59</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
       <!--
       -->
 </channel>
