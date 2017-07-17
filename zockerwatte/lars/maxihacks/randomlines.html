@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Random lines</title>
+    </head>
+    <body>
+
+        <canvas width="1000" height="600" id="canvas">
+        </canvas>
+
+        <script>
+
+            let maxX = 1000;
+            let maxY = 600;
+            let middleX = maxX / 2;
+
+            let canvas = document.getElementById( 'canvas' );
+            var context = canvas.getContext( '2d' );
+
+            setInterval( line, 10 );
+
+            let x = maxX;
+            let step = 0;
+            let color = 'black';
+
+            function line() {
+                if( x >= maxX ) {
+                    x = 0;
+                    step = 10 + Math.random() * 20;
+                    color = '#' + randomColor();
+                }
+                context.beginPath();
+                context.strokeStyle = color;
+                context.moveTo( middleX, 0 );
+                context.lineTo( x, maxY );
+                context.stroke();
+                x += step;
+            }
+
+            function randomColor() {
+                let r = Math.floor( Math.random() * 256 );
+                let g = Math.floor( Math.random() * 256 );
+                let b = Math.floor( Math.random() * 256 );
+                return rgbToHex( r, g, b );
+            }
+
+            function rgbToHex( r, g, b ) {
+                if (r > 255 || g > 255 || b > 255)
+                    throw "Invalid color component";
+                return ((r << 16) | (g << 8) | b).toString(16);
+            }
+
+        </script>
+
+    </body>
+</html>

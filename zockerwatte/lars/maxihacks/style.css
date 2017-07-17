@@ -1,0 +1,55 @@
+body {
+    font-family: sans-serif;
+    background-color: gold;
+    font-size: 19.1px;
+    position: absolute;
+    top: 12%;
+    left: 5.5%;
+    line-height: 0.3;
+}
+.Coins {
+    font-size: 19px;
+    color: white;
+}
+.Background {
+    opacity: 0.2;
+    width: 300px;
+    height: 250px;
+    background-color: black;
+    z-index: -1;
+    position: absolute;
+    bottom: 50%;
+    left: -4.5%;
+}
+.BackgroundZwei {
+    opacity: 0.2;
+    width: 300px;
+    height: 100px;
+    background-color: black;
+    z-index: -2;
+    position: absolute;
+    bottom: -25%;
+    left: -4.4%;
+}
+.Zahlen {
+    font-size: 19px;
+    color: white;
+    position: absolute;
+    bottom: -17%;
+    left: 10%;
+}
+.Zahlen2 {
+    font-size: 19px;
+    color: white;
+    position: absolute;
+    bottom: -17%;
+    left: 48%;
+}
+.Zahlen3 {
+    font-size: 19px;
+    color: white;
+    position: absolute;
+    bottom: -17%;
+    left: 88%;
+}
+

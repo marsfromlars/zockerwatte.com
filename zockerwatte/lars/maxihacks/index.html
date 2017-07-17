@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>
+            Glueckspiel
+        </title>
+    </head>
+    <body>
+        <h2>Du hast momentan: </h2>
+        <h2 id="Coins" class="Coins">100 Coins</h2>
+        <br> <br> <br> <br>
+        <button onclick="Rechnen()"> Setzten </button> 
+        <input type="text" id="Edit"> 
+        <br> <br> <br>
+        <button onclick="Sparen()"> Kontostand erhöhen </button>
+        <br> <br> <br>
+        <button onclick="Fordern()"> Kontostand fordern </button>
+        <br> <br> <br>
+        <h2 id="Konto" class="Coins"> Konto: 0 Coins</h2>
+        <div class="Background"> </div>
+        
+        <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+        
+        <h2> Du hast momentan: </h2>
+        <h2 id="Lose" class="Coins">0 Lose</h2>
+        <br> <br> <br>
+        <h3>Rubbellos 30 Coins</h3>
+        <button onclick="losKaufen()">Rubbellos kaufen</button>
+        
+        <div class="BackgroundZwei"> </div>
+        <h2 class="Zahlen" id="Zahl1"> X </h2>
+        <h2 class="Zahlen2" id="Zahl2"> X </h2>
+        <h2 class="Zahlen3" id="Zahl3"> X </h2>
+        <button onclick="losÖffnen()"> Los Öffnen</button>
+        
+        <script>
+                // Variablen erstellen und zuweisen
+                var Coins = 100;
+                var Konto = 0;
+                var Lose = 0;
+                var Zahl1;
+                var Zahl2;
+                var Zahl3;
+                document.getElementById("Coins").innerHTML = Coins + " Coins";
+                document.getElementById("Edit").value = Coins / 2;
+                document.getElementById("Konto").innerHTML = Konto + " Coins";
+                // Funktion, die die Rechnung des Setzten Knopfs ausführt
+            function Rechnen() {
+                if (Coins > 0) {
+                var x = Math.random();
+                var gesetzt = parseInt(document.getElementById("Edit").value)
+                //Gewinn
+                if (x >= 0.68) {
+                    Coins = gesetzt + Coins + 20;
+                    document.getElementById("Coins").innerHTML = Coins + " Coins";
+                    document.getElementById("Edit").value = Coins / 2;
+                }
+                //Verlieren
+                else {
+                    Coins = Coins - gesetzt - 10;
+                    document.getElementById("Coins").innerHTML = Coins + " Coins";
+                    document.getElementById("Edit").value = Coins / 2;
+                }
+                } 
+                //Kontoauflösung, wenn kein Geld mehr zur Verfügung steht!
+                else {
+                    //falls das Konto noch Geld hat
+                    if (Konto > 0) {
+                    alert("Ihre Coins sind unter 0 gesunken. Ihr Konto wird mit sofortiger Wirkung aufgelöst!");
+                    Coins = Coins + Math.floor(Konto);
+                    Konto = 0;
+                    document.getElementById("Coins").innerHTML = Coins + " Coins";
+                    document.getElementById("Edit").value = Coins / 2;
+                    document.getElementById("Konto").innerHTML = Konto + " Coins";
+                }
+                    //Spielende, Coins und Coins auf dem Konto leer
+                    else {
+                        alert("GAME OVER!");
+                        window.location.reload();
+                    }
+                }
+                }
+            //Funktion, die Coins aufs Konto bewegt
+            function Sparen() {
+                if (Coins > 0) {
+                Coins = Coins - Math.floor(Coins / 2) - 2;
+                Konto = Konto + Math.floor(Coins / 2);
+                document.getElementById("Coins").innerHTML = Coins + " Coins";
+                document.getElementById("Edit").value = Coins / 2;
+                document.getElementById("Konto").innerHTML = Konto + " Coins";                
+            }
+            else {
+                //falls keine Coins zum verschieben vorhanden sind
+                if (Konto > 0) {
+                alert("Ihre Coins sind unter 0 gesunken. Ihr Konto wird mit sofortiger Wirkung aufgelöst!");
+                Coins = Coins + Math.floor(Konto);
+                Konto = 0;
+                document.getElementById("Coins").innerHTML = Coins + " Coins";
+                document.getElementById("Edit").value = Coins / 2;
+                document.getElementById("Konto").innerHTML = Konto + " Coins";
+            }
+                //Spielende, Coins und Coins auf dem Konto leer
+                else {
+                        alert("GAME OVER!");
+                        window.location.reload();
+                    }
+            }
+            }
+            //Funktion um die Coins des Kontos auf die MomentanAnzeige zu verschieben
+            function Fordern() {
+                Coins = Coins + (Konto);
+                Konto = 0;
+                document.getElementById("Coins").innerHTML = Coins + " Coins";
+                document.getElementById("Edit").value = Coins / 2;
+                document.getElementById("Konto").innerHTML = Konto + " Coins";                
+            }
+            function losKaufen () {
+                if (Coins >= 30) {
+                    Coins = Coins - 30;
+                    Lose = Lose + 1;
+                    document.getElementById("Coins").innerHTML = Coins + " Coins";
+                    document.getElementById("Edit").value = Coins / 2;
+                    document.getElementById("Konto").innerHTML = Konto + " Coins";
+                    if (Lose == 1) {
+                    document.getElementById("Lose").innerHTML = Lose + " Los";
+                    }
+                    else {
+                        document.getElementById("Lose").innerHTML = Lose + " Lose";
+                    }
+                } 
+                else {
+                    alert("Nicht ausreichend Coins!");
+                }
+            }
+            function losÖffnen () {
+                if (Lose >= 1) {
+                    Lose = Lose - 1;
+                    Zahl1 = Math.floor((Math.random() * 10) + 1);
+                    Zahl2 = Math.floor((Math.random() * 10) + 1);
+                    Zahl3 = Math.floor((Math.random() * 10) + 1);
+                    document.getElementById("Zahl1").innerHTML = Zahl1;
+                    document.getElementById("Zahl2").innerHTML = Zahl2;
+                    document.getElementById("Zahl3").innerHTML = Zahl3;
+                    document.getElementById("Lose").innerHTML = Lose + " Los";
+                    if (Zahl1 == Zahl2 == Zahl3) {
+                        alert("HAUPTGEWINN");
+                        Coins = Coins + 500;
+                        document.getElementById("Coins").innerHTML = Coins + " Coins";
+                        document.getElementById("Edit").value = Coins / 2;
+                        document.getElementById("Konto").innerHTML = Konto + " Coins";
+                    }
+                    else {
+                    }
+                    if (Zahl1 == Zahl2 || Zahl1 == Zahl3 || Zahl2 == Zahl3) {
+                        Coins = Coins + 100;
+                        document.getElementById("Coins").innerHTML = Coins + " Coins";
+                        document.getElementById("Edit").value = Coins / 2;
+                        document.getElementById("Konto").innerHTML = Konto + " Coins";
+                        setTimeout(function() {
+                            alert("Teilgewinn!");
+                            }, 200);
+                    }
+                    else {
+                    }
+                }
+                else {
+                    alert("Kaufen Sie zuerst Lose!");
+                }
+                setTimeout(function() {
+                    document.getElementById("Zahl1").innerHTML = "X";
+                    document.getElementById("Zahl2").innerHTML = "X";
+                    document.getElementById("Zahl3").innerHTML = "X";
+                    }, 800);
+            }
+            
+            </script>
+        
+    </body>
+</html>
