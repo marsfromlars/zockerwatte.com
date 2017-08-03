@@ -7,10 +7,13 @@ function Persistence( config ) {
 
     let me = this;
 
+    if( !config.persistenceId ) throw "Need persistenceId";
+
     me.persistenceId = config.persistenceId;
     me.getModel = config.getModel;
     me.setModel = config.setModel;
     me.maxHistory = config.maxHistory || 1000;
+    me.localStorage = config.localStorage || window.localStorage;
 
     me.history = [];
     me.index = -1;
@@ -23,13 +26,20 @@ Persistence.prototype.save = function() {
     let me = this;
     let model = me.getModel();
     let serialized = JSON.stringify( model );
-    window.localStorage.setItem( me.persistenceId, serialized );
+    me.localStorage.setItem( me.persistenceId, serialized );
+}
+
+Persistence.prototype.download = function() {
+    let me = this;
+    let model = me.getModel();
+    let serialized = JSON.stringify( model );
+    
 }
 
 Persistence.prototype.load = function() {
     let me = this;
     try {
-        let loaded = window.localStorage.getItem( me.persistenceId );
+        let loaded = me.localStorage.getItem( me.persistenceId );
         if( loaded ) {
             me.setModel( JSON.parse( loaded ) );
         }
@@ -67,5 +77,5 @@ Persistence.prototype.redo = function() {
     }
 }
 
-
+exports.Persistence = Persistence;
 

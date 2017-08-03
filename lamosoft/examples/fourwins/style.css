@@ -1,0 +1,66 @@
+body {
+    font-family: monospace;
+    font-size: 20px;
+    position: absolute;
+    left: 40%;
+    top: 100px;
+    animation: 0.7s Fade linear;
+}
+.button {
+    border-radius: 5px;
+}
+.button:hover {
+    animation: 0.01s scaleUp linear 0.01s forwards;
+}
+.field {
+    background-color: beige;
+    border-radius: 10px;
+    box-shadow: 0.5px 1px 1px 1px rgba(0,0,0,0.6);
+    border-collapse: collapse;
+    
+}
+.tdClass {
+    height: 25px;
+    width: 25px;
+    padding: 2px;
+    border: 1px solid #dcdada;
+}
+.goldenLine {
+    
+    height: 25px;
+    width: 25px;
+    animation: 0.3s scale ease-in-out 0.0s infinite;
+}
+.spanClass {
+    height: 25px;
+    width: 25px;
+}
+
+@keyframes Fade {
+    from {
+        left: 30%;
+        opacity: 0;
+        transform: rotate(-15deg);
+    }
+    to {
+        left: 40%; 
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+@keyframes scaleUp {
+    from {
+        transform: scale3d(1.0,1.0,1.0);
+    }
+    to {
+        transform: scale3d(1.1,1.1,1.1);
+    }
+}
+@keyframes scale {
+    from {
+        transform: scale3d(1.0,1.0,1.0);
+    }
+    to {
+        transform: scale3d(1.5,1.5,1.5);
+    }
+}

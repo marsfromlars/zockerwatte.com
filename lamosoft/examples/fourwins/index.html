@@ -1,0 +1,216 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="FourWins.js"></script>
+        <script src="randomPlayer.js"></script>
+
+        <title>
+            4 gewinnt!
+        </title>
+            </head>
+    <body>
+        <button class="button" onclick="start()">
+                        neustart
+        </button>
+        <br> 
+        <br>
+        Rot: 
+        <select id="redSelect">
+            <option>
+                Mensch
+            </option>
+            <option>
+                leicht
+            </option>
+            <option>
+                schwer
+            </option>
+        </select>
+        <br>
+        Blau: 
+        <select id="blueSelect">
+            <option>
+                Mensch
+            </option>
+            <option>
+                leicht
+            </option>
+            <option>
+                schwer
+            </option>
+        </select>
+        <br>
+        <br>
+        <span id="Player">
+            
+        </span>
+        <br>
+        <br>
+        <table id="FourWins" class="field">
+            <tr>
+                <td>
+                    <button class="button" onclick="dropClick(0)">
+                        1
+                    </button>
+                </td>
+                <td>
+                    <button class="button"class="button" onclick="dropClick(1)">
+                        2
+                    </button>
+                </td>
+                <td>
+                    <button class="button" onclick="dropClick(2)">
+                        3
+                    </button>
+                </td>
+                <td>
+                    <button class="button" onclick="dropClick(3)">
+                        4
+                    </button>
+                </td>
+                <td>
+                    <button class="button" onclick="dropClick(4)">
+                        5
+                    </button>
+                </td>
+                <td>
+                    <button class="button" onclick="dropClick(5)">
+                        6
+                    </button>
+                </td>
+                <td>
+                    <button class="button" onclick="dropClick(6)">
+                        7
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br> 
+        <span id="Winner">
+            <br>
+            <br>
+            
+            
+        </span>
+        
+        <script>
+            
+            
+            let fw = new FourWins( getConfig() );
+            var y = document.getElementById("FourWins");
+                for (var z = 6; z >= 0; z --) {
+                    var tr = document.createElement("tr");
+                    y.appendChild(tr);
+                    for (var s = 0; s < 7; s ++) {
+                        var td = document.createElement("td");
+                        td.setAttribute("onclick", "dropClick(" + s + ")");
+                        td.setAttribute("class", "tdClass");
+                        tr.appendChild(td);
+                        var span = document.createElement("div");
+                        span.innerHTML = "&nbsp;";
+                        span.setAttribute("class", "spanClass");
+                        span.setAttribute("id", "cell_" + s + "_"+ z);
+                        td.appendChild(span);
+                        
+                    }
+                }
+            start();
+            function start () {
+                
+                fw = new FourWins( getConfig() );
+                paint();
+                document.getElementById("Winner").innerHTML = "";
+                
+                
+            }
+            
+            
+            function dropClick (c) {
+                if(fw.getWinner()) {
+                    alert("VOLLIDIOT!!!!!!");
+                }
+                else {
+                    fw.drop(c);
+                    paint();
+                    var Winner = fw.getWinner();
+                    if(Winner) {
+                        if (Winner == "X")  {
+                            Winner = "Blau";
+                        }
+                        else {
+                            Winner = "Rot";
+                        }
+                        document.getElementById("Winner").innerHTML = "der Gewinner ist " + Winner;   
+                        paintGoldenLine();
+                    }
+                }
+            }   
+            function paint() {
+                document.getElementById("Player").innerHTML = fw.isRed() ? "Rot am Zug!" : "Blau am Zug!";
+                document.getElementById("Player").style.color = fw.isRed() ? "red" : "blue";
+                for (var z = 6; z >= 0; z --) {
+                    
+                    for (var s = 0; s < 7; s ++) {
+                        var td = document.getElementById("cell_" + s + "_"+ z);
+                        td.style.textAlign = "center";
+                        if (fw.isChipAtPosition(s, z)) {
+                            var color = fw.getColor(s, z);
+                            if ( color == "X") {
+                                td.style.backgroundColor = "blue";
+                                td.style.borderRadius = "20px";
+                                td.style.boxShadow = "0.5px 1px 1px 1px rgba(0,0,0,0.6)"
+                                
+                            }
+                            else {
+                                td.style.backgroundColor = "red";
+                                td.style.borderRadius = "20px";
+                                td.style.boxShadow = "0.5px 1px 1px 1px rgba(0,0,0,0.6)";
+                            }
+                        }
+                        else {
+                            //td.innerHTML = "_";
+                            td.style.backgroundColor = "beige";
+                            td.style.boxShadow = "";
+                            td.style.borderRadius = "0px";
+                            td.setAttribute("class", "spanClass");
+                        }
+                    
+                    }
+                    
+                }
+                
+            } 
+            function paintGoldenLine () {
+                
+                var line = fw.getGoldenLine();
+                for (var i = 0; i < line.length; i ++) {
+                    
+                    var goldenPoint = line[i];
+                    var c = goldenPoint[0];
+                    var r = goldenPoint[1];
+                    var td = document.getElementById("cell_" + c + "_"+ r);
+                    td.style.backgroundColor = "gold";
+                    td.setAttribute("class", "goldenLine")
+                    
+                    
+                }
+                
+            }
+            function getConfig() {
+                
+                var config = {};
+                var red = document.getElementById("redSelect").value;
+                var blue = document.getElementById("blueSelect").value;
+                if (red == "leicht") {
+                    config.redPlayer = new randomPlayer();
+                }
+                if (blue == "leicht") {
+                    config.bluePlayer = new randomPlayer();
+                }
+                return config;
+                
+            }
+        </script>
+    </body>
+</html>
