@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Canvas.</title>
+        <title>Non blocking.</title>
         <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
         <link rel="stylesheet" href="../learn.css">        
         <link rel="stylesheet" href="nonblocking.css">        
@@ -34,7 +34,7 @@ setTimeout( function() {
 
             <pre><div class="code" data-title="Javascript" >
 let i = 1;
-setInterval( function() {
+var timer = setInterval( function() {
     document.getElementById( 'repeated' ).innerHTML = i++;
 }, 50 );
             </div></pre>  
@@ -43,10 +43,19 @@ setInterval( function() {
 
             <script>
                 let i = 1;
-                setInterval( function() {
+                var timer = setInterval( function() {
                     document.getElementById( 'repeated' ).innerHTML = i++;
                 }, 50 );
             </script>
 
-    </body>
+            <br>
+            <br>
+
+            <button onClick="clearTimeout( timer );">Stop timer</button>
+
+            <pre><div class="code" data-title="Javascript" >
+clearTimeout( timer );
+            </div></pre>  
+
+        </body>
 </html>
