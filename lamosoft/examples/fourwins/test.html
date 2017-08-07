@@ -1,0 +1,248 @@
+<html>
+    <head>
+        <script src="FourWins.js"></script>
+        <script src="randomPlayer.js"></script>
+        <script src="HardcorePlayer.js"></script>
+        <script src="Heuristic.js"></script>
+        <script src="Level.js"></script>
+        <script src="Line.js"></script>
+        <script src="Lines.js"></script>
+
+        <title>
+            4 gewinnt! TEST
+        </title>
+    </head>
+    <body>
+
+        <script>
+
+            function assert( condition, message ) {
+                if( condition ) {
+                    return "<br>OK " + ( message ? ": " + message : "" );
+                }
+                else {
+                    return "<br>Assertion failed " + ( message ? ": " + message : "" );
+                }
+            }
+        </script>
+
+        <h1>Test Line.js</h1>
+
+        <div id="log1" style="font-family: Courier New, Courier, monospace"></div>
+
+        <script>
+            var log1 = "";
+
+            var line;
+
+            // ONE --------------------------------------------------------------
+            line = new Line( "ONE oooo", 4, 0, 0 );
+            log1 += assert( line.getLevel() == Level.ONE, line.debug() );
+
+            // ZERO --------------------------------------------------------------
+            line = new Line( "ZERO ooo", 3, 0, 0 );
+            log1 += assert( line.getLevel() == Level.ZERO, line.debug() );
+
+            line = new Line( "ZERO .oo", 2, 1, 0 );
+            log1 += assert( line.getLevel() == Level.ZERO, line.debug() );
+
+            line = new Line( "ZERO ..o", 1, 2, 0 );
+            log1 += assert( line.getLevel() == Level.ZERO, line.debug() );
+
+            // TWO --------------------------------------------------------------
+            line = new Line( "TWO .ooo.", 3, 1, 1 );
+            log1 += assert( line.getLevel() == Level.TWO, line.debug() );
+            
+            // THREE --------------------------------------------------------------
+            line = new Line( "THREE .ooo", 3, 1, 0 );
+            log1 += assert( line.getLevel() == Level.THREE, line.debug() );
+
+            line = new Line( "THREE ooo.", 3, 0, 1 );
+            log1 += assert( line.getLevel() == Level.THREE, line.debug() );
+            
+            // FOUR --------------------------------------------------------------
+            line = new Line( "FOUR .oo..", 2, 1, 2 );
+            log1 += assert( line.getLevel() == Level.FOUR, line.debug() );
+
+            line = new Line( "FOUR ..oo.", 2, 2, 1 );
+            log1 += assert( line.getLevel() == Level.FOUR, line.debug() );
+
+            // FIVE --------------------------------------------------------------
+            line = new Line( "FIVE .oo.", 2, 1, 1 );
+            log1 += assert( line.getLevel() == Level.FIVE, line.debug() );
+            log1 += assert( line.getValue() == 202, line.debug() );
+
+            line = new Line( "FIVE oo..", 2, 0, 2 );
+            log1 += assert( line.getLevel() == Level.FIVE, line.debug() );
+            log1 += assert( line.getValue() == 201, line.debug() );
+
+            line = new Line( "FIVE ..oo", 2, 2, 0 );
+            log1 += assert( line.getLevel() == Level.FIVE, line.debug() );
+            log1 += assert( line.getValue() == 201, line.debug() );
+
+            // SIX --------------------------------------------------------------
+            line = new Line( "SIX ...o...", 1, 3, 3 );
+            log1 += assert( line.getLevel() == Level.SIX, line.debug() );
+            log1 += assert( line.getValue() == 104, line.debug() );
+
+            line = new Line( "SIX ..o...", 1, 2, 3 );
+            log1 += assert( line.getLevel() == Level.SIX, line.debug() );
+            log1 += assert( line.getValue() == 103, line.debug() );
+
+            line = new Line( "SIX ...o..", 1, 3, 2 );
+            log1 += assert( line.getLevel() == Level.SIX, line.debug() );
+            log1 += assert( line.getValue() == 103, line.debug() );
+
+            line = new Line( "SIX .o...", 1, 1, 3 );
+            log1 += assert( line.getLevel() == Level.SIX, line.debug() );
+            log1 += assert( line.getValue() == 102, line.debug() );
+
+            line = new Line( "SIX ...o.", 1, 3, 1 );
+            log1 += assert( line.getLevel() == Level.SIX, line.debug() );
+            log1 += assert( line.getValue() == 102, line.debug() );
+
+            line = new Line( "SIX o...", 1, 0, 3 );
+            log1 += assert( line.getLevel() == Level.SIX, line.debug() );
+            log1 += assert( line.getValue() == 101, line.debug() );
+
+            line = new Line( "SIX ...o", 1, 3, 0 );
+            log1 += assert( line.getLevel() == Level.SIX, line.debug() );
+            log1 += assert( line.getValue() == 101, line.debug() );
+
+            document.getElementById( "log1" ).innerHTML = log1;
+
+        </script>
+        
+        <h1>Test Lines.js</h1>
+
+        <div id="logLines" style="font-family: Courier New, Courier, monospace"></div>
+
+        <script>
+            
+            var log = "";
+            var l = new Lines( null, "O" );
+            var lines;
+            var line;
+
+            lines = l.getLines( "1", [] );
+            log += assert( lines.length == 0, "empty array" );
+            
+            lines = l.getLines( "1", [ null, "O", null ] );
+            log += assert( lines.length == 1, "One line .O." );
+            line = lines[ 0 ];
+            log += assert( lines[0].freedomLeft == 1, line.debug() );
+            log += assert( lines[0].freedomRight == 1, line.debug() );
+
+            lines = l.getLines( "2", [ null, null, "O", null ] );
+            log += assert( lines.length == 1, "One line ..O." );
+            line = lines[ 0 ];
+            log += assert( line.length == 1, line.debug() );
+            log += assert( line.freedomLeft == 2, line.debug() );
+            log += assert( line.freedomRight == 1, line.debug() );
+
+            lines = l.getLines( "2", [ "X", null, "O", null ] );
+            log += assert( lines.length == 1, "One line X.O." );
+            line = lines[ 0 ];
+            log += assert( line.length == 1, line.debug() );
+            log += assert( line.freedomLeft == 1, line.debug() );
+            log += assert( line.freedomRight == 1, line.debug() );
+
+            lines = l.getLines( "2", [ null, "X", "O", null ] );
+            log += assert( lines.length == 1, "One line .XO." );
+            line = lines[ 0 ];
+            log += assert( line.length == 1, line.debug() );
+            log += assert( line.freedomLeft == 0, line.debug() );
+            log += assert( line.freedomRight == 1, line.debug() );
+
+            lines = l.getLines( "2", [ null, null, "O", null, "X" ] );
+            log += assert( lines.length == 1, "One line ..O.X" );
+            line = lines[ 0 ];
+            log += assert( line.length == 1, line.debug() );
+            log += assert( line.freedomLeft == 2, line.debug() );
+            log += assert( line.freedomRight == 1, line.debug() );
+
+            lines = l.getLines( "2", [ null, "O", "O", null ] );
+            log += assert( lines.length == 1, "One line .OO." );
+            line = lines[ 0 ];
+            log += assert( line.length == 2, line.debug() );
+            log += assert( line.freedomLeft == 1, line.debug() );
+            log += assert( line.freedomRight == 1, line.debug() );
+
+            lines = l.getLines( "2", [ null, "O", "O", null, "O", "O", null ] );
+            log += assert( lines.length == 2, "Two lines .OO.OO." );
+            line = lines[ 0 ];
+            log += assert( line.length == 2, line.debug() );
+            log += assert( line.freedomLeft == 1, line.debug() );
+            log += assert( line.freedomRight == 1, line.debug() );
+            line = lines[ 1 ];
+            log += assert( line.length == 2, line.debug() );
+            log += assert( line.freedomLeft == 1, line.debug() );
+            log += assert( line.freedomRight == 1, line.debug() );
+
+            lines = l.getLines( "2", [ null, "O", "O", "X", "O", "O", null ] );
+            log += assert( lines.length == 2, "Two lines .OOXOO." );
+            line = lines[ 0 ];
+            log += assert( line.length == 2, line.debug() );
+            log += assert( line.freedomLeft == 1, line.debug() );
+            log += assert( line.freedomRight == 0, line.debug() );
+            line = lines[ 1 ];
+            log += assert( line.length == 2, line.debug() );
+            log += assert( line.freedomLeft == 0, line.debug() );
+            log += assert( line.freedomRight == 1, line.debug() );
+
+            document.getElementById( "logLines" ).innerHTML = log;
+
+        </script>
+
+        <h1>Test FourWins.js</h1>
+
+        <div id="log3" style="font-family: Courier New, Courier, monospace"></div>
+
+        <script>
+            var log = "";
+
+            var fw = new FourWins();
+
+            // isInside --------------------------------------------------------------
+            log += assert( fw.isInside( 0, 0 ), "isInside 0 0" );
+            log += assert( fw.isInside( 1, 1 ), "isInside 1 1" );
+            log += assert( fw.isInside( 6, 5 ), "isInside 6 5" );
+            log += assert( !fw.isInside( 0, -1 ), "!isInside 0 -1" );
+            log += assert( !fw.isInside( -1, 0 ), "!isInside -1 0" );
+            log += assert( !fw.isInside( -1, -1 ), "!isInside -1 -1" );
+            log += assert( !fw.isInside( 7, 0 ), "isInside 7 0" );
+            log += assert( !fw.isInside( 0, 6 ), "isInside 0 6" );
+
+            document.getElementById( "log3" ).innerHTML = log;
+
+        </script>
+
+        <h1>Test Heuristic.js</h1>
+
+        <div id="log" style="font-family: Courier New, Courier, monospace"></div>
+
+        <script>
+            var log = "";
+
+            var fw = new FourWins({
+                prefill: [
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    "OOOO..."
+                ]
+            });
+
+            var h = new Heuristic( fw, "O" );
+
+            log += assert( h.getValue() == 1000000, "expected: 1000000, was: " + h.getValue() );
+
+            document.getElementById( "log" ).innerHTML = log;
+
+        </script>
+
+    </body>
+</html>

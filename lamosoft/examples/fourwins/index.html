@@ -3,12 +3,13 @@
         <link rel="stylesheet" href="style.css">
         <script src="FourWins.js"></script>
         <script src="randomPlayer.js"></script>
+        <script src="HardcorePlayer.js"></script>
 
         <title>
             4 gewinnt!
         </title>
             </head>
-    <body>
+    <body onkeydown="keyPress(event.key)">
         <button class="button" onclick="start()">
                         neustart
         </button>
@@ -47,38 +48,38 @@
         <br>
         <br>
         <table id="FourWins" class="field">
-            <tr>
-                <td>
+            <tr >
+                <td style="text-align: center">
                     <button class="button" onclick="dropClick(0)">
                         1
                     </button>
                 </td>
-                <td>
-                    <button class="button"class="button" onclick="dropClick(1)">
+                <td style="text-align: center">
+                    <button class="button" onclick="dropClick(1)" >
                         2
                     </button>
                 </td>
-                <td>
+                <td style="text-align: center">
                     <button class="button" onclick="dropClick(2)">
                         3
                     </button>
                 </td>
-                <td>
+                <td style="text-align: center"> 
                     <button class="button" onclick="dropClick(3)">
                         4
                     </button>
                 </td>
-                <td>
+                <td style="text-align: center">
                     <button class="button" onclick="dropClick(4)">
                         5
                     </button>
                 </td>
-                <td>
+                <td style="text-align: center">
                     <button class="button" onclick="dropClick(5)">
                         6
                     </button>
                 </td>
-                <td>
+                <td style="text-align: center">
                     <button class="button" onclick="dropClick(6)">
                         7
                     </button>
@@ -93,13 +94,15 @@
             
             
         </span>
+        <div class="Meldung" id="Alert" onclick="start()"> <span class="MeldungsText" id="AlertText"> Idiot! </span>  </div>
+        <span id="Msg"> </span>
         
         <script>
             
             
             let fw = new FourWins( getConfig() );
             var y = document.getElementById("FourWins");
-                for (var z = 6; z >= 0; z --) {
+                for (var z = 5; z >= 0; z --) {
                     var tr = document.createElement("tr");
                     y.appendChild(tr);
                     for (var s = 0; s < 7; s ++) {
@@ -115,41 +118,72 @@
                         
                     }
                 }
+
+            var timer;
+            var redPlayer = localStorage.getItem('zockerwatteFourWinsRedPlayerSettings');
+            var bluePlayer = localStorage.getItem('zockerwatteFourWinsBluePlayerSettings');
+            if(redPlayer) {
+                document.getElementById("redSelect").value = redPlayer;
+               
+            }
+            if (bluePlayer) {
+                
+                document.getElementById("blueSelect").value = bluePlayer;
+            }
             start();
             function start () {
-                
+                redPlayer = document.getElementById("redSelect").value;
+                bluePlayer = document.getElementById("blueSelect").value;
+                localStorage.setItem('zockerwatteFourWinsRedPlayerSettings', redPlayer);
+                localStorage.setItem('zockerwatteFourWinsBluePlayerSettings', bluePlayer);
                 fw = new FourWins( getConfig() );
                 paint();
                 document.getElementById("Winner").innerHTML = "";
+                document.getElementById("Alert").style.left = "180%";
+                document.getElementById("Alert").style.opacity = "0";
+                document.getElementById("Msg").innerHTML = "";
+                autoClick();
+                
+                
+            }
+            function autoClick () {
+                timer = setInterval( function () {
+                    if(fw.autoClick()) {
+                       paint();
+                    }
+                    else {
+                        clearTimeout(timer);                  
+                    }    
+                }, 200);
+            }
+            function myAlert(text) {
+                document.getElementById("AlertText").innerHTML = text;
+                document.getElementById("Alert").style.left = "-44.5%";
+                document.getElementById("Alert").style.opacity = "1";
                 
                 
             }
             
             
             function dropClick (c) {
-                if(fw.getWinner()) {
-                    alert("VOLLIDIOT!!!!!!");
+                document.getElementById("Msg").innerHTML = "";
+                if(fw.getWinner() || fw.isDraw()) {
+                    myAlert("Idiot!");
                 }
                 else {
-                    fw.drop(c);
-                    paint();
-                    var Winner = fw.getWinner();
-                    if(Winner) {
-                        if (Winner == "X")  {
-                            Winner = "Blau";
-                        }
-                        else {
-                            Winner = "Rot";
-                        }
-                        document.getElementById("Winner").innerHTML = "der Gewinner ist " + Winner;   
-                        paintGoldenLine();
+                    
+                    var message = fw.drop(c);
+                    if(message) {
+                        document.getElementById("Msg").innerHTML = message;
                     }
+                    paint();
+                    autoClick();
                 }
             }   
             function paint() {
                 document.getElementById("Player").innerHTML = fw.isRed() ? "Rot am Zug!" : "Blau am Zug!";
                 document.getElementById("Player").style.color = fw.isRed() ? "red" : "blue";
-                for (var z = 6; z >= 0; z --) {
+                for (var z = 5; z >= 0; z --) {
                     
                     for (var s = 0; s < 7; s ++) {
                         var td = document.getElementById("cell_" + s + "_"+ z);
@@ -179,6 +213,26 @@
                     }
                     
                 }
+                var Winner = fw.getWinner();
+                    if(Winner) {
+                        if (Winner == "X")  {
+                            Winner = "Blau";
+                            document.getElementById("Winner").style.color = "blue";
+                        }
+                        else {
+                            Winner = "Rot";
+                            document.getElementById("Winner").style.color = "red";
+                        }
+                        
+                        document.getElementById("Winner").innerHTML = "der Gewinner ist " + Winner;  
+                        document.getElementById("Player").innerHTML = "";
+                        paintGoldenLine();
+                    }
+                if (fw.isDraw()) {
+                    document.getElementById("Winner").innerHTML = "Unentschieden!"; 
+                    document.getElementById("Winner").style.color = "black";
+                    document.getElementById("Player").innerHTML = "";
+                }
                 
             } 
             function paintGoldenLine () {
@@ -190,7 +244,6 @@
                     var c = goldenPoint[0];
                     var r = goldenPoint[1];
                     var td = document.getElementById("cell_" + c + "_"+ r);
-                    td.style.backgroundColor = "gold";
                     td.setAttribute("class", "goldenLine")
                     
                     
@@ -208,8 +261,37 @@
                 if (blue == "leicht") {
                     config.bluePlayer = new randomPlayer();
                 }
+                if (red == "schwer") {
+                    config.redPlayer = new HardcorePlayer( "O", 0 );
+                }
+                if (blue == "schwer") {
+                    config.bluePlayer = new HardcorePlayer( "X", 0 );
+                }
                 return config;
                 
+            }
+            function keyPress(key)  {
+                if ( key == "1") {
+                    dropClick(0);
+                }
+                else if ( key == "2") {
+                    dropClick(1);
+                }
+                else if ( key == "3") {
+                    dropClick(2);
+                }
+                else if ( key == "4") {
+                    dropClick(3);
+                }
+                else if ( key == "5") {
+                    dropClick(4);
+                }
+                else if ( key == "6") {
+                    dropClick(5);
+                }
+                else if ( key == "7") {
+                    dropClick(6);
+                }
             }
         </script>
     </body>

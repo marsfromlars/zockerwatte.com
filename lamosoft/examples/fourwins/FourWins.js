@@ -2,19 +2,39 @@ function FourWins( config ) {
     
     if (!config) {
         config = {};
-    }
-            
-    this.field = [ [] , [] , [] , [] , [] , [] , [] ];
-    
-    this.red = true;
-    
-    this.bluePlayer = config.bluePlayer;
-    this.redPlayer = config.redPlayer;
-    
-    if(this.redPlayer) {
-        this.redPlayer.makeMove(this);
         
     }
+    if (config.original) {
+        
+        this.field = [ [] , [] , [] , [] , [] , [] , [] ];
+        for (var i = 0; i < 7; i ++) {
+        this.field[ i ] = this.copyArray(config.original.field[i]);    
+        }
+        
+        this.red = config.original.red;
+        this.bluePlayer = config.original.bluePlayer;
+        this.redPlayer = config.original.redPlayer;
+        
+    }
+    else {
+        this.field = [ [] , [] , [] , [] , [] , [] , [] ];
+    
+        this.red = true;
+    
+        this.bluePlayer = config.bluePlayer;
+        this.redPlayer = config.redPlayer;
+    }        
+    
+    
+}
+
+FourWins.prototype.copyArray = function ( originalArray ) {
+
+    var newArray = [];
+    for (var i = 0; i < originalArray.length; i ++) {
+        newArray.push  (originalArray [i]);
+    }
+    return newArray;
     
 }
 
@@ -25,12 +45,12 @@ FourWins.prototype.isRed = function () {
 FourWins.prototype.drop = function ( c ) {
     
     if (c < 0 || c > 6 ) {
-        throw "IDIOT!";
+        return "daneben!";
     }
     
     var column = this.field[c];
-    if (column.lenth > 6) {
-        throw "... WTF";
+    if (column.length >= 6) {
+        return "voll!";
     }
     var chip = 'O';
     if ( !this.red ) {
@@ -39,18 +59,50 @@ FourWins.prototype.drop = function ( c ) {
     column.push( chip );
     this.red = !this.red;
 
+    this.calcWinner();
+
+}
+
+/**
+ * Test if position is inside playing field
+ * 
+ * @param c Column
+ * @param r Row
+ * @return True if position is valid for playing field
+ * 
+ */
+FourWins.prototype.isInside = function( c, r ) {
+    return c >= 0 && c <= 6 && r >= 0 && r <= 5;
+}
+
+
+FourWins.prototype.autoClick = function() {
+    if( this.getWinner() || this.isDraw()) {
+        return false;
+    }
     if (this.red) {
         if (this.redPlayer) {
             this.redPlayer.makeMove(this);
+            return true;            
         }
     }
     else {
         if (this.bluePlayer) {
             this.bluePlayer.makeMove(this);
+            return true;            
         }
     }
-    this.calcWinner();
+    return false;
+}
 
+FourWins.prototype.isDraw = function () {
+    for (i = 0; i < 7; i ++) {
+        if (!this.getColor (i,5)) {
+            return false;
+        }
+    }
+    return true;
+    
 }
 /** 
 returns 'R' if red has won, returns 'B' if blue has won, returns null if no one has one
