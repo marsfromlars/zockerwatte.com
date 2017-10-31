@@ -104,17 +104,24 @@ window.basic = {
      * @param x X start position
      * @param y Y start position
      * @param points String containing numbers which are single digit indexes to the color table
+     * @param color Optional color to be used for any pixel != 0
      * 
      */
-    points: function( x, y, points ) {
+    points: function( x, y, points, color ) {
         var me = this;
+        me.saveColor( color );
         for( var i = 0; i < points.length; i++ ) {
             var index = parseInt( points[ i ] );
             if( index > 0 ) {
-                me.color( me._colors[ index ] );
+                var pointColor = me._colors[ index ];
+                if( color ) {
+                    pointColor = color;
+                }
+                me.color( pointColor );
                 me.point( x + i, y );
             }
         }
+        me.restoreColor();
     },
 
     /**
@@ -142,8 +149,23 @@ window.basic = {
             font = {};
             me._fonts[ me._font ] = font;
         }
-        var lines = pixels.trim().split( '\n' );
-        font[ letter ] = lines;
+        font[ letter ] = [];
+        var lines = pixels.split( '\n' );
+        for( i = 0; i < lines.length; i++ ) {
+            if( lines[ i ].length > 0 ) {
+                font[ letter ].push( lines[ i ] );
+            }
+        }
+    },
+
+    /**
+     * @return All letters defined in the current font
+     */
+    getLetters: function() {
+        var me = this;
+        var font = me._fonts[ me._font ];
+        if( !font ) throw 'No such font "' + me._font + '"';
+        return Object.keys( font );
     },
 
     /**
@@ -158,12 +180,16 @@ window.basic = {
         var me = this;
         var font = me._fonts[ me._font ];
         if( !font ) throw 'No such font "' + me._font + '"';
+        var width;
         for( i = 0; i < text.length; i++ ) {
             var letter = text[ i ];
             var pixels = font[ letter ];
             if( !letter ) throw 'No letter "' + letter + '" defined in font "' + me._font + '"';
             for( l = 0; l < pixels.length; l++ ) {
-                me.points( x, y + l, pixels[ l ] );
+                if( !width ) {
+                    width = pixels[ l ].length;
+                }
+                me.points( x + ( i * width ), y + l, pixels[ l ], me._color );
             }
         }
     }

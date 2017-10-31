@@ -7,6 +7,8 @@
         </canvas>
 
         <script src="basic.js"></script>
+        <script src="bitfont.js"></script>
+        
         <script>
 
 var basic = window.basic;
@@ -21,20 +23,13 @@ basic.point( 12, 10 );
 basic.points( 10, 11, '101010101' );
 basic.points( 10, 12, '122222221' );
 basic.points( 10, 13, '101010101' );
-
-basic.defineLetter( 'A',`
-00000000
-00011000
-00111100
-01100010
-01111110
-01100010
-01100010
-00000000
-`
- );
-
- basic.text( 10, 10, "AAA" );
+basic.color( 'black' );
+basic.resolution( 1, 1 );
+basic.text( 0, 30, basic.getLetters() );
+basic.resolution( 2, 2 );
+basic.text( 0, 30, basic.getLetters() );
+basic.resolution( 4, 4 );
+basic.text( 0, 30, basic.getLetters() );
 
         </script>
         
