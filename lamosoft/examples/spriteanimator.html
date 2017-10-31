@@ -33,7 +33,8 @@ let editSprite = new Sprite({
     rows: 16
 });
 let editor = new SpriteEditor({
-    sprite: editSprite
+    sprite: editSprite,
+    persistenceId: 'examples.spriteAnimator.editor'
 });
 let animatedSprites = [];
 for( var i = 1; i < 10; i++ ) {
@@ -134,7 +135,8 @@ new ColorPicker({
                 rows: 16
             });
             let editor = new SpriteEditor({
-                sprite: editSprite
+                sprite: editSprite,
+                persistenceId: 'examples.spriteAnimator.editor'
             });
             let animatedSprites = [];
             for( var i = 1; i < 10; i++ ) {

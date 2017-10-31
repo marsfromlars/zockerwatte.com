@@ -7,6 +7,7 @@
         <script src="Level.js"></script>
         <script src="Line.js"></script>
         <script src="Lines.js"></script>
+        <script src="Utils.js"></script>
 
         <title>
             4 gewinnt! TEST
@@ -21,7 +22,7 @@
                     return "<br>OK " + ( message ? ": " + message : "" );
                 }
                 else {
-                    return "<br>Assertion failed " + ( message ? ": " + message : "" );
+                    return '<br><span style="color:red;">Assertion failed ' + ( message ? ": " + message : "" ) + '</span>';
                 }
             }
         </script>
@@ -123,52 +124,53 @@
             var l = new Lines( null, "O" );
             var lines;
             var line;
+            var id = 0;
 
-            lines = l.getLines( "1", [] );
+            lines = l.getLines( "" + id++, [] );
             log += assert( lines.length == 0, "empty array" );
             
-            lines = l.getLines( "1", [ null, "O", null ] );
+            lines = l.getLines( "" + id++, [ null, "O", null ] );
             log += assert( lines.length == 1, "One line .O." );
             line = lines[ 0 ];
             log += assert( lines[0].freedomLeft == 1, line.debug() );
             log += assert( lines[0].freedomRight == 1, line.debug() );
 
-            lines = l.getLines( "2", [ null, null, "O", null ] );
+            lines = l.getLines( "" + id++, [ null, null, "O", null ] );
             log += assert( lines.length == 1, "One line ..O." );
             line = lines[ 0 ];
             log += assert( line.length == 1, line.debug() );
             log += assert( line.freedomLeft == 2, line.debug() );
             log += assert( line.freedomRight == 1, line.debug() );
 
-            lines = l.getLines( "2", [ "X", null, "O", null ] );
+            lines = l.getLines( "" + id++, [ "X", null, "O", null ] );
             log += assert( lines.length == 1, "One line X.O." );
             line = lines[ 0 ];
             log += assert( line.length == 1, line.debug() );
             log += assert( line.freedomLeft == 1, line.debug() );
             log += assert( line.freedomRight == 1, line.debug() );
 
-            lines = l.getLines( "2", [ null, "X", "O", null ] );
+            lines = l.getLines( "" + id++, [ null, "X", "O", null ] );
             log += assert( lines.length == 1, "One line .XO." );
             line = lines[ 0 ];
             log += assert( line.length == 1, line.debug() );
             log += assert( line.freedomLeft == 0, line.debug() );
             log += assert( line.freedomRight == 1, line.debug() );
 
-            lines = l.getLines( "2", [ null, null, "O", null, "X" ] );
+            lines = l.getLines( "" + id++, [ null, null, "O", null, "X" ] );
             log += assert( lines.length == 1, "One line ..O.X" );
             line = lines[ 0 ];
             log += assert( line.length == 1, line.debug() );
             log += assert( line.freedomLeft == 2, line.debug() );
             log += assert( line.freedomRight == 1, line.debug() );
 
-            lines = l.getLines( "2", [ null, "O", "O", null ] );
+            lines = l.getLines( "" + id++, [ null, "O", "O", null ] );
             log += assert( lines.length == 1, "One line .OO." );
             line = lines[ 0 ];
             log += assert( line.length == 2, line.debug() );
             log += assert( line.freedomLeft == 1, line.debug() );
             log += assert( line.freedomRight == 1, line.debug() );
 
-            lines = l.getLines( "2", [ null, "O", "O", null, "O", "O", null ] );
+            lines = l.getLines( "" + id++, [ null, "O", "O", null, "O", "O", null ] );
             log += assert( lines.length == 2, "Two lines .OO.OO." );
             line = lines[ 0 ];
             log += assert( line.length == 2, line.debug() );
@@ -179,7 +181,7 @@
             log += assert( line.freedomLeft == 1, line.debug() );
             log += assert( line.freedomRight == 1, line.debug() );
 
-            lines = l.getLines( "2", [ null, "O", "O", "X", "O", "O", null ] );
+            lines = l.getLines( "" + id++, [ null, "O", "O", "X", "O", "O", null ] );
             log += assert( lines.length == 2, "Two lines .OOXOO." );
             line = lines[ 0 ];
             log += assert( line.length == 2, line.debug() );
@@ -189,6 +191,32 @@
             log += assert( line.length == 2, line.debug() );
             log += assert( line.freedomLeft == 0, line.debug() );
             log += assert( line.freedomRight == 1, line.debug() );
+
+            lines = l.getLines( "" + id++, [ "O", "?", "?", "?", "?", "?", "?" ] );
+            log += assert( lines.length == 1, "One line O?????" );
+            line = lines[ 0 ];
+            log += assert( line.length == 1, line.debug() );
+            log += assert( line.freedomLeft == 0, line.debug() );
+            log += assert( line.freedomRight == 0, line.debug() );
+
+            var fw;
+            var array;
+
+            fw = new FourWins({
+                prefill: [
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    "O......"
+                ]
+            });
+            l = new Lines( fw, "0" );
+            log += "<br>" + fw.debugHTML();
+            var result = arrayToString( l.getArray( 0, 0, 1, 1 ) );
+            log += assert( "O?????" == result, "expected: O????? was: " + result );
 
             document.getElementById( "logLines" ).innerHTML = log;
 
@@ -223,8 +251,10 @@
 
         <script>
             var log = "";
+            var h;
+            var fw;
 
-            var fw = new FourWins({
+            fw = new FourWins({
                 prefill: [
                     ".......",
                     ".......",
@@ -235,10 +265,71 @@
                     "OOOO..."
                 ]
             });
-
-            var h = new Heuristic( fw, "O" );
-
+            h = new Heuristic( fw, "O" );
             log += assert( h.getValue() == 1000000, "expected: 1000000, was: " + h.getValue() );
+
+            fw = new FourWins({
+                prefill: [
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".OOO..."
+                ]
+            });
+            h = new Heuristic( fw, "O" );
+            log += assert( h.getValue() == 900000, "expected: 900000, was: " + h.getValue() );
+
+            fw = new FourWins({
+                prefill: [
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    "OOO.OOO"
+                ]
+            });
+            h = new Heuristic( fw, "O" );
+            log += assert( h.getValue() == 900000, "expected: 900000, was: " + h.getValue() );
+
+            fw = new FourWins({
+                prefill: [
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    "XO.O..."
+                ]
+            });
+            h = new Heuristic( fw, "O" );
+            log += assert( h.getValue() == 900000, "expected: 900000, was: " + h.getValue() );
+
+            fw = new FourWins({
+                prefill: [
+                    ".......",
+                    ".......",
+                    ".......",
+                    ".......",
+                    "...XX..",
+                    "...OO..",
+                    ".OXOOX."
+                ]
+            });
+            h = new Heuristic( fw, "O" );
+            log += "<br>" + fw.debugHTML();
+            log += "<br>" + h.debugHTML();
+
+            var hc = new HardcorePlayer( "X", 0 );
+            hc.makeMove( fw );
+            log += "<br>" + fw.debugHTML();
+
+            log += assert( h.getValue() == 900000, "expected: 900000, was: " + h.getValue() );
 
             document.getElementById( "log" ).innerHTML = log;
 

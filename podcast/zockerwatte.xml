@@ -2900,6 +2900,66 @@
           <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
           <itunes:explicit>no</itunes:explicit>
       </item>
+      <item>
+          <title>191 - Nach den Ferien lockt die Switch</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Wir sprechen über die Nintendo Switch.</description>
+          <itunes:summary>Wir sprechen über die Nintendo Switch.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Wir sprechen über die Nintendo Switch.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge191.mp3" length="27189416" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge191.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge191.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 21 Aug 2017 17:00:00 GMT</pubDate>
+          <itunes:duration>00:18:53</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
+      <item>
+          <title>192 - Gamescom 2017</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Wir berichten über die Gamescom.</description>
+          <itunes:summary>Wir berichten über die Gamescom.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Wir berichten über die Gamescom.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge192.mp3" length="26123620" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge192.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge192.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 28 Aug 2017 17:00:00 GMT</pubDate>
+          <itunes:duration>00:18:08</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
+      <item>
+          <title>193 - Zombies vs Aliens</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Wir sprechen hauptsächlich über Filme und Serien, alt und neu. Außerdem noch unsere Kommentare zu den neuen iPhones.</description>
+          <itunes:summary>Wir sprechen hauptsächlich über Filme und Serien, alt und neu. Außerdem noch unsere Kommentare zu den neuen iPhones.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Wir sprechen hauptsächlich über Filme und Serien, alt und neu. Außerdem noch unsere Kommentare zu den neuen iPhones.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge193.mp3" length="28430755" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge193.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge193.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 25 Sep 2017 17:00:00 GMT</pubDate>
+          <itunes:duration>00:19:44</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
+      <item>
+          <title>194 - Nach der Pause</title>
+          <link>http://zockerwattegames.blogspot.de/</link>
+          <description>Wir sprechen über Fortnite und Cup Head.</description>
+          <itunes:summary>Wir sprechen über Fortnite und Cup Head.</itunes:summary>
+          <itunes:subtitle xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">Wir sprechen über Fortnite und Cup Head.</itunes:subtitle>
+          <enclosure url="http://zockerwatte.com/podcast/files/zockerwatte-folge194.mp3" length="23492985" type="audio/mpeg" />
+          <source url="http://zockerwatte.com/podcast/files/zockerwatte-folge194.mp3">Hear the preview here</source>
+          <guid>http://zockerwatte.com/podcast/files/zockerwatte-folge194.mp3</guid>
+          <category>Podcasts</category>
+          <pubDate>Mon, 16 Sep 2017 17:00:00 GMT</pubDate>
+          <itunes:duration>00:16:19</itunes:duration>
+          <itunes:image href="http://zockerwatte.com/podcast/zw-itunes.png"/>
+          <itunes:explicit>no</itunes:explicit>
+      </item>
       <!--
       -->
 </channel>

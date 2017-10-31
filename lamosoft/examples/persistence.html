@@ -25,6 +25,7 @@ Age: &lt;input id="age" onblur="persistence.change()">&lt;/input>&lt;br>
         <pre><div class="code" data-title="Javascript" >
 let persistence = new Persistence({
     getModel: function() {
+        persistenceId: 'examples.Persistence',
         return {
             name: document.getElementById( 'name' ).value,
             age: document.getElementById( 'age' ).value
@@ -49,6 +50,7 @@ let persistence = new Persistence({
         
         <script>
             let persistence = new Persistence({
+                persistenceId: 'examples.Persistence',
                 getModel: function() {
                     return {
                         name: document.getElementById( 'name' ).value,

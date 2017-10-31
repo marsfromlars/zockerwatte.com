@@ -11,24 +11,24 @@ function Lines( fourWins, color ) {
 
 Lines.prototype.calulate = function() {
 
-    var all = [];
-    var horizontal = [];
-    var vertical = [];
-    var forward = [];
-    var backward = [];
+    this.all = [];
+    this.horizontal = [];
+    this.vertical = [];
+    this.forward = [];
+    this.backward = [];
 
     // horizontal
     for( var i = 0; i < 6; i++ ) {
         var array = this.getArray( 0, i, 1, 0 );
         var lines = this.getLines( "H" + i, array );
-        this.addAll( lines, horizontal );
+        this.addAll( lines, this.horizontal );
     }
 
     // vertical
     for( var i = 0; i < 7; i++ ) {
         var array = this.getArray( i, 0, 0, 1 );
         var lines = this.getLines(  "V" + i, array );
-        this.addAll( lines, vertical );
+        this.addAll( lines, this.vertical );
     }
 
     /*
@@ -44,26 +44,30 @@ Lines.prototype.calulate = function() {
     */
 
     // forward
-    this.addAll( this.getLines( "F0", this.getArray( 0, 2, 1, 1 ) ), forward );
-    this.addAll( this.getLines( "F1", this.getArray( 0, 1, 1, 1 ) ), forward );
-    this.addAll( this.getLines( "F2", this.getArray( 0, 0, 1, 1 ) ), forward );
-    this.addAll( this.getLines( "F3", this.getArray( 1, 0, 1, 1 ) ), forward );
-    this.addAll( this.getLines( "F4", this.getArray( 2, 0, 1, 1 ) ), forward );
-    this.addAll( this.getLines( "F5", this.getArray( 3, 0, 1, 1 ) ), forward );
+    this.addAll( this.getLines( "F0", this.getArray( 0, 2, 1, 1 ) ), this.forward );
+    this.addAll( this.getLines( "F1", this.getArray( 0, 1, 1, 1 ) ), this.forward );
+    this.addAll( this.getLines( "F2", this.getArray( 0, 0, 1, 1 ) ), this.forward );
+    this.addAll( this.getLines( "F3", this.getArray( 1, 0, 1, 1 ) ), this.forward );
+    this.addAll( this.getLines( "F4", this.getArray( 2, 0, 1, 1 ) ), this.forward );
+    this.addAll( this.getLines( "F5", this.getArray( 3, 0, 1, 1 ) ), this.forward );
 
     // backward
-    this.addAll( this.getLines( "B0", this.getArray( 0, 2, -1, 1 ) ), backward );
-    this.addAll( this.getLines( "B1", this.getArray( 0, 1, -1, 1 ) ), backward );
-    this.addAll( this.getLines( "B2", this.getArray( 0, 0, -1, 1 ) ), backward );
-    this.addAll( this.getLines( "B3", this.getArray( 1, 0, -1, 1 ) ), backward );
-    this.addAll( this.getLines( "B4", this.getArray( 2, 0, -1, 1 ) ), backward );
-    this.addAll( this.getLines( "B5", this.getArray( 3, 0, -1, 1 ) ), backward );
+    this.addAll( this.getLines( "B0", this.getArray( 0, 2, -1, 1 ) ), this.backward );
+    this.addAll( this.getLines( "B1", this.getArray( 0, 1, -1, 1 ) ), this.backward );
+    this.addAll( this.getLines( "B2", this.getArray( 0, 0, -1, 1 ) ), this.backward );
+    this.addAll( this.getLines( "B3", this.getArray( 1, 0, -1, 1 ) ), this.backward );
+    this.addAll( this.getLines( "B4", this.getArray( 2, 0, -1, 1 ) ), this.backward );
+    this.addAll( this.getLines( "B5", this.getArray( 3, 0, -1, 1 ) ), this.backward );
 
-    this.addAll( horizontal, all );
-    this.addAll( vertical, all );
-    this.addAll( forward, all );
-    this.addAll( backward, all );
+    this.addAll( this.horizontal, this.all );
+    this.addAll( this.vertical, this.all );
+    this.addAll( this.forward, this.all );
+    this.addAll( this.backward, this.all );
     
+}
+
+Lines.prototype.getAll = function() {
+    return this.all;
 }
 
 /**
@@ -79,7 +83,14 @@ Lines.prototype.calulate = function() {
 Lines.prototype.getArray = function( c, r, cStep, rStep ) {
     var array = [];
     while( this.fourWins.isInside( c, r ) ) {
-        array.push( this.fourWins.getColor( c, r ) );
+        var chip = this.fourWins.getColor( c, r );
+        if( !chip ) {
+            // test if below this position there is a filled stone
+            if( r > 0 && !this.fourWins.isChipAtPosition( c, r - 1 ) ) {
+                chip = "?"; // means flying in the air
+            }
+        }
+        array.push( chip );
         c += cStep;
         r += rStep;
     }
@@ -137,12 +148,15 @@ Lines.prototype.getLines = function( prefix, array ) {
                 freedomRight++;
             }
             else if( chip == this.color ) {
+                freedomRight++;
+                /*
                 var line = new Line( prefix + "_" + (lines.length), length, freedomLeft, freedomRight );
                 lines.push( line );
                 mode = "before";
                 freedomLeft = freedomRight;
                 length = 1;
                 freedomRight = 0;                
+                */
             }
             else { // other color
                 var line = new Line( prefix + "_" + (lines.length), length, freedomLeft, freedomRight );
@@ -169,7 +183,7 @@ Lines.prototype.getLines = function( prefix, array ) {
 
 Lines.prototype.addAll = function( source, target ) {
     for( var i = 0; i < source.length; i++ ) {
-        target.push( sources[ i ] );
+        target.push( source[ i ] );
     }
 }
 

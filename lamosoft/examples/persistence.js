@@ -77,5 +77,5 @@ Persistence.prototype.redo = function() {
     }
 }
 
-exports.Persistence = Persistence;
+//exports.Persistence = Persistence;
 

@@ -12,9 +12,6 @@ function HardcorePlayer ( color, level ) {
 }
 HardcorePlayer.prototype.makeMove = function (fw) {
 
-//    var result = this.calculateDeep( fw, 2, this.color, this.color );
-//    fw.drop( result.column );
-
     var move = this.calculateBestMove( fw );
     fw.drop( move );
 
@@ -27,6 +24,9 @@ HardcorePlayer.prototype.calculateBestMove = function( fw ) {
     var bestColumn;
 
     var counterColor = this.negateColor( this.color );
+
+    var myOriginalHeuristic = new Heuristic( fw, this.color ).getValue();
+    var opponentOriginalHeuristic = new Heuristic( fw, counterColor ).getValue();
 
     for( var i = 0; i < 7; i++ ) {
 
@@ -41,29 +41,34 @@ HardcorePlayer.prototype.calculateBestMove = function( fw ) {
         }
         else {
 
-            var allMoves = [];
-            this.findAllMoves( nextFw, 2, allMoves );
+            for( var j = 0; j < 7; j++ ) {
 
-            // calculate all possible counter moves
-            var bestCounterHeuristic = null;
+                var nextNextFw = new FourWins({ original: nextFw });
+                nextNextFw.drop( j );
 
-            for( var j = 0; j < allMoves.length; j++ ) {
-
-                var counterFw = allMoves[ j ];
-                var counterHeuristic = this.calculateHeuristic( counterFw, counterColor );
-
-                if( !bestCounterHeuristic || counterHeuristic > bestCounterHeuristic ) {
-                    bestCounterHeuristic = counterHeuristic;
+                if( nextNextFw.getWinner() == this.color ) {
+                    return i; // instant win
                 }
-                
-            }
+                else if( nextNextFw.getWinner() && nextNextFw.getWinner() != this.color ) {
+                    // do nothing - opponent would instantly win here
+                }
+                else {
 
-            var myHeuristic = this.calculateHeuristic( nextFw, this.color );
-            var diff = myHeuristic - bestCounterHeuristic;
+                    var myHeuristic = new Heuristic( nextNextFw, this.color ).getValue();
+                    var opponentHeuristic = new Heuristic( nextNextFw, counterColor ).getValue();
 
-            if( !bestDiff || diff > bestDiff ) {
-                bestDiff = diff;
-                bestColumn = i;
+                    var myDiff = myHeuristic - myOriginalHeuristic;
+                    var opponentDiff = opponentHeuristic - opponentOriginalHeuristic;
+
+                    var diff = myDiff - opponentDiff;
+
+                    if( !bestDiff || diff > bestDiff ) {
+                        bestDiff = diff;
+                        bestColumn = i;
+                    }
+
+                }
+
             }
 
         }
@@ -93,55 +98,6 @@ HardcorePlayer.prototype.findAllMoves = function( fw, depth, allMoves ) {
 
 }
 
-HardcorePlayer.prototype.calculateDeep = function( fw, depth, myColor, dropColor ) {
-
-    if( depth == 0 ) {
-
-        dropColor = this.negateColor( dropColor );
-
-        var myHeuristic = this.calculateHeuristic( fw, myColor );
-        var counterHeuristic = this.calculateHeuristic( fw, this.negateColor( myColor ) );
-        var heuristic = myHeuristic - counterHeuristic;
-
-        return {
-            heuristic: heuristic,
-            column: 0 // not important here
-        };
-
-    }
-    else {
-
-        var maxHeuristic = null;
-        var maxColumn = null;
-
-        for( var i = 0; i < 7; i++ ) {
-
-            var fwx = new FourWins({original: fw});
-            fwx.drop( i );
-            
-            var result = this.calculateDeep( fwx, depth - 1, myColor, this.negateColor( dropColor ) );
-
-            var heuristic = result.heuristic;
-
-            if( dropColor == myColor ) {
-                heuristic = -heuristic;
-            }
-
-            if( maxHeuristic == null || heuristic > maxHeuristic ) {
-                maxHeuristic = heuristic;
-                maxColumn = i;
-            }
-
-        }
-
-        return {
-            heuristic: maxHeuristic,
-            column: maxColumn
-        };
-
-    }
-
-}
 
 HardcorePlayer.prototype.negateColor = function( color ) {
 
@@ -152,6 +108,9 @@ HardcorePlayer.prototype.negateColor = function( color ) {
 
 HardcorePlayer.prototype.calculateHeuristic = function (fwx, color) {
 
+    return new Heuristic( fwx, color ).getValue();
+
+    /*
     var heuristic = 0;
     if (this.level == 0) {
 
@@ -199,7 +158,7 @@ HardcorePlayer.prototype.calculateHeuristic = function (fwx, color) {
     }
 
     return heuristic;
-
+    */
         
 }
 

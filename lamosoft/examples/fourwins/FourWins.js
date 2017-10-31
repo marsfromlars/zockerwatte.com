@@ -8,13 +8,25 @@ function FourWins( config ) {
         
         this.field = [ [] , [] , [] , [] , [] , [] , [] ];
         for (var i = 0; i < 7; i ++) {
-        this.field[ i ] = this.copyArray(config.original.field[i]);    
+            this.field[ i ] = this.copyArray(config.original.field[i]);    
         }
         
         this.red = config.original.red;
         this.bluePlayer = config.original.bluePlayer;
         this.redPlayer = config.original.redPlayer;
         
+    }
+    else if( config.prefill ) {
+        this.field = [ [] , [] , [] , [] , [] , [] , [] ];
+        for( var i = config.prefill.length - 1; i >= 0; i-- ) {
+            var line = config.prefill[ i ];
+            for( var j = 0; j < line.length; j++ ) {
+                var chip = line[ j ];
+                if( chip == "O" || chip == "X" ) {
+                    this.field[ j ].push( chip );
+                }
+            }
+        }
     }
     else {
         this.field = [ [] , [] , [] , [] , [] , [] , [] ];
@@ -240,33 +252,6 @@ FourWins.prototype.testLine = function (c, r, c1, r1, color) {
     
 }
 
-FourWins.prototype.debug = function () {
-    
-    for (var r = 6; r >= 0; r --) {
-        
-        var line = r + ": ";
-        
-        for (var c = 0; c < 7; c ++) {
-            
-            if ( this.isChipAtPosition(c, r)) {
-                
-                var chip = this.getColor(c, r);
-                line = line + " " + chip;
-                
-            }
-            else {
-                line = line + " _";
-            }
-            
-                
-            
-        } 
-        console.log( line );
-        
-    }
-    
-}
-
 FourWins.prototype.test = function () {
     
     var fw = new FourWins;
@@ -283,6 +268,7 @@ FourWins.prototype.test = function () {
     }
     
 }
+
 FourWins.prototype.random = function (count) {
     
     
@@ -303,3 +289,37 @@ FourWins.prototype.getGoldenLine = function () {
     return this.goldenLine;
     
 }
+
+FourWins.prototype.debug = function () {
+    for (var r = 6; r >= 0; r --) {
+        var line = r + ": ";
+        for (var c = 0; c < 7; c ++) {
+            if ( this.isChipAtPosition(c, r)) {
+                var chip = this.getColor(c, r);
+                line = line + " " + chip;
+            }
+            else {
+                line = line + " _";
+            }
+        } 
+        console.log( line );
+    }
+}
+
+FourWins.prototype.debugHTML = function() {
+    var html = "";
+    for (var r = 6; r >= 0; r --) {
+        html += "<br>" + r + ": ";
+        for (var c = 0; c < 7; c ++) {
+            if ( this.isChipAtPosition(c, r)) {
+                var chip = this.getColor(c, r);
+                html += " " + chip;
+            }
+            else {
+                html += " _";
+            }
+        } 
+    }
+    return html;
+}
+

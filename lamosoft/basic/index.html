@@ -1,0 +1,42 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <canvas width="700" height="500" id="c1">
+            
+        </canvas>
+
+        <script src="basic.js"></script>
+        <script>
+
+var basic = window.basic;
+
+basic.screen( 'c1' );
+basic.clear( 'pink' );
+basic.resolution( 4, 4 );
+basic.color( 'white' );
+basic.point( 10, 10 );
+basic.point( 11, 10, 'blue' )
+basic.point( 12, 10 );
+basic.points( 10, 11, '101010101' );
+basic.points( 10, 12, '122222221' );
+basic.points( 10, 13, '101010101' );
+
+basic.defineLetter( 'A',`
+00000000
+00011000
+00111100
+01100010
+01111110
+01100010
+01100010
+00000000
+`
+ );
+
+ basic.text( 10, 10, "AAA" );
+
+        </script>
+        
+    </body>
+</html>
