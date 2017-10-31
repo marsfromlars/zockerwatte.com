@@ -143,4 +143,301 @@ basic.defineLetter( 'M', `
  11    1
 ` );
 
+basic.defineLetter( 'N', `
+        
+ 11    1
+ 111   1
+ 1111  1
+ 11 11 1
+ 11  111
+ 11   11
+ 11    1
+` );
+
+basic.defineLetter( 'O',`
+        
+  11111 
+ 11    1
+ 11    1
+ 11    1
+ 11    1
+ 11    1
+  11111 
+` );
+
+basic.defineLetter( 'P',`
+        
+ 111111 
+ 11    1
+ 11    1
+ 111111 
+ 11     
+ 11     
+ 11     
+` );
+
+basic.defineLetter( 'Q',`
+        
+  11111 
+ 11    1
+ 11    1
+ 11    1
+ 11    1
+ 11  11
+  111 11 
+` );
+
+basic.defineLetter( 'R',`
+        
+ 111111 
+ 11    1
+ 11    1
+ 111111 
+ 11   1     
+ 11    1    
+ 11    1  
+` );
+
+basic.defineLetter( 'S',`
+        
+  11111 
+ 11    1
+ 11    
+  11111   
+      11      
+ 11   11    
+  11111   
+` );
+
+basic.defineLetter( 'T', `
+        
+ 111111 
+   11     
+   11    
+   11   
+   11   
+   11   
+   11    
+` );
+
+basic.defineLetter( 'U',`
+        
+ 11    1 
+ 11    1
+ 11    1
+ 11    1
+ 11    1
+ 11    1
+  11111 
+` );
+
+basic.defineLetter( 'V',`
+        
+ 11    1
+ 11    1
+  11  1 
+  11  1 
+   111  
+   111  
+    1   
+` );
+
+basic.defineLetter( 'W',`
+        
+ 11    1
+ 11    1
+ 11    1
+ 11    1
+ 11    1
+ 11 11 1
+  111 1  
+` );
+
+basic.defineLetter( 'X', `
+        
+ 11    1
+ 11    1
+  11  1 
+   111  
+  11  1 
+ 11    1
+ 11    1
+` );
+
+basic.defineLetter( 'Y', `
+        
+ 11    1
+ 11    1
+  11  1 
+   111  
+    11   
+    11   
+    11   
+` );
+
+basic.defineLetter( 'Z', `
+        
+ 1111111
+      11
+     11 
+    11  
+   11   
+  11    
+ 1111111   
+` );
+
+basic.defineLetter( '0', `
+        
+   111  
+  11  1
+ 11    1
+ 11    1
+ 11    1
+  11  1 
+   111  
+` );
+
+basic.defineLetter( '1', `
+        
+   111  
+ 11 11  
+    11  
+    11  
+    11  
+    11  
+    11  
+` );
+
+basic.defineLetter( '2', `
+        
+  11111  
+ 11   11  
+      11
+    11 
+  11    
+ 11     
+ 1111111
+` );
+
+basic.defineLetter( '3', `
+        
+  11111 
+ 11   11
+      11
+    11  
+      11
+ 11   11
+  11111 
+` );
+
+basic.defineLetter( '4', `
+        
+    111
+   1 11 
+  1  11 
+ 1   11
+ 1111111  
+     11
+     11 
+` );
+
+basic.defineLetter( '5',`
+        
+ 1111111
+ 11    
+ 11    
+  11111   
+      11      
+ 11   11    
+  11111   
+` );
+
+basic.defineLetter( '6',`
+        
+  11111
+ 11     
+ 11    
+ 111111   
+ 11   11      
+ 11   11    
+  11111   
+` );
+
+basic.defineLetter( '7',`
+        
+ 1111111
+      11     
+     11    
+    11  
+   11   
+  11    
+ 11     
+` );
+
+basic.defineLetter( '8',`
+        
+  11111 
+ 11    1    
+ 11    1
+  11111
+ 11    1
+ 11    1
+  11111
+` );
+
+basic.defineLetter( '9',`
+        
+  11111 
+ 11    1    
+ 11    1
+  111111
+       1
+       1
+  11111
+` );
+
+basic.defineLetter( '.',`
+        
+        
+        
+        
+             
+        
+   11
+   11
+` );
+
+basic.defineLetter( ',',`
+        
+        
+        
+    
+        
+        
+    11   
+   11    
+` );
+
+basic.defineLetter( '-',`
+        
+        
+        
+        
+  11111
+
+
+
+` );
+
+basic.defineLetter( ' ',`
+        
+        
+        
+        
+        
+        
+        
+        
+` );
+
 

@@ -2,11 +2,18 @@ window.basic = {
 
     _canvas: null,
     _ctx: null,
-    _color: 'black',
+    _color: 'white',
+    _backgroundColor: 'black',
     _colors: [ 'black', 'white', 'red', 'green', 'blue' ],
     _pixel: { x: 1, y: 1 },
     _font: 'default',
-    _fonts: {},
+    _fonts: {
+        'default': {
+            dimension: { w: 8, h: 8 }
+        }
+    },
+    _column: 0,
+    _row: 0,
 
     /**
      * Set current screen output to a canvas
@@ -31,6 +38,7 @@ window.basic = {
         me.saveColor( color );
         me._ctx.fillRect( 0, 0, size.w, size.h );
         me.restoreColor();
+        me._backgroundColor = color;
     },
 
     /**
@@ -105,9 +113,10 @@ window.basic = {
      * @param y Y start position
      * @param points String containing numbers which are single digit indexes to the color table
      * @param color Optional color to be used for any pixel != 0
+     * @param opaque Paint empty pixels with background color
      * 
      */
-    points: function( x, y, points, color ) {
+    points: function( x, y, points, color, opaque ) {
         var me = this;
         me.saveColor( color );
         for( var i = 0; i < points.length; i++ ) {
@@ -119,6 +128,9 @@ window.basic = {
                 }
                 me.color( pointColor );
                 me.point( x + i, y );
+            }
+            else if( opaque ) {
+                me.point( x + i, y, me._backgroundColor );
             }
         }
         me.restoreColor();
@@ -151,7 +163,7 @@ window.basic = {
         }
         font[ letter ] = [];
         var lines = pixels.split( '\n' );
-        for( i = 0; i < lines.length; i++ ) {
+        for( var i = 0; i < lines.length; i++ ) {
             if( lines[ i ].length > 0 ) {
                 font[ letter ].push( lines[ i ] );
             }
@@ -165,7 +177,11 @@ window.basic = {
         var me = this;
         var font = me._fonts[ me._font ];
         if( !font ) throw 'No such font "' + me._font + '"';
-        return Object.keys( font );
+        var letters = "";
+        for( var letter in font ) {
+            letters += "" + letter;
+        }
+        return letters;
     },
 
     /**
@@ -174,25 +190,57 @@ window.basic = {
      * @param x X position
      * @param y Y position
      * @param text The text to write
+     * @param opaque Draw text with opaque letters
      * 
      */
-    text: function( x, y, text ) {
+    text: function( x, y, text, opaque ) {
         var me = this;
+        text = new String( text ).toUpperCase();
         var font = me._fonts[ me._font ];
-        if( !font ) throw 'No such font "' + me._font + '"';
+        if( !font ) {
+            console.log( 'No such font "' + me._font + '"' );
+            return;
+        }
         var width;
-        for( i = 0; i < text.length; i++ ) {
+        for( var i = 0; i < text.length; i++ ) {
             var letter = text[ i ];
             var pixels = font[ letter ];
-            if( !letter ) throw 'No letter "' + letter + '" defined in font "' + me._font + '"';
-            for( l = 0; l < pixels.length; l++ ) {
-                if( !width ) {
-                    width = pixels[ l ].length;
+            if( !pixels ) {
+                console.log( 'No letter "' + letter + '" defined in font "' + me._font + '"' );
+            }
+            else {
+                for( var l = 0; l < pixels.length; l++ ) {
+                    if( !width ) {
+                        width = pixels[ l ].length;
+                    }
+                    me.points( x + ( i * width ), y + l, pixels[ l ], me._color, opaque );
                 }
-                me.points( x + ( i * width ), y + l, pixels[ l ], me._color );
             }
         }
-    }
+    },
+
+    print: function( text, opaque ) {
+        var me = this;
+        for( var i = 0; i < text.length; i++ ) {
+            me.printChar( text[ i ], opaque );
+        }
+    },
+    
+    printChar: function( char, opaque ) {
+        var me = this;
+        var font = me._fonts[ me._font ];
+        var x = me._column * font.dimension.w;
+        var y = me._row * font.dimension.h;
+        me.text( x, y, char, opaque );
+        me._column++;
+        var size = me.getSize();
+        if( me._column * font.dimension.w * me._pixel.x > size.w ) {
+            me._row++;
+            me._column = 0;
+        }
+    },
+
+    zzz: null
 
 }
 
