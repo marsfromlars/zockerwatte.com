@@ -1,4 +1,4 @@
-var basic = window.basic;
+var bitfont1 = function( basic ) {
 
 basic.defineLetter( 'A',`
         
@@ -441,3 +441,4 @@ basic.defineLetter( ' ',`
 ` );
 
 
+};

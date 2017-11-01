@@ -3,7 +3,7 @@
     <head>
         <title>Canvas.</title>
         <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
-        <link rel="stylesheet" href="../learn.css">        
+        <link rel="stylesheet" href="../learn.css">
     </head>
     <body>
 
@@ -111,6 +111,67 @@ ctx.strokeRect( 35, 35, 50, 50 );
             ctx.fillRect( 15, 15, 50, 50 );
             ctx.clearRect( 25, 25, 50, 50 );
             ctx.strokeRect( 35, 35, 50, 50 );
+        </script>
+
+        <!-- ******************************************************************** -->
+        <h2>Bit copy.</h2>
+        
+        <table>
+            <tr>
+                <td>
+                    <canvas id="canvas31" class="samplecanvas" width="100" height="100"></canvas>
+                </td>
+                <td>
+                    <canvas id="canvas32" class="samplecanvas" width="100" height="100"></canvas>
+                </td>
+                <td>
+                    <canvas id="canvas33" class="samplecanvas" width="100" height="100"></canvas>
+                </td>
+                <td>
+                    <pre><div class="code">
+ctx1.font = '30px Arial';
+ctx1.fillStyle = 'blue';
+ctx1.fillText( 'Sample', 1, 40 );
+
+var imgData = ctx1.getImageData( 0, 0, 100, 100 );
+
+ctx2.putImageData( imgData, 30, 50 );
+
+var image = new Image();
+image.src = canvas1.toDataURL('image/png');
+image.onload = () => {
+    ctx3.drawImage( image, 30, 50 );
+};
+                     </div></pre>
+                </td>
+            </tr>
+        </table>
+
+        <script>
+                let canvas1 = document.getElementById( 'canvas31' );
+                let canvas2 = document.getElementById( 'canvas32' );
+                let canvas3 = document.getElementById( 'canvas33' );
+    
+                var ctx1 = canvas1.getContext( '2d' );
+                var ctx2 = canvas2.getContext( '2d' );
+                var ctx3 = canvas3.getContext( '2d' );
+    
+                ctx2.fillStyle = 'pink';
+                ctx2.fillRect( 0, 0, 100, 100 );
+
+                ctx3.fillStyle = 'pink';
+                ctx3.fillRect( 0, 0, 100, 100 );
+
+                ctx1.font = '30px Arial';
+                ctx1.fillStyle = 'blue';
+                ctx1.fillText( 'Sample', 1, 40 );
+    
+                var imgData = ctx1.getImageData( 0, 0, 100, 100 );
+
+                ctx2.putImageData( imgData, 30, 50 );
+                
+                ctx3.drawImage( canvas1, 30, 50 );
+
         </script>
 
     </body>
