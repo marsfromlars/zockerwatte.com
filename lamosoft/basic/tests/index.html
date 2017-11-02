@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <script src="../sprite.js"></script>
+        <script src="assertion.js"></script>
+    </head>
+    <body>
+
+        <script>
+
+var sprite = new Sprite( 16, 16 );
+for( var x = 0; x < 16; x++ ) {
+    for( var y = 0; y < 16; y++ ) {
+        assertion( sprite.get( x, y ) == " ", "Should be ' ' for x/y=" + x + "/" + y );
+    }
+}
+
+sprite.set( 10, 10, '1' );
+assertion( sprite.get( 10, 10, '1' ) );
+
+sprite.set( 0, 0, '9' );
+assertion( sprite.get( 0, 0, '9' ) );
+
+sprite.setRow( 1, "1234567890123456" );
+
+//document.write( sprite.debug() );
+
+assertEquals( "1", sprite.get( 0, 1 ) );
+assertEquals( "2", sprite.get( 1, 1 ) );
+assertEquals( "3", sprite.get( 2, 1 ) );
+assertEquals( "4", sprite.get( 3, 1 ) );
+assertEquals( "5", sprite.get( 4, 1 ) );
+assertEquals( "6", sprite.get( 5, 1 ) );
+assertEquals( "7", sprite.get( 6, 1 ) );
+assertEquals( "8", sprite.get( 7, 1 ) );
+assertEquals( "9", sprite.get( 8, 1 ) );
+assertEquals( "0", sprite.get( 9, 1 ) );
+assertEquals( "1", sprite.get( 10, 1 ) );
+assertEquals( "2", sprite.get( 11, 1 ) );
+assertEquals( "3", sprite.get( 12, 1 ) );
+assertEquals( "4", sprite.get( 13, 1 ) );
+assertEquals( "5", sprite.get( 14, 1 ) );
+assertEquals( "6", sprite.get( 15, 1 ) );
+
+printTestResults();
+
+        </script>
+
+    </body>
+</html>
