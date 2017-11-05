@@ -237,22 +237,45 @@ Screen.prototype.print = function( text, opaque ) {
 
 Screen.prototype.printChar = function( char, opaque ) {
     var me = this;
+    var font = me._fonts[ me._font ];
     if( char == '\n' ) {
         me._row++;
         me._column = 0;
-        return;
     }
-    var font = me._fonts[ me._font ];
-    var x = me._column * font.dimension.w;
-    var y = me._row * font.dimension.h;
-    me.text( x, y, char, opaque );
-    me._column++;
+    else {
+        var x = me._column * font.dimension.w;
+        var y = me._row * font.dimension.h;
+        me.text( x, y, char, opaque );
+        me._column++;
+    }
+    // automatic line break
     var size = me.getSize();
-    if( me._column * font.dimension.w * me._pixel.x > size.w ) {
+    if( (me._column+1) * font.dimension.w * me._pixel.x >= size.w ) {
         me._row++;
         me._column = 0;
     }
+    // scroll at the end of the page
+    if( (me._row+1) * font.dimension.h * me._pixel.y >= size.h ) {
+        me.scroll( 0, -font.dimension.h * me._pixel.y );
+        me._row--;
+    }
 };
+
+Screen.prototype.scroll = function( x, y ) {
+    var me = this;
+    var x1 = x < 0 ? -x : 0;
+    var y1 = y < 0 ? -y : 0;
+    var x2 = x > 0 ? x : 0;
+    var y2 = y > 0 ? y : 0;
+    var size = me.getSize();
+    var imageData = me._ctx.getImageData( x1, y1, size.w - Math.abs( x ), size.h - Math.abs( y ) );
+    me._ctx.putImageData( imageData, x2, y2 );
+    me._ctx.fillStyle = me._backgroundColor;
+    var xClear = x < 0 ? size.w + x : 0;
+    var yClear = y < 0 ? size.h + y : 0;
+    me._ctx.fillRect( xClear, 0, Math.abs( x ), size.h );
+    me._ctx.fillRect( 0, yClear, size.w, Math.abs( y ) );
+}
 
 Screen.prototype.defineSprite = function( name, w, h ) {
     var me = this;

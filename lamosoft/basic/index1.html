@@ -1,0 +1,71 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <canvas width="1200" height="500" id="c1">
+            
+        </canvas>
+
+        <script src="screen.js"></script>
+        <script src="bitfont1.js"></script>
+        
+        <script>
+
+var screen = new Screen( 'c1' );
+
+bitfont1( screen );
+
+screen.clear( 'darkgreen' );
+
+screen.resolution( 2, 2 );
+screen.text( 0, 40, "Browser Basic 0.1 Ready." );
+
+screen.resolution( 4, 4 );
+screen.color( '#' );
+screen.point( 10, 10 );
+screen.point( 11, 10, 'blue' )
+screen.point( 12, 10 );
+screen.points( 10, 11, '101010101' );
+screen.points( 10, 12, '122222221' );
+screen.points( 10, 13, '101010101' );
+screen.color( '#ffff00' );
+screen.resolution( 1, 1 );
+screen.text( 0, 30, screen.getLetters() );
+screen.resolution( 2, 2 );
+screen.text( 0, 30, screen.getLetters() );
+screen.resolution( 4, 4 );
+screen.text( 0, 30, screen.getLetters() );
+screen.resolution( 8, 8 );
+screen.text( 0, 30, screen.getLetters() );
+
+var lorem = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy 
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, 
+no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, 
+consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore 
+magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo 
+dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem 
+ipsum dolor sit amet.`;
+
+screen.resolution( 1, 1 );
+screen.color( 'white' );
+screen.print( lorem, true );
+
+screen.resolution( 3, 3 );
+var i = 0;
+var loop = setInterval( function() {
+    var msg = "   " + i;
+    screen.text( 0, 0, msg.substr( msg.length - 4, 4 ), true );
+    i++;
+    if( i > 99 ) {
+        clearInterval( loop );
+    }
+}, 1 );
+
+screen.defineSprite( 'ball', 16, 16 );
+screen.drawSprite( 'ball', 100, 100 );
+
+        </script>
+        
+    </body>
+</html>
