@@ -24,6 +24,7 @@ function Screen( canvas ) {
     me._column = 0;
     me._row = 0;
     me._sprites = {};
+    me._blinkTime = 500;
 
 }
 
@@ -261,7 +262,20 @@ Screen.prototype.printChar = function( char, opaque ) {
     }
 };
 
-Screen.prototype.scroll = function( x, y ) {
+Screen.prototype.scroll = function( x, y, millis ) {
+    var me = this;
+    /*
+    if( !millis ) {
+        me._scroll( x, y );
+    }
+    else {
+        
+    }
+    */
+    me.scrollImpl( x, y );
+}
+
+Screen.prototype.scrollImpl = function( x, y ) {
     var me = this;
     var x1 = x < 0 ? -x : 0;
     var y1 = y < 0 ? -y : 0;
@@ -301,4 +315,25 @@ Screen.prototype.drawSprite = function( name, x, y ) {
     var sprite = me._sprites[ name ];
     me._ctx.drawImage( sprite.canvas, x, y );
 };
+
+Screen.prototype.showCursor = function( on ) {
+    var me = this;
+    if( !on ) {
+        if( me._cursorInterval ) {
+            clearInterval( me._cursorInterval );
+        }
+    }
+    else {
+        me._cursorInterval = setInterval( () => {
+            var font = me._fonts[ me._font ];
+            var x = me._column * font.dimension.w;
+            var y = me._row * font.dimension.h;
+            var cursorChar = !me._cursorBright ? "1" : "2";
+            me._cursorBright = !me._cursorBright;
+            me.text( x, y, cursorChar, true );
+        }, me._blinkTime );
+    }
+};
+
+
 

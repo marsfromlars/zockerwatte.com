@@ -1,10 +1,32 @@
 <html>
     <head>
+        <style>
+
+            #c1 {
+                top: 10px;
+                left: 10px;
+                position: fixed;
+                z-index: 0;
+            }
+            #c2 {
+                top: 10px;
+                left: 10px;
+                position: fixed;
+                z-index: 1;
+            }
+                /*
+                */
+
+            canvas {
+                border: 1px solid red;
+            }
+        </style>
+                
     </head>
     <body>
-        <canvas width="650" height="400" id="c1">
-            
-        </canvas>
+
+        <canvas width="650" height="400" id="c1"></canvas>
+        <canvas width="650" height="400" id="c2"></canvas>
 
         <script src="screen.js"></script>
         <script src="bitfont1.js"></script>
@@ -36,6 +58,14 @@ var scroll = setInterval( () => {
         clearInterval( scroll );
     }
 }, 30 );
+
+var c2 = document.getElementById( 'c2' );
+var ctx2 = c2.getContext( '2d' );
+ctx2.fillStyle = 'red';
+ctx2.fillRect( 0, 0, 40, 40 );
+
+screen.showCursor( true );
+
         </script>
         
     </body>
