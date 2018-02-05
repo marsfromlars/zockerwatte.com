@@ -9,9 +9,9 @@ function Screen( canvas ) {
     var me = this;
 
     me._canvas = typeof canvas == 'string' ? document.getElementById( canvas ) : canvas;
-    me._ctx = document.getElementById( 'c1' ).getContext( '2d' );
+    me._ctx = me._canvas.getContext( '2d' );
 
-    me._color = 'white';
+    me._color = 'blue';
     me._backgroundColor;
     me._colors = [ 'black', 'white', 'red', 'green', 'blue' ];
     me._pixel = { x: 1, y: 1 };

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Worker.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">        
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a>
+
+        <h1>Worker.</h1>
+
+            <pre><div class="code" data-title="Javascript" >
+            </div></pre>
+
+            <script>
+                var worker = new Worker('worker1.js');
+
+                worker.addEventListener('message', function(e) {
+                    console.log('Worker said: ', e.data);
+                }, false);
+
+                worker.postMessage('Hello World'); 
+            </script>
+
+    </body>
+</html>

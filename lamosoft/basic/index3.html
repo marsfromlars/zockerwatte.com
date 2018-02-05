@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script src="screen.js"></script>
+        <script src="bitfont1.js"></script>
+        <script src="lorem.js"></script>
+    </head>
+    <body>
+        <canvas id="c" width="400" height="200"></canvas>
+
+        <script>
+            var s = new Screen('c');
+            bitfont1( s );
+            s.clear( 'white' );
+            s.print( 'Hello World' );
+            s.print( '\n' );
+            var n = '00\n01\n02\n03\n04\n05\n06\n07\n08\n09\n'
+            s.print( lorem );
+            s.print( n );
+            s.print( n );
+            s.print( n );
+            s.print( n );
+            var i = 0;
+            setInterval( function() {
+                s.print( '\n' + i );
+                i++;
+            }, 1000 );
+        </script>        
+    </body>
+</html>

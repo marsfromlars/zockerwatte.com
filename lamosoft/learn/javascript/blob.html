@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blob.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">        
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a>
+
+        <h1>Blob.</h1>
+
+            <pre><div class="code" data-title="Javascript" >
+var s = 'document.getElementById("output").innerHTML = "Hello World!";'
+var blob = new Blob([s],{ type: 'text/javascript'});
+var scripturl = window.URL.createObjectURL(blob);
+document.getElementById('scriptElement').src = scripturl;
+            </div></pre>
+
+            <div id="output"></div>
+
+            <script id="scriptElement"></script>
+
+            <script>
+                var s = 'document.getElementById("output").innerHTML = "Hello World!";'
+                var blob = new Blob([s],{ type: 'text/javascript'});
+                var scripturl = window.URL.createObjectURL(blob);
+                document.getElementById('scriptElement').src = scripturl;
+            </script>
+
+        <script>
+        </script>
+
+    </body>
+</html>
