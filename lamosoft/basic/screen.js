@@ -205,7 +205,7 @@ Screen.prototype.getLetters = function() {
  */
 Screen.prototype.text = function( x, y, text, opaque ) {
     var me = this;
-    text = new String( text ).toUpperCase();
+    //text = new String( text ).toUpperCase();
     var font = me._fonts[ me._font ];
     if( !font ) {
         console.log( 'No such font "' + me._font + '"' );
@@ -215,6 +215,10 @@ Screen.prototype.text = function( x, y, text, opaque ) {
     for( var i = 0; i < text.length; i++ ) {
         var letter = text[ i ];
         var pixels = font[ letter ];
+        if( !pixels ) {
+            letter = letter.toUpperCase();
+            pixels = font[ letter ];
+        }
         if( !pixels ) {
             console.log( 'No letter "' + letter + '" defined in font "' + me._font + '"' );
         }
