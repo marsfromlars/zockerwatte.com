@@ -3,6 +3,7 @@ var Canvas = function( ref ) {
     var me = this;
     me.el = typeof ref == 'string' ? document.getElementById( ref ) : ref;
     me.ctx = me.el.getContext( '2d' );
+    me.callbacks = {};
     me.config = {
         clear: false,
         color: 'black',
@@ -82,6 +83,19 @@ var Canvas = function( ref ) {
         me.ctx.fill();
         
         me.ctx.restore();
+
+    }
+
+    me.callback = function( eventName, callback ) {
+
+        var me = this;
+        me.callbacks[ eventName ] = callback;
+        
+        me.el.addEventListener( eventName, function( event ) {
+            let x = event.offsetX;
+            let y = event.offsetY;
+            me.callbacks[ eventName ]( x, y );
+        });
 
     }
 

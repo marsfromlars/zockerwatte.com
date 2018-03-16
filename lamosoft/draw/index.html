@@ -44,7 +44,13 @@
                 b.clearPixel( 99 - i, i );
             }
         
+            var dbg = function( x, y ) {
+                document.title = x + ':' + y;
+            };
+
             b = new Bitscreen( 'c', { width: 20, height: 10 } );
+            b.callback( 'mousemove', dbg );
+
             for( var i = 0; i < 10; i++ ) {
                 b.setPixel( 23 - i, i, 'orange' );
             }

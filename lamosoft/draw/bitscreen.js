@@ -5,6 +5,7 @@ var Bitscreen = function( ref, config ) {
     me.config = config;
     me.config.width = me.config.width || me.canvas.el.width;
     me.config.height = me.config.height || me.canvas.el.height;
+    me.callbacks = {};
 
     me.pixelW = me.canvas.el.width / me.config.width;
     me.pixelH = me.canvas.el.height / me.config.height;
@@ -39,6 +40,17 @@ var Bitscreen = function( ref, config ) {
                 }
             }
         }
+    }
+
+    me.callback = function( eventName, callback ) {
+
+        var me = this;
+        me.callbacks[ eventName ] = callback;
+
+        me.canvas.callback( eventName, function( x, y ) {
+            me.callbacks[ eventName ]( Math.floor( x / me.pixelW ), Math.floor( y / me.pixelH ) );
+        });
+
     }
 
 }
