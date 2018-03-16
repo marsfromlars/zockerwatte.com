@@ -1,14 +1,14 @@
-var Canvas = function( ref ) {
+var Canvas = function( ref, config ) {
 
     var me = this;
     me.el = typeof ref == 'string' ? document.getElementById( ref ) : ref;
     me.ctx = me.el.getContext( '2d' );
     me.callbacks = {};
-    me.config = {
+    me.config = new Config( config, {
         clear: false,
         color: 'black',
         width: 1
-    }
+    });
 
     me.setMode = function( config ) {
         var me = this;
@@ -16,32 +16,32 @@ var Canvas = function( ref ) {
         c.clear = config.clear != undefined ? config.clear : c.clear;
         c.color = config.color || c.color;
         c.width = config.width || c.width;
-    }
+    };
 
     me.setClear = function( clear ) {
         me.setMode( { clear: clear } );
-    }
+    };
 
     me.setColor = function( color ) {
         me.setMode( { color: color } );
-    }
+    };
 
     me.setWidth = function( width ) {
         me.setMode( { width: width } );
-    }
+    };
 
     me.line = function( x1, y1, x2, y2 ) {
         var me = this;
         me.ctx.moveTo( x1, y1 );
         me.ctx.lineTo( x2, y2 );
         me.ctx.stroke();
-    }
+    };
 
     me.rect = function( x, y, w, h ) {
         var me = this;
         me.ctx.fillStyle = me.config.color;
         me.ctx.fillRect( x, y, w, h );
-    }
+    };
 
     me.clear = function( x, y, w, h ) {
         var me = this;
@@ -50,7 +50,7 @@ var Canvas = function( ref ) {
         w = w || me.el.width;
         h = h || me.el.height;
         me.ctx.clearRect( x, y, w, h );
-    }
+    };
 
     me.circle = function( x, y, r ) {
         var me = this;
@@ -61,7 +61,7 @@ var Canvas = function( ref ) {
         me.ctx.arc( x, y, r, 0, 2 * Math.PI );
         me.ctx.stroke();
         me.ctx.restore();
-    }
+    };
 
     me.pie = function( x, y, r, start, end ) {
         var me = this;
@@ -84,7 +84,7 @@ var Canvas = function( ref ) {
         
         me.ctx.restore();
 
-    }
+    };
 
     me.callback = function( eventName, callback ) {
 
@@ -97,7 +97,9 @@ var Canvas = function( ref ) {
             me.callbacks[ eventName ]( x, y );
         });
 
-    }
+    };
 
-}
+};
+
+
 

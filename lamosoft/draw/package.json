@@ -1,0 +1,12 @@
+{
+  "name": "draw",
+  "version": "1.0.0",
+  "description": "playground for sprite editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "jshint *.js"
+  },
+  "author": "",
+  "license": "LGPL 2.0"
+}

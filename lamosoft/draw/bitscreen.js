@@ -2,9 +2,11 @@ var Bitscreen = function( ref, config ) {
 
     var me = this;
     me.canvas = new Canvas( ref );
-    me.config = config;
-    me.config.width = me.config.width || me.canvas.el.width;
-    me.config.height = me.config.height || me.canvas.el.height;
+    me.config = new Config( config, {
+        width: me.canvas.el.width,
+        height: me.canvas.el.height
+    } );
+
     me.callbacks = {};
 
     me.pixelW = me.canvas.el.width / me.config.width;
@@ -17,14 +19,14 @@ var Bitscreen = function( ref, config ) {
         x = x * me.pixelW;
         y = y * me.pixelH;
         c.rect( x, y, me.pixelW, me.pixelH );
-    }
+    };
 
     me.clearPixel = function( x, y ) {
         var me = this, c = me.canvas;
         x = x * me.pixelW;
         y = y * me.pixelH;
         c.clear( x, y, me.pixelW, me.pixelH );
-    }
+    };
 
     me.drawSprite = function( x, y, sprite, palette ) {
         var me = this;
@@ -40,7 +42,7 @@ var Bitscreen = function( ref, config ) {
                 }
             }
         }
-    }
+    };
 
     me.callback = function( eventName, callback ) {
 
@@ -51,7 +53,8 @@ var Bitscreen = function( ref, config ) {
             me.callbacks[ eventName ]( Math.floor( x / me.pixelW ), Math.floor( y / me.pixelH ) );
         });
 
-    }
+    };
 
-}
+};
+
 
