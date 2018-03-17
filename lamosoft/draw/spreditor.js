@@ -13,6 +13,7 @@ var Spreditor = function( ref, config ) {
     me.bitscreen = new Bitscreen( ref, me.config );
     me.sprite = new Sprite( me.config );
     me.colorCode = me.palette.getCode( 0 );
+    me.pendown = false;
 
     /**
      * Redraw sprite
@@ -28,11 +29,36 @@ var Spreditor = function( ref, config ) {
     me.setColor = function( colorCode ) {
         var me = this;
         me.colorCode = colorCode;
-    }
+    };
+
+    me.penup = function() {
+        me.pendown = false;
+        me.bitscreen.canvas.el.setAttribute( 'style', 'border: 1px solid white;' );
+    };
 
     me.bitscreen.callback( 'click', function( x, y ) {
         me.sprite.set( x, y, me.colorCode );
         me.update();
+    });
+
+    me.bitscreen.callback( 'mousedown', function( x, y ) {
+        me.pendown = true;
+        me.bitscreen.canvas.el.setAttribute( 'style', 'border: 1px solid gray;' );
+    });
+    
+    me.bitscreen.callback( 'mouseup', function( x, y ) {
+        me.penup();
+    });
+    
+    me.bitscreen.callback( 'mouseout', function( x, y ) {
+        me.penup();
+    });
+    
+    me.bitscreen.callback( 'mousemove', function( x, y ) {
+        if( me.pendown ) {
+            me.sprite.set( x, y, me.colorCode );
+            me.update();
+        }
     });
 
     me.update();
