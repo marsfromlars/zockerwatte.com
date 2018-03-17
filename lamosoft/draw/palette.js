@@ -9,11 +9,13 @@
 
         var me = this;
         me.colors = {};
+        me.len = undefined;
 
         me.set = function( code, color ) {
             var me = this;
             code = me.checkCode( code );
             me.colors[ code ] = color;
+            me.length = undefined;
         };
         
         me.get = function( code ) {
@@ -22,10 +24,26 @@
             var color = me.colors[ code ];
             return color || null;
         };
+        
+        me.getCode = function( index ) {
+            return Palette.CODES[ index ];
+        };
+        
+        me.length = function() {
+            var me = this;
+            if( !me.len ) {
+                var i = 0;
+                for( var code in colors ) {
+                    i++;
+                }
+                me.len = i;
+            }
+            return me.len;
+        };
 
         me.toString = function() {
-            return '>>> ' + colors;
-        }
+            return '' + colors;
+        };
 
         me.checkCode = function( code ) {
             var me = this;

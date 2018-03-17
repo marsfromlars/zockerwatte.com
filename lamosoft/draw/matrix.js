@@ -5,6 +5,7 @@
         var me = this;
 
         me.clear = function() {
+            var me = this;
             me.data = [ h ];
             for( var i = 0; i < h; i++ ) {
                 me.data[ i ] = preFillChar.repeat( w );
