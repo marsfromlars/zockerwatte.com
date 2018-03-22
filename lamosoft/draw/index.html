@@ -16,6 +16,13 @@
     </head>
     <body>
 
+        <span id="params"></span>
+
+        <script>
+            var url = new URL( window.location );
+            document.getElementById('params').innerHTML = url.searchParams.get('c');
+        </script>
+
         <h5>Pick color</h5>
         
         <p>
@@ -27,7 +34,12 @@
         </p>
 
         <h5>Editor</h5>
-        <canvas id="e" width="400" height="400"></canvas>
+        <p>
+            <canvas id="e" width="400" height="400"></canvas>
+        </p>
+        <p>
+            <button onClick="toUrl()">URL</button>
+        </p>
 
         <h5>Canvas</h5>
         <canvas id="c" width="400" height="200"></canvas>
@@ -93,8 +105,12 @@
             for( var i = 0; i < 8; i++ ) {
                 b.drawSprite( 20 + i * 8, 0, s, palettes[ i % 2 ] );
             }
+            
+            //var palette = Palette.ZXSpectrum;
+            var palette = Palette.C64;
 
-            var e = new Spreditor( 'e', { width: 16, height: 16, onUpdate: function( editor ) {
+            var e = new Spreditor( 'e', { width: 16, height: 16, palette: palette, 
+                onUpdate: function( editor ) {
                 b.drawSprite( 0, 0, editor.sprite, editor.palette );
             }});
             for( var r = 0; r < 16; r++ ) {
@@ -105,11 +121,14 @@
             e.update();
 
             var selected = document.getElementById( 'selectedColor' );
-            var palette = Palette.C64;
             var p = new Palettepicker( 'p', palette, function( code ) {
                 e.setColor( code );
                 selected.setAttribute( 'style', 'border: 3px solid ' + palette.get( code ) + ';' );
             });
+
+            toUrl = function() {
+                console.log( 'URL' );
+            }
 
         </script>
 

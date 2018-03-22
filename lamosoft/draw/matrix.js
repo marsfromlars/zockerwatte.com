@@ -8,9 +8,9 @@
      * Two dimensional Matrix of characters which each symbolizes a pixel in a sprite
      * 
      * @constructor
-     * @param {*} w Width of matrix
-     * @param {*} h Height of matrix
-     * @param {*} preFillChar Character to fill all matrix positions at beginning
+     * @param {int} w Width of matrix
+     * @param {int} h Height of matrix
+     * @param {char} preFillChar Character to fill all matrix positions at beginning
      * 
      */
     var Matrix = function( w, h, preFillChar ) {
@@ -59,7 +59,21 @@
             }
             return null;
         };
-        
+
+        me.serialize = function( format ) {
+            if( format == '1' ) {
+                var me = this;
+                var s = '1:' + w + ':' + h + ':';
+                for( var i = 0; i < h; i++ ) {
+                    s += me.data[ i ];
+                }
+                return s;                    
+            }
+            else {
+                throw 'Unsupported format';
+            }
+        };
+
         /**
          * Debug output of matrix
          * 
@@ -84,6 +98,46 @@
 
     };
 
+    Matrix.parse = function( input ) {
+        var i = input.indexOf( ':' );
+        if( i == -1 ) {
+            throw 'Missing format identifer';
+        }
+        else {
+            var format = input.substring( 0, i );
+            if( format == '1' ) {
+                input = input.substring( i + 1 );
+                i = input.indexOf( ':' );
+                if( i == -1 ) {
+                    throw 'Missing width';
+                }
+                else {
+                    var width = parseInt( input.substring( 0, i ) );
+                    input = input.substring( i + 1 );
+                    i = input.indexOf( ':' );
+                    if( i == -1 ) {
+                        throw 'Missing height';
+                    }
+                    else {
+                        var height = parseInt( input.substring( 0, i ) );
+                        input = input.substring( i + 1 );
+                        var result = new Matrix( width, height );
+                        var index = 0;
+                        for( var r = 0; r < height && index < input.length; r++ ) {
+                            for( var c = 0; c < width && index < input.length; c++ ) {
+                                result.set( c, r, input[ index ] );
+                                index++;
+                            }
+                        }
+                        return result;
+                    }
+                }
+            }
+            else {
+                throw 'Invalid format identifier';
+            }
+        }
+    }
 
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
         module.exports = Matrix;

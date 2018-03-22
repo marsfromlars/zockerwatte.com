@@ -39,4 +39,18 @@ test( 'clear', () => {
 });
 
 
+test( 'serializeAndParse', () => {
+    var m = new Matrix( 2, 2, '_' );
+    m.set( 0, 0, 'A' );
+    m.set( 1, 0, 'B' );
+    m.set( 0, 1, 'C' );
+    var s = m.serialize('1');
+    expect( s ).toBe( '1:2:2:ABC_' );
+
+    var m1 = Matrix.parse( s );
+    expect( m1.serialize( '1' ) ).toBe( '1:2:2:ABC_' );
+
+});
+
+
 
