@@ -1,42 +1,77 @@
-var Sprite = function( config ) {
+/**
+ * @class Matrix
+ * 
+ */
+(function() {
 
-    var me = this;
-    me.config = new Config( config, {
-        width: 16,
-        height: 16
-    });
+    var Sprite = function( config ) {
 
-    me.matrix = me.config.matrix || new Matrix( me.config.width, me.config.height );
-
-    me.clear = function() {
         var me = this;
-        me.matrix.clear();
+        me.config = new Config( config, {
+            width: 16,
+            height: 16,
+            palette: Palette.C64
+        });
+
+        me.matrix = me.config.matrix || new Matrix( me.config.width, me.config.height );
+        me.palette = me.config.palette;
+
+        me.clear = function() {
+            var me = this;
+            me.matrix.clear();
+        };
+
+        me.get = function( x, y ) {
+            var me = this;
+            return me.matrix.get( x, y );
+        };
+
+        me.set = function( x, y, c ) {
+            var me = this;
+            me.matrix.set( x, y, c );
+        };
+
+        me.width = function() {
+            var me = this;
+            return me.matrix.w;
+        };
+
+        me.height = function() {
+            var me = this;
+            return me.matrix.h;
+        };
+
+        me.toString = function() {
+            var me = this;
+            return me.matrix.toString();
+        };   
+
+        me.getPalette = function() {
+            return this.palette;
+        }
+
+        me.setPalette = function( palette ) {
+            this.palette = palette;
+        }
+
+        me.serialize = function( format ) {
+            var me = this;
+            return me.matrix.serialize( format );
+        };
+
     };
 
-    me.get = function( x, y ) {
-        var me = this;
-        return me.matrix.get( x, y );
-    };
+    Sprite.parse = function( input ) {
+        var matrix = Matrix.parse( input );
+        return new Sprite({
+            matrix: matrix
+        });
+    }
 
-    me.set = function( x, y, c ) {
-        var me = this;
-        me.matrix.set( x, y, c );
-    };
+    if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
+        module.exports = Sprite;
+    else
+        window.Sprite = Sprite;
 
-    me.width = function() {
-        var me = this;
-        return me.matrix.w;
-    };
-
-    me.height = function() {
-        var me = this;
-        return me.matrix.h;
-    };
-
-    me.toString = function() {
-        var me = this;
-        return me.matrix.toString();
-    };   
-
-};
+})();
 

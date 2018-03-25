@@ -28,8 +28,9 @@ var Bitscreen = function( ref, config ) {
         c.clear( x, y, me.pixelW, me.pixelH );
     };
 
-    me.drawSprite = function( x, y, sprite, palette ) {
+    me.drawSprite = function( x, y, sprite ) {
         var me = this;
+        var palette = sprite.getPalette();
         for( var j = 0; j < sprite.height(); j++ ) {
             for( var i = 0; i < sprite.width(); i++ ) {
                 var c = sprite.get( i, j );

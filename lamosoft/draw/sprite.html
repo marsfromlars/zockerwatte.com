@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <script src="bitscreen.js"></script>
+        <script src="canvas.js"></script>
+        <script src="config.js"></script>
+        <script src="matrix.js"></script>
+        <script src="palette.js"></script>
+        <script src="palettepicker.js"></script>
+        <script src="sprite.js"></script>
+        <script src="spreditor.js"></script>
+        <!-- thirdparty -->
+        <script src="libs/base64-string.js"></script>
+        <script src="libs/lz-string.js"></script>        
+        <style>
+            canvas {
+                border: 1px solid white;
+            } 
+        </style>
+    </head>
+    <body>
+
+        <canvas id="s" width="80" height="80" ></canvas>
+
+        <script>
+            var url = new URL( window.location );
+            var c = url.searchParams.get( 'c' );
+            c = LZString.decompressFromEncodedURIComponent( c );
+            var sprite = Sprite.parse( c );
+            var bitscreen = new Bitscreen( 's', { width: 16, height: 16 });
+            bitscreen.drawSprite( 0, 0, sprite );
+        </script>
+
+    </body>
+</html>

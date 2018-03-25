@@ -8,6 +8,9 @@
         <script src="palettepicker.js"></script>
         <script src="sprite.js"></script>
         <script src="spreditor.js"></script>
+        <!-- thirdparty -->
+        <script src="libs/base64-string.js"></script>
+        <script src="libs/lz-string.js"></script>
         <style>
             canvas {
                 border: 1px solid white;
@@ -38,7 +41,7 @@
             <canvas id="e" width="400" height="400"></canvas>
         </p>
         <p>
-            <button onClick="toUrl()">URL</button>
+            URL: <a id="url" href="">URL</a>
         </p>
 
         <h5>Canvas</h5>
@@ -103,15 +106,22 @@
             s.set( 2, 1, 'B' );
 
             for( var i = 0; i < 8; i++ ) {
-                b.drawSprite( 20 + i * 8, 0, s, palettes[ i % 2 ] );
+                s.setPalette( palettes[ i % 2 ] );
+                b.drawSprite( 20 + i * 8, 0, s );
             }
             
             //var palette = Palette.ZXSpectrum;
             var palette = Palette.C64;
+            var url = document.getElementById( 'url' );
 
             var e = new Spreditor( 'e', { width: 16, height: 16, palette: palette, 
                 onUpdate: function( editor ) {
-                b.drawSprite( 0, 0, editor.sprite, editor.palette );
+                    b.drawSprite( 0, 0, editor.sprite, editor.palette );
+                    var href = editor.sprite.serialize( '1' );
+                    href = LZString.compressToEncodedURIComponent( href );
+                    var href = 'sprite.html?c=' + href;
+                    url.setAttribute( 'href', href );
+                    url.innerHTML = href;
             }});
             for( var r = 0; r < 16; r++ ) {
                 for( var i = 0; i < e.palette.length(); i++ ) {
@@ -125,10 +135,6 @@
                 e.setColor( code );
                 selected.setAttribute( 'style', 'border: 3px solid ' + palette.get( code ) + ';' );
             });
-
-            toUrl = function() {
-                console.log( 'URL' );
-            }
 
         </script>
 
