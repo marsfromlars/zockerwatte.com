@@ -9,8 +9,8 @@
         <script src="sprite.js"></script>
         <script src="spreditor.js"></script>
         <!-- thirdparty -->
-        <script src="libs/base64-string.js"></script>
-        <script src="libs/lz-string.js"></script>        
+        <script src="node_modules/lz-string/libs/base64-string.js"></script>
+        <script src="node_modules/lz-string/libs/lz-string.js"></script>
         <style>
             canvas {
                 border: 1px solid white;
@@ -19,15 +19,29 @@
     </head>
     <body>
 
+        <img id="img">
+
+        <!--
         <canvas id="s" width="80" height="80" ></canvas>
+        -->
 
         <script>
             var url = new URL( window.location );
             var c = url.searchParams.get( 'c' );
             c = LZString.decompressFromEncodedURIComponent( c );
             var sprite = Sprite.parse( c );
-            var bitscreen = new Bitscreen( 's', { width: 16, height: 16 });
+
+            var s = document.createElement( 'canvas' );
+            s.setAttribute('width','800');
+            s.setAttribute('height','800');
+
+            var bitscreen = new Bitscreen( s, { width: 16, height: 16 });
             bitscreen.drawSprite( 0, 0, sprite );
+
+            var myImage = s.toDataURL("image/png"); 
+            var imageElement = document.getElementById("img");  
+            imageElement.src = myImage; 
+
         </script>
 
     </body>

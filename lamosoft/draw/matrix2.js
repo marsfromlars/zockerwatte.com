@@ -10,10 +10,9 @@
      * @constructor
      * @param {int} w Width of matrix
      * @param {int} h Height of matrix
-     * @param {char} preFillChar Character to fill all matrix positions at beginning
      * 
      */
-    var Matrix = function( w, h, preFillChar ) {
+    var Matrix2 = function( w, h ) {
 
         var me = this;
 
@@ -25,7 +24,7 @@
             var me = this;
             me.data = [ h ];
             for( var i = 0; i < h; i++ ) {
-                me.data[ i ] = preFillChar.repeat( w );
+                me.data[ i ] = null;
             }
             return me;
         };
@@ -37,10 +36,16 @@
          * @param {*} y Y coordinate
          * @param {*} char New character at position x,y
          */
-        me.set = function( x, y, char ) {
+        me.set = function( x, y, colorIndex ) {
             var me = this;
             if( x >= 0 && y >= 0 && x < me.w && y < me.h ) {
-                me.data[ y ] = me.data[ y ].slice( 0, x ) + char[ 0 ] + me.data[ y ].slice( x+1 );
+                if( me.data[ y ] == null ) {
+                    me.data[ y ] = [];
+                    while( me.data[ y ].length < me.w ) {
+                        me.data[ y ].push( 0 );
+                    }
+                }
+                me.data[ y ][ x ] = colorIndex;
             }
         };
         
@@ -55,13 +60,26 @@
         me.get = function( x, y ) {
             var me = this;
             if( x >= 0 && y >= 0 && x < me.w && y < me.h ) {
-                return me.data[ y ][ x ];
+                if( me.data[ y ] == null ) {
+                    return 0;
+                }
+                else {
+                    return me.data[ y ][ x ];
+                }
             }
             return null;
         };
 
         me.serialize = function( format ) {
             var me = this;
+            var max = 0;
+            for( var r = 0; r < me.h; r++ ) {
+                for( var c = 0; c < me.w; c++ ) {
+                    max = Math.max( max, me.get( c, r ) );
+                }
+            }
+            var bits = Math.ceil( Math.log2( max ) );
+            
             if( format == '1' ) {
                 var s = '1:' + w + ':' + h + ':';
                 for( var i = 0; i < h; i++ ) {
@@ -92,13 +110,11 @@
 
         me.w = w;
         me.h = h;
-        preFillChar = preFillChar || ' ';
-        preFillChar = preFillChar[ 0 ];
         me.clear();
 
     };
 
-    Matrix.parse = function( input ) {
+    Matrix2.parse = function( input ) {
         var i = input.indexOf( ':' );
         if( i == -1 ) {
             throw 'Missing format identifer';
@@ -140,9 +156,9 @@
     }
 
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
-        module.exports = Matrix;
+        module.exports = Matrix2;
     else
-        window.Matrix = Matrix;
+        window.Matrix2 = Matrix2;
 
 })();
 
