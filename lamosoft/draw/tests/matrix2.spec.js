@@ -1,4 +1,5 @@
 const Matrix2 = require('../matrix2');
+const BitSet = require('bitset');
 
 test( 'prefill', () => {
     expect( new Matrix2( 2, 2 ).get( 0, 0 ) ).toBe( 0 );
@@ -36,17 +37,16 @@ test( 'clear', () => {
 
 
 test( 'serializeAndParse', () => {
-    /*
-    var m = new Matrix2( 2, 2, '_' );
-    m.set( 0, 0, 'A' );
-    m.set( 1, 0, 'B' );
-    m.set( 0, 1, 'C' );
+    var m = new Matrix2( 2, 2 );
+    m.set( 0, 0, 1 );
+    m.set( 1, 0, 2 );
+    m.set( 0, 1, 3 );
     var s = m.serialize('1');
     expect( s ).toBe( '1:2:2:ABC_' );
 
     var m1 = Matrix2.parse( s );
     expect( m1.serialize( '1' ) ).toBe( '1:2:2:ABC_' );
-    */
+    
 });
 
 

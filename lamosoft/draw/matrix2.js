@@ -72,20 +72,24 @@
 
         me.serialize = function( format ) {
             var me = this;
-            var max = 0;
-            for( var r = 0; r < me.h; r++ ) {
-                for( var c = 0; c < me.w; c++ ) {
-                    max = Math.max( max, me.get( c, r ) );
-                }
-            }
-            var bits = Math.ceil( Math.log2( max ) );
-            
             if( format == '1' ) {
-                var s = '1:' + w + ':' + h + ':';
-                for( var i = 0; i < h; i++ ) {
-                    s += me.data[ i ];
+                var max = 0;
+                for( var r = 0; r < me.h; r++ ) {
+                    for( var c = 0; c < me.w; c++ ) {
+                        max = Math.max( max, me.get( c, r ) );
+                    }
                 }
-                return s;                    
+                var bitstream = '';
+                var depthBits = Math.ceil( Math.log2( max ) );
+                for( var r = 0; r < me.h; r++ ) {
+                    for( var c = 0; c < me.w; c++ ) {
+                        var pixel = new BitSet( me.get( c, r ) );
+                        var bits = '0'.repeat( depthBits ) + pixel.toString( 2 );
+                        bits = bits.substring( bits.length - depthBits );
+                        bitstream += bits;
+                    }
+                }
+                return new BitSet( bitstream ).toString( 16 );
             }
             else {
                 throw 'Unsupported format';
