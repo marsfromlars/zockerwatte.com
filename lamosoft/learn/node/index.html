@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Learn node.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a>
+
+        <h1>Learn node.</h1>
+
+        <h2>Http server.</h2>
+
+        Also terminal logging.
+
+        <pre><div class="code">
+var http = require('http');
+
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World!');
+}).listen(3000);
+
+console.log( 'Http server running on port 3000.' );
+        </div></pre>
+
+    </body>
+</html>
