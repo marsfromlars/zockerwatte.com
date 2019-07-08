@@ -23,6 +23,8 @@ assert( s.slice( -7 ) == 'machine' )
 assert( s.slice( 4, 8 ) == 'mach' )
 assert( s.slice( 0, 4 ) == 'Mega' )
 assert( s[ 5 ] == 'a' )
+assert( s.endsWith( 'ine' ) )
+assert( s.startsWith( 'Meg' ) )
     </div></pre>           
             
     <div class="output">
@@ -30,10 +32,10 @@ assert( s[ 5 ] == 'a' )
             let assert = function( exp ) {
                 let result = eval( exp );
                 if( !result ) {
-                    document.write( 'Assertion ' + exp + ' failed.<br>' );
+                    document.write( '<span style="color: red;">Assertion failed: ' + exp + '</span><br>' );
                 }
                 else {
-                    document.write( exp + '<br>' );
+                    document.write( '<span style="color: green;">' + exp + '</span><br>' );
                 }
             }
             let s = 'Megamachine'
@@ -46,6 +48,8 @@ assert( s[ 5 ] == 'a' )
             assert( "s.slice( 4, 8 ) == 'mach'" )
             assert( "s.slice( 0, 4 ) == 'Mega'" )
             assert( "s[ 5 ] == 'a'" )
+            assert( "s.endsWith( 'ine' )" )
+            assert( "s.startsWith( 'Meg' )" )
         </script>
     </div>
 
