@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Class.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a>
+
+        <h1>Learn Class.</h1>
+
+        <h2>Javascript class.</h2>
+
+        <pre><div class="code" data-title="Old style class" >
+function Person( name, dateEmployed ) {
+    this.name = name;
+    this.dateEmployed = dateEmployed;
+}
+
+Person.prototype.print = function( char ) {
+    console.log( this.name + ", employeed: " + this.dateEmployed );
+}
+
+let p = new Person( 'Charles', '2020-01-01' );
+
+p.print();
+            </div></pre>           
+
+        <pre><div class="code" data-title="ECMA 2015" >
+class Person {
+
+    constructor( name, dateEmployed ) {
+    this.name = name;
+    this.dateEmployed = dateEmployed;
+    }
+
+    print() {
+    console.log( this.name + ", employeed: " + this.dateEmployed );
+    }
+
+}
+
+let p = new Person( 'Brenda', '2020-02-01' );
+
+p.print();
+        </div></pre>           
+                
+        <h2>Immediately-invoked Function Expressions.</h2>
+
+        <pre><div class="code" data-title="IIFE" >
+;(function() { // <-- semicolon at start of library makes concatenating files easier
+
+    function internalVar() {}
+
+    var internalVar;
+
+})()
+        </div></pre>            
+
+    </body>
+</html>

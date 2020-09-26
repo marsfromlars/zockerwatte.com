@@ -25,6 +25,7 @@ assert( s.slice( 0, 4 ) == 'Mega' )
 assert( s[ 5 ] == 'a' )
 assert( s.endsWith( 'ine' ) )
 assert( s.startsWith( 'Meg' ) )
+assert( typeof s === 'string' || s instanceof String )
     </div></pre>           
             
     <div class="output">
@@ -50,6 +51,7 @@ assert( s.startsWith( 'Meg' ) )
             assert( "s[ 5 ] == 'a'" )
             assert( "s.endsWith( 'ine' )" )
             assert( "s.startsWith( 'Meg' )" )
+            assert( "typeof s === 'string' || s instanceof String" )
         </script>
     </div>
 
