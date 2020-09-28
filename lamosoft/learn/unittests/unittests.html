@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Learn unit tests.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a>
+
+        <h1>Learn unit tests.</h1>
+
+        <h2>Simple tests in the browser.</h2>
+
+        <pre><div class="code" data-title="html" >
+let assert = function( exp ) {
+  let result = eval( exp );
+  if( !result ) {
+    document.write( '&lt;span style="color: red;">Test failed: ' + exp + '&lt;/span>&lt;br>' );
+  }
+  else {
+    document.write( '&lt;span style="color: green;">Test OK: ' + exp + '&lt;/span>&lt;br>' );
+  }
+}
+let s = 'Megamachine'
+assert( "typeof s === 'string' || s instanceof String" )
+assert( "s.slice( 3 ) == 'machine'" )
+        </div></pre>           
+
+        <script>
+          let assert = function( exp ) {
+              let result = eval( exp );
+              if( !result ) {
+                  document.write( '<span style="color: red;">Test failed: ' + exp + '</span><br>' );
+              }
+              else {
+                  document.write( '<span style="color: green;">Test OK: ' + exp + '</span><br>' );
+              }
+          }
+          let s = 'Megamachine'
+          assert( "typeof s === 'string' || s instanceof String" )
+          assert( "s.slice( 3 ) == 'machine'" )
+      </script>
+
+
+</body>
+</html>
