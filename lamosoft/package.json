@@ -1,7 +1,7 @@
 {
   "name": "lamosoft",
   "version": "0.0.1",
-  "description": "learning to swim in javascript oceaon",
+  "description": "learning to swim in javascript ocean",
   "main": "index.js",
   "directories": {
     "example": "examples"
