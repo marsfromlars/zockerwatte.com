@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modules.</title>
+        <link rel="icon" href="../../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../../learn.css">        
+    </head>
+    <body>
+
+        <a href="../../index.html">Home</a>
+
+        <h1>Modules.</h1>
+
+        <!-- ******************************************************************** -->
+        <pre><div class="code" data-title="HTML" >
+&lt;script src="main.js" type="module">&lt;/script>
+        </div></pre>           
+
+        <!-- ******************************************************************** -->
+        <pre><div class="code" data-title="Javascript: Main" >
+import { isEmpty, EMPTY_STRING as E } from "./module.js";
+import MathUtils from "./bigmodule.js"; // default import
+
+document.getElementById( "output" ).innerHTML = "isEmpty: " + isEmpty( E );
+
+document.getElementById( "output" ).innerHTML += "&lt;br>sqrt(PI): " + MathUtils.sqrt( MathUtils.PI );
+        </div></pre>           
+          
+
+        <!-- ******************************************************************** -->
+        <pre><div class="code" data-title="Javascript: Module (module.js)" >
+function isEmpty( s ) {
+  if( s == null || s == undefined ) {
+    return true;
+  }
+  if( s.trim().length == 0 ) {
+    return true;
+  }
+}
+
+const EMPTY_STRING = "";
+
+export { isEmpty, EMPTY_STRING };
+        </div></pre>           
+                
+        <!-- ******************************************************************** -->
+        <pre><div class="code" data-title="Javascript: Module with default export (bigmodule.js)" >
+let MathUtils = {
+
+  sqrt: function( x ) {
+    return Math.sqrt( x );
+  },
+
+  PI: Math.PI
+
+};
+
+export default MathUtils;          
+        </div></pre>           
+
+        <script src="main.js" type="module"></script>
+
+        <div id="output" class="output"></div>
+
+</body>
+</html>
