@@ -12,15 +12,17 @@
         <h1>Array.</h1>
 
             <pre><div class="code" data-title="Javascript" >
-let a = [ 'IBM', 'Intel', 'Oracle' ];
-assert( a.length == 3 );
-a.push( 'Microsoft' );
+let a = [ 'IBM', 'Intel', 'Oracle', 'AMD' ];
 assert( a.length == 4 );
+a.push( 'Microsoft' );
+assert( a.length == 5 );
 a[ 9 ] = 'Apple';
 assert( a.length == 10 );
 assert( Array.isArray( a ) );
 assert( a instanceof Array );
 assert( a[ 1 ] == 'Intel' );
+let b = a.slice( 2 );
+let c = a.slice( 2, 4 );
             </div></pre>           
 
         <script>
@@ -29,16 +31,20 @@ assert( a[ 1 ] == 'Intel' );
                     document.write( 'Assertion failed.<br>' );
                 }
             }
-            let a = [ 'IBM', 'Intel', 'Oracle' ];
-            assert( a.length == 3 );
-            a.push( 'Microsoft' );
+            let a = [ 'IBM', 'Intel', 'Oracle', 'AMD' ];
             assert( a.length == 4 );
+            a.push( 'Microsoft' );
+            assert( a.length == 5 );
             a[ 9 ] = 'Apple';
             assert( a.length == 10 );
             assert( Array.isArray( a ) );
             assert( a instanceof Array );
             assert( a[ 1 ] == 'Intel' );
-            document.write( 'a=' + a );
+            document.write( 'a=' + a + "<br><br>" );
+            let b = a.slice( 2 );
+            document.write( 'b=' + b + "<br><br>" );
+            let c = a.slice( 2, 4 );
+            document.write( 'c=' + c + "<br><br>" );
         </script>
 
     </body>
