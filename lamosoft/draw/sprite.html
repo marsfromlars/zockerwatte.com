@@ -31,9 +31,21 @@
             c = LZString.decompressFromEncodedURIComponent( c );
             var sprite = Sprite.parse( c );
 
+            var s = url.searchParams.get( 's' );
+            let size = 32;
+            if( s ) {
+                size = parseInt( s );
+            }
+            if( size < 8 ) {
+                size = 8;
+            }
+            if( size > 8000 ) {
+                size = 8000;
+            }
+
             var s = document.createElement( 'canvas' );
-            s.setAttribute('width','800');
-            s.setAttribute('height','800');
+            s.setAttribute('width', '' + size );
+            s.setAttribute('height', '' + size );
 
             var bitscreen = new Bitscreen( s, { width: 16, height: 16 });
             bitscreen.drawSprite( 0, 0, sprite );

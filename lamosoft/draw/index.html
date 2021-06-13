@@ -121,7 +121,7 @@
                     b.drawSprite( 0, 0, editor.sprite, editor.palette );
                     var href = editor.sprite.serialize( '1' );
                     href = LZString.compressToEncodedURIComponent( href );
-                    var href = 'sprite.html?c=' + href;
+                    var href = 'sprite.html?s=64&c=' + href;
                     url.setAttribute( 'href', href );
                     url.innerHTML = href;
             }});
