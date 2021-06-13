@@ -922,7 +922,7 @@
 
   BitSet['Random'] = function(n) {
 
-    if (n === undefined || n < 0) {
+    if (n === undefined || n < 0) {
       n = WORD_LENGTH;
     }
 
@@ -937,7 +937,7 @@
 
     // Fill the vector with random data, uniformally distributed
     for (var i = 0; i < len; i++) {
-      t.push(Math.random() * 4294967296 | 0);
+      t.push(Math.random() * 4294967296 | 0);
     }
 
     // Mask out unwanted bits
