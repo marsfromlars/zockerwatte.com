@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Promise / async await.</title>
+        <link rel="icon" href="../images/favicon.ico" type="image/vnd.microsoft.icon" >
+        <link rel="stylesheet" href="../learn.css">        
+    </head>
+    <body>
+
+        <a href="../index.html">Home</a>
+
+        <h1>Promise / async await.</h1>
+
+        <!-- ******************************************************************** -->
+        <h2>Promise.</h2>
+
+            <pre><div class="code" data-title="Javascript" >
+let promise1 = new Promise( ( callOnSuccess, callOnError ) => {
+    let result = Math.round( Math.random() * 10 )
+    if( result < 5 ) {
+        callOnSuccess( "Success: " + result + " < 5" )
+    }
+    else {
+        callOnError( "Error: " + result + " is not < 5")
+    }
+})
+
+let span1 = document.getElementById( "output1" )
+
+promise1
+    .<span class="codeEmphasized">then</span>( ( result ) => span1.innerHTML = result )
+    .<span class="codeEmphasized">catch</span>( ( error ) => span1.innerHTML = error )
+            </div></pre>     
+
+            <span id="output1" ></span>
+            <br><br>
+            <button onclick="location.reload()">Run again</button>
+
+            <script>
+let promise1 = new Promise( ( callOnSuccess, callOnError ) => {
+    let result = Math.round( Math.random() * 10 )
+    if( result < 5 ) {
+        callOnSuccess( "Success: " + result + " < 5" )
+    }
+    else {
+        callOnError( "Error: " + result + " is not < 5")
+    }
+})
+
+let span1 = document.getElementById( "output1" )
+promise1
+    .then( ( result ) => span1.innerHTML = result )
+    .catch( ( error ) => span1.innerHTML = error )
+            </script>
+
+
+        <!-- ******************************************************************** -->
+        <h2>Special syntax.</h2>
+
+            <pre><div class="code" data-title="Javascript" >
+<span class="codeEmphasized">async</span> function promise2() {
+    let result = Math.round( Math.random() * 10 )
+    if( result < 5 ) {
+        return "Success: " + result + " < 5"
+    }
+    else {
+        throw "Error: " + result + " is not < 5"
+    }
+}
+
+let span2 = document.getElementById( "output2" )
+promise2()
+    .then( ( result ) => span2.innerHTML = result )
+    .catch( ( error ) => span2.innerHTML = error )
+            </div></pre>     
+
+            <span id="output2" ></span>
+            <br><br>
+            <button onclick="location.reload()">Run again</button>
+
+            <script>
+    async function promise2() {
+        let result = Math.round( Math.random() * 10 )
+        if( result < 5 ) {
+            return "Success: " + result + " < 5"
+        }
+        else {
+            throw "Error: " + result + " is not < 5"
+        }
+    }
+
+    let span2 = document.getElementById( "output2" )
+    promise2()
+        .then( ( result ) => span2.innerHTML = result )
+        .catch( ( error ) => span2.innerHTML = error )
+            </script>
+
+        <!-- ******************************************************************** -->
+        <h2>Wait for promise.</h2>
+
+            <pre><div class="code" data-title="Javascript" >
+// this is necessary because using async is only 
+// allowed within an async function                
+(async function() { 
+
+    async function promise2() {
+        let result = Math.round( Math.random() * 10 )
+        if( result < 5 ) {
+            return "Success: " + result + " < 5"
+        }
+        else {
+            throw "Error: " + result + " is not < 5"
+        }
+    }
+
+    let span = document.getElementById( "output2" )
+    try {
+        span.innerHTML = <span class="codeEmphasized">await</span> promise2() // will suspend this thread until promise returns
+    }
+    catch( error ) {
+        span.innerHTML = error
+    }
+
+})()
+            </div></pre>     
+
+            <span id="output3" ></span>
+            <br><br>
+            <button onclick="location.reload()">Run again</button>
+
+            <script>
+(async function() { // <-- this is necessary because using async is only allowed within an async function
+
+    async function promise2() {
+        let result = Math.round( Math.random() * 10 )
+        if( result < 5 ) {
+            return "Success: " + result + " < 5"
+        }
+        else {
+            throw "Error: " + result + " is not < 5"
+        }
+    }
+
+    let span3 = document.getElementById( "output3" )
+    try {
+        span3.innerHTML = await promise2() // will suspend thie thread until promise returns
+    }
+    catch( error ) {
+        span3.innerHTML = error
+    }
+
+})()
+            </script>
+    </body>
+
+</html>

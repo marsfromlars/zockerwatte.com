@@ -12,6 +12,11 @@ body {
     background-color: #eeeecc;
 }
 
+.codeEmphasized {
+    color: red;
+    font-weight: bold;
+}
+
 .code::before {
     display: block;
     content: attr(data-title);
